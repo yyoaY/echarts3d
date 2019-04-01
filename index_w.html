@@ -1,0 +1,777 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>echarts 3D earth</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link href="roll2.css" id="css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <style>
+        html{height:100%;}
+        body{
+            height:100%;
+            margin:0;
+            background:url('img/timg.png') center/cover no-repeat;
+        }
+		h1{
+			color:#FFF;
+			}
+		p{
+			color:#FFF;
+            text-align: right;
+			}
+        #text{
+            width: 450px;
+        }
+        #history{
+            position: absolute;
+            height: 50px;
+            width: 500px;
+            background-color: 	rgba(43,43,43,0.9);
+            bottom: 				-10%;
+            left: 					430px;
+        }
+        #history ul {
+            list-style-type:        none;
+            margin:                 10px;
+            padding:                0;
+            padding-bottom:         15px;
+            padding-top:            22px;
+            color: white;
+            font-size:              16px;
+            font-family:            'Roboto';
+            background:             url('img/timelineBG.png') -10px -10px no-repeat;
+        }
+        #history ul li {
+             width:                  90px;
+             height:                 50px;
+             float:                  left;
+             text-align:             center;
+            cursor:                 pointer;
+        }
+        #history .timeline #handle {
+            cursor:                 pointer;
+            width:                  36px;
+            height:                 36px;
+            background:             url('img/yearHandle.png') 0px 0 no-repeat;
+            position:               absolute;
+            bottom:                 10px;
+        }
+        #hudButtons{
+            display: none;
+            position: absolute;
+            top: 30px;
+            width: 489px;
+
+        }
+        #hudButtons .countryTextInput {
+            float:                  right;
+            font-size: 				17px;
+            width: 					300px;
+            margin-right: 			5px;
+            font-family: 			'RopaSans';
+            text-transform:          uppercase;
+        }
+        #hudButtons .list {
+            list-style-type:none;
+            background-color: white;
+            float: right;
+            font-size: 17px;
+            width: 266px;
+            margin-right: 5px;
+            font-family: 'RopaSans';
+            text-transform: uppercase;
+            margin-top: 0px;
+            overflow-y: hidden;
+            overflow-x:hidden;
+        }
+        #hudButtons .list a{
+            display: block;
+            text-decoration:none;
+            padding: 5px;
+            color: black;
+
+        }
+        #hudButtons .list li{
+            display: block;
+            width: 305px;
+            height: 32px;
+            margin-left: -40px;
+        }
+        #hudButtons .list li:hover{
+            display: block;
+            cursor: pointer;
+            width: 305px;
+            height: 32px;
+            background: rgba(61,40,104,0.2);
+            margin-left: -40px;
+        }
+        #hudButtons .armsBtn {
+            float: right;
+            background: 			#141414;
+            padding: 				3px 10px 2px;
+            color: 					white;
+            border: 				0;
+            font-size: 				18px;
+            font-family: 			'RopaSans';
+            cursor: 				pointer;
+            margin-right: 			0px;
+            opacity:                0.9;
+        }
+        #hudButtons .armsBtn:hover {
+            opacity: 1;
+        }
+        #hudButtons .aboutBtn {
+            display:				block;
+            clear:					both;
+            margin-right: 			0px;
+            width: 					56px;
+
+        }
+        #importExportBtns {
+            width:                  298px;
+            position:               absolute;
+            bottom:                 0px;
+            color:                  white;
+            display:                none;
+        }
+        #importExportBtns>div>div {
+            float:                  left;
+            width:                  60px;
+            text-align:             center;
+            height:                 28px;
+        }
+        #importExportBtns .imex>div {
+            background:#262626;
+        }
+        #importExportBtns .typeLabels div {
+            font-family:            'Roboto';
+            font-size:              13px;
+            text-transform:         uppercase;
+            margin-bottom:-12px;
+        }
+
+        #importExportBtns .imex>div {
+            cursor: pointer;
+            opacity: 0.9;
+        }
+        #importExportBtns .imex>div:hover {
+            opacity: 1;
+        }
+        #importExportBtns>div>.label {
+            width:              58px;
+            height:             25px;
+            text-transform:     uppercase;
+            font-family:        'Roboto';
+            font-size:          18px;
+            margin-left:        10px;
+            background:         #262626;
+            vertical-align:     middle;
+            padding-top:        3px;
+        }
+        #importExportBtns .imports .label {
+            color:              #44B2D4;
+        }
+        #importExportBtns .exports .label {
+            color:              #FFA90B;
+        }
+        #importExportBtns .imports {
+            margin-bottom:      5px;
+        }
+        #importExportBtns .mil, #importExportBtns .civ {
+            margin-right:       5px;
+        }
+        #importExportBtns .imex .check {
+            width: 16px;
+            height: 16px;
+            background: #262626 url('img/importExportIcons.png') 0 0 no-repeat;
+            margin: 6px auto;
+        }
+        #importExportBtns .imports .mil .check {
+            background-position: 0px 0px;
+        }
+        #importExportBtns .imports .mil .check.inactive {
+            background-position: 0px -16px;
+        }
+        #importExportBtns .imports .civ .check {
+            background-position: -16px 0px;
+        }
+        #importExportBtns .imports .civ .check.inactive {
+            background-position: -16px -16px;
+        }
+        #importExportBtns .imports .ammo .check {
+            background-position: -32px 0px;
+        }
+        #importExportBtns .imports .ammo .check.inactive {
+            background-position: -32px -16px;
+        }
+        #importExportBtns .exports .mil .check {
+            background-position: -48px 0px;
+        }
+        #importExportBtns .exports .mil .check.inactive {
+            background-position: -48px -16px;
+        }
+        #importExportBtns .exports .civ .check {
+            background-position: -64px 0px;
+        }
+        #importExportBtns .exports .civ .check.inactive {
+            background-position: -64px -16px;
+        }
+        #importExportBtns .exports .ammo .check {
+            background-position: -80px 0px;
+        }
+        #importExportBtns .exports .ammo .check.inactive {
+            background-position: -80px -16px;
+        }
+        #container{
+            height:100%;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="js/world.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+    <div id="text">
+        <h1>一带一路相关国家间的新闻流通</h1>
+        <p>自2015年-2019年3月</p>
+    </div>
+    <div id="container">
+    </div>
+    <div id="history">
+        <ul class="timeline pointer" id="line">
+            <li >2015</li>
+            <li>2016</li>
+            <li>2017</li>
+            <li>2018</li>
+            <li>2019</li>
+            <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
+        </ul>
+    </div>
+    <div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
+        <input type="button" value="相关" class="aboutBtn armsBtn pointer">
+        <input type="button" value="查询" class="searchBtn armsBtn pointer"onclick="copyText()">
+        <input type="text" name="country" id="countries"
+               class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
+               >
+        <ul id="data_list" class="list"></ul>
+        <br class="clear">
+    </div>
+    <div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
+        <div class="typeLabels">
+            <div class="mil">正面</div>
+            <div class="civ">中性</div>
+            <div class="ammo">负面</div><br class="clear">
+        </div>
+        <div class="imports imex">
+            <div class="mil" id="m1"><div class="check"></div></div>
+            <div class="civ" id="c1"><div class="check"></div></div>
+            <div class="ammo" id="a1"><div class="check"></div></div>
+            <div class="label" id="label1">输入</div><br class="clear">
+        </div>
+        <div class="exports imex">
+            <div class="mil" id="m2"><div class="check"></div></div>
+            <div class="civ" id="c2"><div class="check"></div></div>
+            <div class="ammo" id="a2"><div class="check"></div></div>
+            <div class="label" id="label2">输出</div><br class="clear">
+        </div>
+        <br class="clear">
+    </div>
+    <script>
+            var ag=1;
+            var btnTest1=document.getElementById("label1");
+            btnTest1.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .imports>div").not(".label");
+                ag++;
+                if (ag%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+        }
+        var bg=1;
+            var btnTest2=document.getElementById("label2");
+            btnTest2.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .exports>div").not(".label");
+                bg++;
+                if (bg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+
+            var cg=1;
+            var btnTest3=document.getElementById("m1");
+            btnTest3.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .imports .mil");
+                cg++;
+                if (cg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+            var dg=1;
+            var btnTest4=document.getElementById("c1");
+            btnTest4.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .imports .civ");
+                dg++;
+                if (dg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+            var eg=1;
+            var btnTest5=document.getElementById("a1");
+            btnTest5.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .imports #a1");
+                eg++;
+                if (eg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+            var gg=1;
+            var btnTest6=document.getElementById("m2");
+            btnTest6.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .exports .mil");
+                gg++;
+                if (gg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+            var fg=1;
+            var btnTest7=document.getElementById("c2");
+            btnTest7.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .exports .civ");
+                fg++;
+                if (fg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+            var hg=1;
+            var btnTest8=document.getElementById("a2");
+            btnTest8.onclick=function(e)
+            {
+                var btns = $("#importExportBtns .exports #a2");
+                hg++;
+                if (hg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+            }
+
+    </script>
+    <script>
+      var country1="中国";
+        function copyText() {
+            //var country1;
+            country1=document.getElementById("countries").value;
+            selectCon(country1);
+        }
+    </script>
+    <script>
+        window.onload = function() {
+            var obj_lis = document.getElementById("line").getElementsByTagName("li");
+            var year;
+            var l;
+            var le;
+            var len;
+            for (i = 0; i < obj_lis.length; i++) {
+                obj_lis[i].onclick = function () {
+                    year=this.innerHTML;
+                    l=document.getElementById("handle").style.left;
+                    var reg = /\d+/;
+                    len=l.match(reg);
+                    le=(len*1-222)/90+2017;
+                    len=(len*1)+(year-le)*90;
+                    document.getElementById("handle").style.left=len+'px';
+                }
+            }
+        }
+    </script>
+    <script>
+        var data = [
+            "中国", "马达加斯加", "巴拿马", "摩洛哥", "印度",
+            "埃塞俄比亚", "新西兰", "波黑", "黑山", "土库曼斯坦",
+            "立陶宛","拉脱维亚","巴勒斯坦","阿尔巴尼亚","阿富汗",
+            "爱沙尼亚","巴基斯坦","斯洛文尼亚","克罗地亚","黎巴嫩",
+            "阿曼","巴林","也门","埃及","约旦","叙利亚","印度尼西亚",
+            "菲律宾","缅甸","文莱","东帝汶","不丹","阿联酋","泰国",
+            "越南","新加坡","以色列","阿塞拜疆","亚美尼亚","捷克","孟加拉国",
+            "白俄罗斯", "柬埔寨","格鲁吉亚","匈牙利","伊拉克","伊朗","吉尔吉斯斯坦",
+            "老挝","哈萨克斯坦","卡塔尔","科威特","摩尔多瓦","马尔代夫","马来西亚",
+            "马其顿","蒙古国","尼泊尔","波兰","保加利亚","罗马尼亚","塞尔维亚","沙特阿拉伯",
+            "斯洛伐克","塔吉克斯坦","俄罗斯","南非","斯里兰卡","韩国","土耳其","乌克兰","乌兹别克斯坦",
+            "巴巴多斯","瓦努阿图","汤加","库克群岛","厄瓜多尔","葡萄牙","斐济","密克罗尼西亚联邦",
+            "马耳他", "萨尔瓦多","多米尼加","智利","萨摩亚","苏里南","格林纳达","委内瑞拉","多哥","冈比亚",
+            "乌干达","佛得角","布隆迪","坦桑尼亚","津巴布韦","刚果（布）","乍得","尼日利亚","肯尼亚",
+            "安哥拉", "纳米比亚","加蓬","莫桑比克","赞比亚","加纳","塞舌尔","南苏丹","喀麦隆","塞拉利昂",
+            "科特迪瓦", "阿尔及利亚","哥斯达黎加","吉布提","毛里塔尼亚","几内亚","索马里","希腊","乌拉圭",
+            "纽埃","多米尼克","圭亚那","卢旺达","塞内加尔","突尼斯","利比亚","巴布亚新几内亚","玻利维亚",
+            "安提瓜和巴布达","特立尼达和多巴哥","奥地利","苏丹","意大利","古巴"
+        ]
+        var ele_key = document.getElementById("countries");
+        ele_key.onkeyup = function (e) {
+
+            var val = this.value;
+
+            //获取输入框里匹配的数据
+            var srdata = [];
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].indexOf(val))
+                if (val.trim().length > 0 && data[i].indexOf(val) > -1) {
+                    srdata.push(data[i]);
+                }
+            }
+            var ele_datalist = document.getElementById("data_list");
+            ele_datalist.style.visibility = "visible";
+            ele_datalist.innerHTML = "";
+
+            if (srdata.length == 0) {
+                ele_datalist.style.visibility = "hidden";
+            }
+            var self = this;
+            for (var i = 0; i < srdata.length; i++) {
+                var ele_li = document.createElement("li");
+                var ele_a = document.createElement("a");
+                ele_a.setAttribute("href", "javascript:;");
+                ele_a.textContent = srdata[i];
+
+                ele_a.onclick = function () {
+                    self.value = this.textContent;
+                    ele_datalist.style.visibility = "hidden";
+                }
+
+
+                ele_li.appendChild(ele_a);
+                ele_datalist.appendChild(ele_li);
+            }
+        }
+    </script>
+    <script>
+        //数据处理
+        /*
+            图中相关城市经纬度,根据你的需求添加数据
+            关于国家的经纬度，可以用首都的经纬度或者其他城市的经纬度
+            */
+
+
+        /*
+            记录下起点城市和终点城市的名称，以及权重
+            i为终点城市，e为起点城市，以及该城市的权重，就是图上圆圈的大小
+         */
+        //地球的皮肤
+        var canvas = document.createElement('canvas');
+        var myChart = echarts.init(canvas, null, {
+            width: 4096,
+            height: 2048
+        });
+        var geoCoordMap = {
+            '南宁': [108.479, 23.1152],
+            '广州': [113.5107, 23.2196],
+            '重庆': [107.7539, 30.1904],
+            '芬兰': [24.909912, 60.169095],
+            '美国': [-100.696295, 33.679979],
+            '日本': [139.710164, 35.706962],
+            '韩国': [126.979208, 37.53875],
+            '瑞士': [7.445147, 46.956241],
+            '东南亚': [117.53244, 5.300343],
+            '澳大利亚': [135.193845, -25.304039],
+            '德国': [13.402393, 52.518569],
+            '英国': [-0.126608, 51.208425],
+            '加拿大': [-102.646409, 59.994255]
+        };
+        let json = $.getJSON("data/all.json", function (data){
+            //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
+            // dir表示方向，取值为"i"或"e"，cla表示类别，取值为"pos"、"neg"、"neu"
+            //结果存在dat数组中
+            var dser = [];  // 2D散点坐标系列
+            var series = [];// 3D飞线
+            var maxsize=50;//散点最大尺寸，即被分析的某国散点尺寸，其他国家散点尺寸按比例设置
+            var pointsData=[]; //用于保存每一个需要被筛选的散点名称、经纬度和大小
+            var pointsDatav=[]; //用于保存每一个需要被筛选的散点新闻数、经纬度，大小为1
+            var vtol=0;//针对某国特定类型的流入或流出新闻总数
+
+            //不同情况的线条颜色，正面为绿色，负面为红色，中性为蓝色
+            var lcolor={pos:"#66CC99",neg:"#CC3333",neu:"#9ae5fc"};
+
+            var convertData = function(d) {
+                var res = [];
+                var fromCoord = geoCoordMap[d.e];
+                var toCoord = geoCoordMap[d.i];
+                if(fromCoord && toCoord) {
+                    res.push([fromCoord, toCoord]);
+                }
+                return res;
+            }
+
+            //函数功能为设置散点标签为pla，散点大小为size
+            function setdserp(pla,size){
+                pointsData.push({
+                    name: pla,    //散点的name为国家名
+                    value: geoCoordMap[pla], //散点的value为该点的经纬度
+                    symbolSize: size   //散点对应的大小
+                })
+            }
+
+            //函数功能为设置散点标签为size，散点大小为1
+            function setdserv(pla,size){
+                pointsDatav.push({
+                    name: size,    //散点的name为国家名
+                    value: geoCoordMap[pla], //散点的value为该点的经纬度
+                    symbolSize: 1   //散点对应的大小
+                })
+            }
+
+            //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
+            function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+                var dat=[];
+                var datain=data.timeBins[tim-2015].data;
+                //console.log(datain);
+
+
+               //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
+                for(var i=0;i<datain.length;i++){
+                    if(datain[i][dir]==pla&&datain[i].c==cla){
+                        dat.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        //计算总输入值
+                        vtol+=datain[i].v;
+                    }
+                }
+
+                //设置被统计国家的地名散点
+                setdserp(pla,maxsize);
+
+                //设置被统计国家的数值散点
+                setdserv(pla,vtol);
+
+                //对关联过国的新闻流动方向是相反的
+                var dirv=(dir=="i")? "e":"i";
+
+                //关联的散点
+                for(var i=0;i<dat.length;i++)
+                {
+                    val=dat[i].v; //每个被关注流动的实际数值
+                    //按比例计算散点的大小
+                    size=Math.round(maxsize*val/vtol);
+                    pla=dat[i][dirv];
+
+                    //设置每个关联国家的地名散点
+                    setdserp(pla,size);
+
+                    //设置每个关联国家的数值散点
+                    setdserv(pla,val);
+
+                }
+                return dat;
+            }
+            //取数据为****年，国家为**，方向（i：输入，e：输入）
+            // 类型（正面：pos，负面：neg，中性：neu)
+
+            //聚焦某一国家的输出输入情况
+            function selectCon(pla){
+              var dat=[];
+              var datain=data.timeBins[0].data;
+              var toli=0,tole=0;
+              for(var i=0;i<datain.length;i++){//遍历所有时间
+                  if(datain[i].i==pla||datain[i].e==pla){
+                      dat.push({
+                          i:datain[i].i,
+                          e:datain[i].e,
+                          c:datain[i].c,
+                          v:datain[i].v
+                      });
+                      //计算总输入值
+                      if(datain[i].i==pla)
+                        toli+=datain[i].v;
+                      else {
+                        tole+=datain[i].v;
+                      }
+                  }
+                  //设置被统计国家的地名散点
+                  setdserp(pla,maxsize);
+
+                  //设置被统计国家的数值散点
+                  //散点数值=输出+输入
+                  vtol=toli+tole;
+                  setdserv(pla,vtol);
+              }
+              //关联的散点
+              for(var i=0;i<dat.length;i++)
+              {
+                  val=dat[i].v; //每个被关注流动的实际数值
+                  //按比例计算散点的大小
+                  if(datain[i].i==pla)
+                    size=Math.round(maxsize*val/toli);
+                  else {
+                    size=Math.round(maxsize*val/tole);
+                  }
+
+                  pla=(dat[i].i==pla)?dat[i].e:dat[i].i;
+
+                  //设置每个关联国家的地名散点
+                  setdserp(pla,size);
+
+                  //设置每个关联国家的数值散点
+                  setdserv(pla,val);
+
+              }
+
+              //console.log(toli);
+              return dat;
+            }
+
+            var Data=selectCon(country1);
+            console.log(Data);
+
+            //添加散点数据，第一组为标注地名的散点
+            dser.push(
+                //被统计国家对应的散点
+                {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    zlevel: 3,
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    label: {
+                        fontSize:24, //标签的字号
+                        show: true,
+                        position: 'left',
+                        formatter: '{b}'  //标签内容格式器，a：系列名，b:数据名，c：数据值
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#FFF'  //散点的颜色
+                        }
+                    },
+                    data:pointsData
+                }
+
+            );
+
+            //添加散点数据，第二组为标注数值的散点
+            dser.push(
+                {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    zlevel: 3,
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    label: {
+                        fontSize:30, //标签的字号
+                        show: true,
+                        position: [30,0],
+                        formatter: '{b}',  //标签内容格式器，a：系列名，b:数据名，c：数据值
+                        color: '#FFF',
+                        fontFamily: 'Arial',
+                        borderWidth: 3,
+                        backgroundColor: 'rgba(0,23,11,0.3)',
+                        padding: [5, 10, 10, 5],
+                        lineHeight: 30
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#FFF'  //散点的颜色
+                        }
+                    },
+                    data:pointsDatav
+                }
+            );
+
+            //统计飞线数据
+            for(var i=0;i<Data.length;i++)
+            {
+                series.push(
+                    {
+                        type: 'lines3D',
+                        effect: {
+                            show: true,
+                            period: 3,//周期，数值越小越块
+                            trailLength: Data[i].v/vtol//尾部阴影，范围0-1，用当前线条v值除以总v值，当前流动占总数的比例
+                        },
+                        lineStyle: {//航线的视图效果
+                            color: lcolor[Data[i].c],
+                            width: 1,
+                            opacity: 0.6
+                        },
+                        data: convertData(Data[i])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
+                    })
+            }
+
+            console.log(dser);
+            console.log(series);
+
+            myChart.setOption({
+                backgroundColor: 'rgba(3,28,72,0.3)',
+                title: {
+                    show:true
+                },
+                geo: {
+                    type: 'map',
+                    map: 'world',
+                    left:0,
+                    top:0,
+                    right: 0,
+                    bottom: 0,
+                    boundingCoords: [[-180, 90], [180, -90]],
+                    zoom:0,
+                    roam: false,
+                    itemStyle: {
+                        borderColor:'#000d2d',
+                        normal: {
+                            areaColor: '#2455ad',
+                            borderColor:'#000c2d'
+                        },
+                        emphasis: {
+                            areaColor: '#357cf8'
+                        }
+                    },
+                    label:{
+                        fontSize:24
+                    }
+                },
+                series:dser
+            });
+
+
+            //3D地球
+            option = {
+                backgroundColor: 'rgba(0,0,0,0)',//canvas的背景颜色
+                globe: {
+                    baseTexture:myChart,
+                    top: 'middle',
+                    left: 'center',
+                    displacementScale: 0,
+                    environment:'none',
+                    shading: 'color',
+                    viewControl: {
+                        distance:240,
+                        autoRotate: true
+                    }
+                },
+                roam: true,
+                series:series
+            };
+            echarts.init(document.getElementById("container")).setOption(option, true);
+        });
+    </script>
+</body>
+</html>
