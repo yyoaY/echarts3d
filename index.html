@@ -21,6 +21,8 @@
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
+    <div><input type="text" id="countryName"></input><button onclick="searchByName();">search</button></div>
+
     <div id="container">
 
     </div>
@@ -339,42 +341,7 @@
 
             //取 “黑山”的输入输出数据
             var Data=selectCon("黑山");
-            //console.log(Data);
-
-            //添加散点数据，第一组为标注地名的散点
-            // dser.push(
-            //     //被统计国家对应的散点
-            //     {
-            //         type: 'effectScatter',
-            //         coordinateSystem: 'geo',
-            //         zlevel: 3,
-            //         rippleEffect: {
-            //             brushType: 'stroke'
-            //         },
-            //         label: {
-            //             fontSize:24, //标签的字号
-            //             show: true,
-            //             normal: {
-            //                 formatter: '{b}: {@symbolSize}',//标签内容格式器，a：系列名，b:数据名，c：数据值
-            //                 position: 'left',
-            //                 show: false
-            //             },
-            //             emphasis: {
-            //                 show: true
-            //             }
-            //             // position: 'left',
-            //             // formatter: '{b}'
-            //         },
-            //         itemStyle: {
-            //             normal: {
-            //                 color: '#FFF'  //散点的颜色
-            //             }
-            //         },
-            //         data:pointsData
-            //     }
-            //
-            // );
-
+            
             //添加散点数据，第二组为标注数值的散点
             dser.push(
                 {
@@ -426,9 +393,6 @@
                         data: convertData(Data[i])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
                     })
             }
-
-            //console.log(dser);
-
 
             myChart.setOption({
                 backgroundColor: 'rgba(3,28,72,0.3)',
@@ -495,8 +459,6 @@
                 data: pointsData
             });
 
-            //console.log(series);
-
             //3D地球
             option = {
                 backgroundColor: 'rgba(0,0,0,0)',//canvas的背景颜色
@@ -518,14 +480,78 @@
                 tooltip:{
                     trigger: 'item',
                     formatter:'{b}'
-                    // formatter : function (params) {
-                    //
-                    //     return params.name + ' : '+params.value;
-                    // }
                 }
             };
             echarts.init(document.getElementById("container")).setOption(option, true);
         });
+    </script>
+    <script type="text/javascript">
+        //查询点击事件
+        function searchByName(){
+            var coun=document.getElementById("countryName");//查询的国家名
+            let json = $.getJSON("data/all.json", function (data){
+                     //聚焦某一国家的输出输入情况
+            function selectCon(pla){
+              var dat=[];
+              var datain=data.timeBins[0].data;
+              var toli=0,tole=0;
+              for(var i=0;i<datain.length;i++){//遍历所有时间
+                  if(datain[i].i==pla||datain[i].e==pla){
+                      dat.push({
+                          i:datain[i].i,
+                          e:datain[i].e,
+                          c:datain[i].c,
+                          v:datain[i].v
+                      });
+                      //计算总输入值
+                      if(datain[i].i==pla)
+                        toli+=datain[i].v;
+                      else {
+                        tole+=datain[i].v;
+                      }
+                  }
+                  //设置被统计国家的地名散点
+                  setdserp(pla,maxsize);
+
+                  //设置被统计国家的数值散点
+                  //散点数值=输出+输入
+                  vtol=toli+tole;
+                  setdserv(pla,vtol);
+              }
+              //关联的散点
+              for(var i=0;i<dat.length;i++)
+              {
+                  val=dat[i].v; //每个被关注流动的实际数值
+                  //按比例计算散点的大小
+                  if(datain[i].i==pla)
+                    size=Math.round(maxsize*val/toli);
+                  else {
+                    size=Math.round(maxsize*val/tole);
+                  }
+
+                  pla=(dat[i].i==pla)?dat[i].e:dat[i].i;
+
+                  //设置每个关联国家的地名散点
+                  setdserp(pla,size);
+
+                  //设置每个关联国家的数值散点
+                  setdserv(pla,val);
+
+              }
+
+              //console.log(toli);
+              return dat;
+            }
+
+            //取输入国家coun的输入输出数据
+            var Data=selectCon(coun);
+            
+            //
+
+            }
+
+        }
+        
     </script>
 </body>
 </html>
