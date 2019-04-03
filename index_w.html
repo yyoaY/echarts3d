@@ -13,13 +13,13 @@
             margin:0;
             background:url('img/timg.png') center/cover no-repeat;
         }
-		h1{
-			color:#FFF;
-		}
-		p{
-			color:#FFF;
-            text-align: right;
-		}
+    		h1{
+    			color:#FFF;
+    		}
+    		p{
+    			color:#FFF;
+                text-align: right;
+    		}
         #text{
             width: 450px;
         }
@@ -280,6 +280,8 @@
         </div>
         <br class="clear">
     </div>
+
+    //情感 点击事件
     <script>
         var ag=1;
         var btnTest1=document.getElementById("label1");
@@ -370,46 +372,41 @@
             {btns.find('.check').addClass('inactive');}
         }
     </script>
+
+    //查询按钮 点击事件
     <script>
-        function fetchData(cb) {
-            // 通过 setTimeout 模拟异步加载
-            cb({
-                categories: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-                data: [Math.random(5), Math.random(20), Math.random(36), Math.random(10), Math.random(10), Math.random(20)]
-            });
-        }
         //查询按钮 点击事件
         function copyText() {
             var country1;
             country1=document.getElementById("countries").value;
-            //selectCon(country1);
-            alert(country1);
-            console.log(country1);
-            myChart.setOption({
-
-            });
+            window.location.href="index_w.html"+"?"+"c="+country1+"&"+"y="+yearNum;
         }
     </script>
+
+    //时间条
     <script>
         window.onload = function() {
             var obj_lis = document.getElementById("line").getElementsByTagName("li");
             var year;
-            var l;
-            var le;
-            var len;
+            // var l;
+            // var le;
+            // var len;
             for (i = 0; i < obj_lis.length; i++) {
                 obj_lis[i].onclick = function () {
                     year=this.innerHTML;
-                    l=document.getElementById("handle").style.left;
-                    var reg = /\d+/;
-                    len=l.match(reg);
-                    le=(len*1-222)/90+2017;
-                    len=(len*1)+(year-le)*90;
-                    document.getElementById("handle").style.left=len+'px';
+                    // l=document.getElementById("handle").style.left;
+                    // var reg = /\d+/;
+                    // len=l.match(reg);
+                    // le=(len*1-222)/90+2017;
+                    // len=(len*1)+(year-le)*90;
+                    // document.getElementById("handle").style.left=len+'px';
+                    window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year;
                 }
             }
         }
     </script>
+
+    //输入框
     <script>
         var data = [
             "中国", "马达加斯加", "巴拿马", "摩洛哥", "印度",
@@ -470,7 +467,8 @@
         }
     </script>
 
-   <script>
+    //3d地球
+    <script>
         //数据处理
         /*
             记录下起点城市和终点城市的名称，以及权重
@@ -483,9 +481,28 @@
             height: 2048
         });
         //选中国家
-        var counName="中国";
+        var counName="中国";//国家 初始值“中国”
         //选择年份
-        var yearNum=2018;
+        var yearNum=2018;//年份 初始值“2018”
+
+        //解析url
+        var url=location.href;
+        var tmp1=url.split("?")[1];
+        if(tmp1!=null){
+            var tmp2=tmp1.split("&")[0];
+            var tmp3=tmp1.split("&")[1];
+            counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
+            yearNum=tmp3.split("=")[1];
+
+            //设置时间条圆点位置
+            var l=document.getElementById("handle").style.left;
+            var reg = /\d+/;
+            var len=l.match(reg);
+            var le=(len*1-222)/90+2017;
+            len=(len*1)+(yearNum-le)*90;
+            document.getElementById("handle").style.left=len+'px';
+        }
+
 
         //数据变量
         var dser = [];  // 2D散点坐标系列
@@ -676,63 +693,62 @@
             })
         }
 
-        //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
-        function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
-            var dat=[];
-            var datain=data.timeBins[tim-2015].data;
-            //console.log(datain);
-
-           //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
-            for(var i=0;i<datain.length;i++){
-                if(datain[i][dir]==pla&&datain[i].c==cla){
-                    dat.push({
-                        i:datain[i].i,
-                        e:datain[i].e,
-                        c:datain[i].c,
-                        v:datain[i].v
-                    });
-                    //计算总输入值
-                    vtol+=datain[i].v;
-                }
-            }
-
-            //设置被统计国家的地名散点
-            setdserp(pla,maxsize);
-
-            //设置被统计国家的数值散点
-            setdserv(pla,vtol);
-
-
-            //对被关联国的新闻流动方向是相反的
-            var dirv=(dir=="i")? "e":"i";
-
-            //关联的散点
-            for(var i=0;i<dat.length;i++)
-            {
-                val=dat[i].v; //每个被关注流动的实际数值
-                //按比例计算散点的大小
-                size=Math.round(maxsize*val/vtol);
-                pla=dat[i][dirv];
-
-                //设置每个关联国家的地名散点
-                setdserp(pla,size);
-
-                //设置每个关联国家的数值散点
-                setdserv(pla,val);
-
-            }
-            return dat;
-        }
-        //取数据为****年，国家为**，方向（i：输入，e：输入）
-        // 类型（正面：pos，负面：neg，中性：neu)
-        //var Data=sel(2015,"中国","i","neg");
-
-        
-
         let json = $.getJSON("data/all.json", function (data){
             //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
             // dir表示方向，取值为"i"或"e"，cla表示类别，取值为"pos"、"neg"、"neu"
             //结果存在dat数组中
+
+            //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
+            function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+                var dat=[];
+                var datain=data.timeBins[tim-2015].data;
+                //console.log(datain);
+
+               //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
+                for(var i=0;i<datain.length;i++){
+                    if(datain[i][dir]==pla&&datain[i].c==cla){
+                        dat.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        //计算总输入值
+                        vtol+=datain[i].v;
+                    }
+                }
+
+                //设置被统计国家的地名散点
+                setdserp(pla,maxsize);
+
+                //设置被统计国家的数值散点
+                setdserv(pla,vtol);
+
+
+                //对被关联国的新闻流动方向是相反的
+                var dirv=(dir=="i")? "e":"i";
+
+                //关联的散点
+                for(var i=0;i<dat.length;i++)
+                {
+                    val=dat[i].v; //每个被关注流动的实际数值
+                    //按比例计算散点的大小
+                    size=Math.round(maxsize*val/vtol);
+                    pla=dat[i][dirv];
+
+                    //设置每个关联国家的地名散点
+                    setdserp(pla,size);
+
+                    //设置每个关联国家的数值散点
+                    setdserv(pla,val);
+
+                }
+                return dat;
+            }
+            //取数据为****年，国家为**，方向（i：输入，e：输入）
+            // 类型（正面：pos，负面：neg，中性：neu)
+            //var Data=sel(2015,"中国","i","neg");
+
             //聚焦某一国家的输出输入情况
             function selectCon(pla){
                 var dat=[];
@@ -787,7 +803,7 @@
             }
             //取 “黑山”的输入输出数据
             var Data=selectCon(counName);
-            
+
             //添加散点数据，第二组为标注数值的散点
             dser.push(
                 {

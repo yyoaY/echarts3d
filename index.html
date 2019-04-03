@@ -41,6 +41,13 @@
         });
         //选中国家
         var counName="中国";
+
+        var url=location.href;
+        var tmp1=url.split("?")[1];
+              if(tmp1!=null) {
+        counName=decodeURI(tmp1.split("=")[1]);//decodeURI解码
+        }
+
         //选择年份
         var yearNum=2018;
 
@@ -284,7 +291,7 @@
         // 类型（正面：pos，负面：neg，中性：neu)
         //var Data=sel(2015,"中国","i","neg");
 
-        
+
 
         let json = $.getJSON("data/all.json", function (data){
             //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
@@ -344,7 +351,7 @@
             }
             //取 “黑山”的输入输出数据
             var Data=selectCon(counName);
-            
+
             //添加散点数据，第二组为标注数值的散点
             dser.push(
                 {
@@ -492,14 +499,10 @@
     <script type="text/javascript">
         //查询点击事件
         function searchByName(){
-            var coun=document.getElementById("countryName");//查询的国家名
-            //alert("chaxun");
-            myChart.setOption({
-                backgroundColor: 'rgba(3,28,72,0.9)'
-            });
-
+            var coun=document.getElementById("countryName").value;//查询的国家名
+            window.location.href="index.html"+"?"+"c="+coun;
         }
-        
+
     </script>
 </body>
 </html>
