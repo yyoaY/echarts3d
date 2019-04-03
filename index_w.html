@@ -371,6 +371,13 @@
         }
     </script>
     <script>
+        function fetchData(cb) {
+            // 通过 setTimeout 模拟异步加载
+            cb({
+                categories: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+                data: [Math.random(5), Math.random(20), Math.random(36), Math.random(10), Math.random(10), Math.random(20)]
+            });
+        }
         //查询按钮 点击事件
         function copyText() {
             var country1;
@@ -378,6 +385,9 @@
             //selectCon(country1);
             alert(country1);
             console.log(country1);
+            myChart.setOption({
+
+            });
         }
     </script>
     <script>
@@ -459,17 +469,12 @@
             }
         }
     </script>
-    <script>
+
+   <script>
         //数据处理
         /*
-            图中相关城市经纬度,根据你的需求添加数据
-            关于国家的经纬度，可以用首都的经纬度或者其他城市的经纬度
-            */
-
-
-        /*
             记录下起点城市和终点城市的名称，以及权重
-            i为终点城市，e为起点城市，以及该城市的权重，就是图上圆圈的大小
+            i为终点国家，e为起点国家，以及该国家的权重，就是图上圆圈的大小
          */
         //地球的皮肤
         var canvas = document.createElement('canvas');
@@ -477,73 +482,264 @@
             width: 4096,
             height: 2048
         });
+        //选中国家
+        var counName="中国";
+        //选择年份
+        var yearNum=2018;
+
+        //数据变量
+        var dser = [];  // 2D散点坐标系列
+        var series = [];// 3D飞线
+        var maxsize=10;//散点最大尺寸，即被分析的某国散点尺寸，其他国家散点尺寸按比例设置
+        var pointsData=[]; //用于保存每一个需要被筛选的散点名称、经纬度和大小
+        var pointsDatav=[]; //用于保存每一个需要被筛选的散点新闻数、经纬度，大小为1
+        var vtol=0;//针对某国特定类型的流入或流出新闻总数
+
+        //不同情况的线条颜色，正面为绿色，负面为红色，中性为蓝色
+        var lcolor={pos:"#006600",neg:"#CC3333",neu:"#9ae5fc"};
+
+        //各国的经纬度数据
         var geoCoordMap = {
-            '南宁': [108.479, 23.1152],
-            '广州': [113.5107, 23.2196],
-            '重庆': [107.7539, 30.1904],
-            '芬兰': [24.909912, 60.169095],
-            '美国': [-100.696295, 33.679979],
-            '日本': [139.710164, 35.706962],
-            '韩国': [126.979208, 37.53875],
-            '瑞士': [7.445147, 46.956241],
-            '东南亚': [117.53244, 5.300343],
-            '澳大利亚': [135.193845, -25.304039],
-            '德国': [13.402393, 52.518569],
-            '英国': [-0.126608, 51.208425],
-            '加拿大': [-102.646409, 59.994255]
+            '中国': [116.404, 39.915],
+            '马达加斯加': [47.479371,-18.827917],
+            '巴拿马': [-79.351593,9.26581],
+            '摩洛哥': [-6.792655,34.107995],
+            '印度': [77.099019,28.747507],
+            '埃塞俄比亚': [38.685463,9.119557],
+            '新西兰': [174.82546,-41.277039],
+            '波黑': [18.411642,43.87268],
+            '黑山': [19.184329,42.44509],
+            '土库曼斯坦': [58.370571,37.991019],
+
+            '立陶宛': [25.292231,54.692755],
+            '拉脱维亚': [24.114804,57.050284],
+            '巴勒斯坦': [35.206074,31.771513],
+            '阿尔巴尼亚': [19.814436,41.380108],
+            '阿富汗': [69.192781,34.543017],
+            '爱沙尼亚': [24.597733,59.496542],
+            '巴基斯坦': [73.093008,33.716842],
+            '斯洛文尼亚': [14.47922,46.072787],
+            '克罗地亚': [15.951004,45.816092],
+            '黎巴嫩': [35.488933,34.054415],
+
+            '阿曼': [58.448759,23.6461],
+            '巴林': [50.574716,26.262399],
+            '也门': [44.172457,15.386086],
+            '埃及': [31.183965,30.108445],
+            '约旦': [35.967263,31.96189],
+            '叙利亚': [36.261619,33.60915],
+            '印度尼西亚': [106.760061,-6.175051],
+            '菲律宾': [120.999569,14.65294],
+            '缅甸': [96.089629,17.110033],
+            '文莱': [114.744488,4.99407],
+
+            '东帝汶': [125.562098,-8.526035],
+            '不丹': [89.595383,27.499741],
+            '阿联酋': [54.603724,24.406541],
+            '泰国': [100.486583,13.863379],
+            '越南': [105.785004,21.062193],
+            '新加坡': [103.834891,1.481017],
+            '以色列': [35.206074,31.771513],
+            '阿塞拜疆': [49.930811,40.52929],
+            '亚美尼亚': [44.448416,40.219729],
+            '捷克': [14.27685,50.124424],
+
+            '孟加拉国': [90.441659,23.832405],
+            '白俄罗斯': [27.596492,53.977821],
+            '柬埔寨': [104.865139,11.660317],
+            '格鲁吉亚': [44.669184,41.780715],
+            '匈牙利': [19.133736,47.450773],
+            '伊拉克': [44.301238,33.30071],
+            '伊朗': [51.292211,35.736894],
+            '吉尔吉斯斯坦': [74.472805,42.980999],
+            '老挝': [102.583874,18.098099],
+            '哈萨克斯坦': [71.455648,51.292566],
+
+            '卡塔尔': [51.512978,25.446698],
+            '科威特': [47.907108,29.5148],
+            '摩尔多瓦': [28.70033,47.049904],
+            '马尔代夫': [73.516145,4.255613],
+            '马来西亚': [101.700804,3.294564],
+            '马其顿': [21.415001,42.055536],
+            '蒙古国': [106.925636,47.922842],
+            '尼泊尔': [85.290415,27.860076],
+            '波兰': [20.899876,52.318978],
+            '保加利亚': [23.181141,42.737368],
+
+            '罗马尼亚': [26.124709,44.501492],
+            '塞尔维亚': [20.458341,44.868995],
+            '沙特阿拉伯': [46.729681,24.743043],
+            '斯洛伐克': [17.054841,48.181879],
+            '塔吉克斯坦': [68.935219,38.636067],
+            '俄罗斯': [37.512635,55.728904],
+            '南非': [28.01963,-25.564709],
+            '斯里兰卡': [79.973597,7.001734],
+            '韩国': [126.997087,37.706538],
+            '土耳其': [32.876517,39.951229],
+
+            '乌克兰': [30.595252,50.419205],
+            '乌兹别克斯坦': [69.376754,41.463198],
+            '巴巴多斯': [-59.599221,13.129419],
+            '瓦努阿图': [168.295599,-17.681198],
+            '汤加': [-175.206626,-21.1327],
+            '库克群岛': [-159.766694,-21.199574],
+            '厄瓜多尔': [-78.535052,-0.146485],
+            '葡萄牙': [-9.175547,38.882766],
+            '斐济': [178.467682,-18.105884],
+            '密克罗尼西亚联邦': [158.161665,6.925909],
+
+            '马耳他': [14.505223,35.899862],
+            '萨尔瓦多': [-89.208388,13.706045],
+            '多米尼加': [-80.248904,22.58678],
+            '智利': [-70.677711,-33.355808],
+            '萨摩亚': [-171.706466,-13.891554],
+            '苏里南': [-55.19469,5.943586],
+            '格林纳达': [-61.714232,12.088437],
+            '委内瑞拉': [-66.879273,10.474519],
+            '多哥': [1.061944,8.758247],
+            '冈比亚': [-15.891165,13.472079],
+
+            '乌干达': [32.548918,0.467073],
+            '佛得角': [-23.507646,14.979604],
+            '布隆迪': [29.973296,-3.346662],
+            '坦桑尼亚': [34.958964,-5.857308],
+            '津巴布韦': [30.948353,-17.760259],
+            '刚果（布）': [23.221488,-1.903469],
+            '乍得': [18.658959,16.032139],
+            '尼日利亚': [7.031867,9.31608],
+            '肯尼亚': [37.57138,0.541161],
+            '安哥拉': [16.819229,-12.110017],
+
+            '纳米比亚': [16.892818,-22.348526],
+            '加蓬': [11.557602,-0.644268],
+            '莫桑比克': [34.480634,-18.463988],
+            '赞比亚': [25.870699,-14.237288],
+            '加纳': [-1.136533,7.594194],
+            '塞舌尔': [55.453552,-4.676951],
+            '南苏丹': [31.520852,5.10074],
+            '喀麦隆': [11.465616,3.909217],
+            '塞拉利昂': [-11.880554,8.602632],
+            '科特迪瓦': [-5.257527,6.850062],
+
+            '阿尔及利亚': [2.515331,28.125468],
+            '哥斯达黎加': [-84.154335,10.064525],
+            '吉布提': [42.603041,11.77365],
+            '毛里塔尼亚': [-11.190655,20.720725],
+            '几内亚': [-10.74912,10.774834],
+            '索马里': [45.049881,3.465607],
+            '希腊': [23.8194,38.016504],
+            '乌拉圭': [-55.877689,-32.525353],
+            '纽埃': [-169.867341,-18.993713],
+            '多米尼克': [-61.395183,15.350947],
+
+            '圭亚那': [-58.985137,5.04078],
+            '卢旺达': [29.815711,-2.115772],
+            '塞内加尔': [-15.073693,14.684851],
+            '突尼斯': [9.836246,34.919426],
+            '利比亚': [16.790425,27.233335],
+            '巴布亚新几内亚': [143.58629,-6.142244],
+            '玻利维亚': [-65.315016,-16.423831],
+            '安提瓜和巴布达': [-61.865523,17.141551],
+            '特立尼达和多巴哥': [-61.506775,10.6571291],
+            '奥地利': [14.558544,47.858269],
+            '苏丹': [32.698279,15.649772]
         };
+
+        //根据某行数据转换出飞线中的数据
+        var convertData = function(d) {
+            var res = [];
+            var fromCoord = geoCoordMap[d.e];
+            var toCoord = geoCoordMap[d.i];
+            if(fromCoord && toCoord) {
+                res.push([fromCoord, toCoord]);
+            }
+            return res;
+        }
+
+        //函数功能为设置散点标签为pla，散点大小为size
+        function setdserp(pla,size){
+            pointsData.push({
+                name: pla,    //散点的name为国家名
+                value: geoCoordMap[pla], //散点的value为该点的经纬度
+                symbolSize: size   //散点对应的大小
+                // data:{"数量":100}
+            })
+        }
+
+        //函数功能为设置散点标签为pla，散点大小为1
+        function setdserv(pla,size){
+            pointsDatav.push({
+                name: size,    //散点的name为国家名
+                value: geoCoordMap[pla], //散点的value为该点的经纬度
+                symbolSize: 1 ,  //散点对应的大小
+                scale:100
+            })
+        }
+
+        //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
+        function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+            var dat=[];
+            var datain=data.timeBins[tim-2015].data;
+            //console.log(datain);
+
+           //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
+            for(var i=0;i<datain.length;i++){
+                if(datain[i][dir]==pla&&datain[i].c==cla){
+                    dat.push({
+                        i:datain[i].i,
+                        e:datain[i].e,
+                        c:datain[i].c,
+                        v:datain[i].v
+                    });
+                    //计算总输入值
+                    vtol+=datain[i].v;
+                }
+            }
+
+            //设置被统计国家的地名散点
+            setdserp(pla,maxsize);
+
+            //设置被统计国家的数值散点
+            setdserv(pla,vtol);
+
+
+            //对被关联国的新闻流动方向是相反的
+            var dirv=(dir=="i")? "e":"i";
+
+            //关联的散点
+            for(var i=0;i<dat.length;i++)
+            {
+                val=dat[i].v; //每个被关注流动的实际数值
+                //按比例计算散点的大小
+                size=Math.round(maxsize*val/vtol);
+                pla=dat[i][dirv];
+
+                //设置每个关联国家的地名散点
+                setdserp(pla,size);
+
+                //设置每个关联国家的数值散点
+                setdserv(pla,val);
+
+            }
+            return dat;
+        }
+        //取数据为****年，国家为**，方向（i：输入，e：输入）
+        // 类型（正面：pos，负面：neg，中性：neu)
+        //var Data=sel(2015,"中国","i","neg");
+
+        
+
         let json = $.getJSON("data/all.json", function (data){
             //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
             // dir表示方向，取值为"i"或"e"，cla表示类别，取值为"pos"、"neg"、"neu"
             //结果存在dat数组中
-            var dser = [];  // 2D散点坐标系列
-            var series = [];// 3D飞线
-            var maxsize=50;//散点最大尺寸，即被分析的某国散点尺寸，其他国家散点尺寸按比例设置
-            var pointsData=[]; //用于保存每一个需要被筛选的散点名称、经纬度和大小
-            var pointsDatav=[]; //用于保存每一个需要被筛选的散点新闻数、经纬度，大小为1
-            var vtol=0;//针对某国特定类型的流入或流出新闻总数
-
-            //不同情况的线条颜色，正面为绿色，负面为红色，中性为蓝色
-            var lcolor={pos:"#66CC99",neg:"#CC3333",neu:"#9ae5fc"};
-
-            var convertData = function(d) {
-                var res = [];
-                var fromCoord = geoCoordMap[d.e];
-                var toCoord = geoCoordMap[d.i];
-                if(fromCoord && toCoord) {
-                    res.push([fromCoord, toCoord]);
-                }
-                return res;
-            }
-
-            //函数功能为设置散点标签为pla，散点大小为size
-            function setdserp(pla,size){
-                pointsData.push({
-                    name: pla,    //散点的name为国家名
-                    value: geoCoordMap[pla], //散点的value为该点的经纬度
-                    symbolSize: size   //散点对应的大小
-                })
-            }
-
-            //函数功能为设置散点标签为size，散点大小为1
-            function setdserv(pla,size){
-                pointsDatav.push({
-                    name: size,    //散点的name为国家名
-                    value: geoCoordMap[pla], //散点的value为该点的经纬度
-                    symbolSize: 1   //散点对应的大小
-                })
-            }
-
-            //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
-            function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+            //聚焦某一国家的输出输入情况
+            function selectCon(pla){
                 var dat=[];
-                var datain=data.timeBins[tim-2015].data;
-                //console.log(datain);
-
-
-               //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
-                for(var i=0;i<datain.length;i++){
-                    if(datain[i][dir]==pla&&datain[i].c==cla){
+                var datain=data.timeBins[yearNum-2015].data;
+                var toli=0,tole=0;
+                for(var i=0;i<datain.length;i++){//遍历所有时间
+                    if(datain[i].i==pla||datain[i].e==pla){
                         dat.push({
                             i:datain[i].i,
                             e:datain[i].e,
@@ -551,58 +747,11 @@
                             v:datain[i].v
                         });
                         //计算总输入值
-                        vtol+=datain[i].v;
-                    }
-                }
-
-                //设置被统计国家的地名散点
-                setdserp(pla,maxsize);
-
-                //设置被统计国家的数值散点
-                setdserv(pla,vtol);
-
-                //对关联过国的新闻流动方向是相反的
-                var dirv=(dir=="i")? "e":"i";
-
-                //关联的散点
-                for(var i=0;i<dat.length;i++)
-                {
-                    val=dat[i].v; //每个被关注流动的实际数值
-                    //按比例计算散点的大小
-                    size=Math.round(maxsize*val/vtol);
-                    pla=dat[i][dirv];
-
-                    //设置每个关联国家的地名散点
-                    setdserp(pla,size);
-
-                    //设置每个关联国家的数值散点
-                    setdserv(pla,val);
-
-                }
-                return dat;
-            }
-            //取数据为****年，国家为**，方向（i：输入，e：输入）
-            // 类型（正面：pos，负面：neg，中性：neu)
-
-            //聚焦某一国家的输出输入情况
-            function selectCon(pla){
-              var dat=[];
-              var datain=data.timeBins[2019-2015].data;
-              var toli=0,tole=0;
-              for(var i=0;i<datain.length;i++){//遍历所有时间
-                  if(datain[i].i==pla||datain[i].e==pla){
-                      dat.push({
-                          i:datain[i].i,
-                          e:datain[i].e,
-                          c:datain[i].c,
-                          v:datain[i].v
-                      });
-                      //计算总输入值
-                      if(datain[i].i==pla)
-                        toli+=datain[i].v;
-                      else {
-                        tole+=datain[i].v;
-                      }
+                        if(datain[i].i==pla)
+                          toli+=datain[i].v;
+                        else {
+                          tole+=datain[i].v;
+                        }
                   }
                   //设置被统计国家的地名散点
                   setdserp(pla,maxsize);
@@ -631,54 +780,27 @@
                   //设置每个关联国家的数值散点
                   setdserv(pla,val);
 
-              }
+                }
 
               //console.log(toli);
               return dat;
             }
-
-            var Data=selectCon("中国");
-            console.log(Data);
-
-            //添加散点数据，第一组为标注地名的散点
+            //取 “黑山”的输入输出数据
+            var Data=selectCon(counName);
+            
+            //添加散点数据，第二组为标注数值的散点
             dser.push(
-                //被统计国家对应的散点
                 {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
-                    zlevel: 3,
+                    zlevel: 1000,
                     rippleEffect: {
                         brushType: 'stroke'
                     },
                     label: {
                         fontSize:24, //标签的字号
                         show: true,
-                        position: 'left',
-                        formatter: '{b}'  //标签内容格式器，a：系列名，b:数据名，c：数据值
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#FFF'  //散点的颜色
-                        }
-                    },
-                    data:pointsData
-                }
-
-            );
-
-            //添加散点数据，第二组为标注数值的散点
-            dser.push(
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    zlevel: 3,
-                    rippleEffect: {
-                        brushType: 'stroke'
-                    },
-                    label: {
-                        fontSize:30, //标签的字号
-                        show: true,
-                        position: [30,0],
+                        position: [0,-20],
                         formatter: '{b}',  //标签内容格式器，a：系列名，b:数据名，c：数据值
                         color: '#FFF',
                         fontFamily: 'Arial',
@@ -703,6 +825,7 @@
                     {
                         type: 'lines3D',
                         effect: {
+                            color: lcolor[Data[i].c],
                             show: true,
                             period: 3,//周期，数值越小越块
                             trailLength: Data[i].v/vtol//尾部阴影，范围0-1，用当前线条v值除以总v值，当前流动占总数的比例
@@ -710,14 +833,12 @@
                         lineStyle: {//航线的视图效果
                             color: lcolor[Data[i].c],
                             width: 1,
+                            height:10,
                             opacity: 0.6
                         },
                         data: convertData(Data[i])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
                     })
             }
-
-            console.log(dser);
-            console.log(series);
 
             myChart.setOption({
                 backgroundColor: 'rgba(3,28,72,0.3)',
@@ -744,13 +865,45 @@
                             areaColor: '#357cf8'
                         }
                     },
-                    label:{
-                        fontSize:24
-                    }
+                    // label:{
+                    //     fontSize:24
+                    // }
                 },
+                //考虑到有些小国比较近，不适合直接显示名称标签
                 series:dser
             });
 
+            series.push({
+                type: 'scatter3D',
+                coordinateSystem: 'globe',
+                blendMode: 'lighter',
+                symbolSize: 2,
+                itemStyle: {
+                    color: 'rgb(50, 50, 150)',
+                    opacity: 0.2
+                },
+                label: {
+                    fontSize:30, //标签的字号
+                    show: true,
+                    position: [0,-20],
+                    formatter: '{b}',  //标签内容格式器，a：系列名，b:数据名，c：数据值
+                    // formatter : function (params) {
+                    //     return params.name + ':' + params.scale;
+                    // },
+                    color: '#FFF',
+                    fontFamily: 'Arial',
+                    borderWidth: 3,
+                    backgroundColor: 'rgba(0,23,11,0.3)',
+                    padding: [5, 10, 10, 5],
+                    lineHeight: 30
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#FFF'  //散点的颜色
+                    }
+                },
+                data: pointsData
+            });
 
             //3D地球
             option = {
@@ -764,11 +917,16 @@
                     shading: 'color',
                     viewControl: {
                         distance:240,
-                        autoRotate: true
+                        autoRotate: false
                     }
                 },
                 roam: true,
-                series:series
+                series:series,
+
+                tooltip:{
+                    trigger: 'item',
+                    formatter:'{b}'
+                }
             };
             echarts.init(document.getElementById("container")).setOption(option, true);
         });
