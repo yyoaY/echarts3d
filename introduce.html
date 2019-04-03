@@ -17,7 +17,14 @@
         margin: 15px 150px auto 30px;
         letter-spacing: 2px;
       }
-      ul{
+      nav{
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        left: 0;
+        z-index: 1;
+      }
+      nav>ul{
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -47,6 +54,30 @@
       .desc{
         margin: 0px 10px 10px 20px;
       }
+      .counNav{
+        width: 20%;
+        min-width: 200px;
+        overflow: hidden;
+        background-color: darkgrey;
+        min-height: -webkit-fill-available;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+      }
+      .counNav>ul>li>a{
+        margin: 0;
+        text-decoration: unset;
+        display: contents;
+      }
+      .counNav>ul>li>a:hover{
+        color: :#000;
+      }
+      .counDetil{
+        float: right;
+        width: 80%;
+        min-width: 400px;
+      }
     </style>
 </head>
 <body>
@@ -60,16 +91,41 @@
       </ul>
     </nav>
 <div class="counInto">
-  <div>
-    <div class="country" href="#">马达加斯加</div>
+  <div class="counNav">
+    <ul>
+        <li><a href="#mdjsj">马达加斯加</a></li>
+        <li><a href="#bnm">巴拿马</a></li>
+        <li><a href="#mlg">摩洛哥</a></li>
+        <li><a href="#yd">印度</a></li>
+        <li><a href="#aseby">埃塞俄比亚</a></li>
+        <li><a href="#xxl">新西兰</a></li>
+    </ul>
+  </div>
+  <div class="counDetil">
+    <div class="country" id="mdjsj">马达加斯加</div>
     <div class="desc">马达加斯加(首都：塔那那利佛)位于非洲大陆以东、印度洋西部，是非洲第一大、世界第四大岛。由18个民族组成，伊麦利那(占总人口的26.1%)、贝希米扎拉卡(14.1%)、贝希略(12%)等。民族语言为马达加斯加语(属马来-波利尼西亚语系)，官方通用法语。居民中信奉传统宗教的占52%，信奉基督教(天主教和新教)的占41%，信奉伊斯兰教的占7%。<br>马达加斯加属最不发达国家之一。经济以农业为主，严重依赖外援，工业基础薄弱。1987年开始实行贸易进出口自由化政策，鼓励出口多样化，出口额有所增加。主要进口石油、车辆、机械设备、药品、日用消费品及食品等。主要出口咖啡、虾、铬矿石、香草、丁香、棉纺织品等。
     </div>
-    <div class="country" href="#">巴拿马</div>
+    <div class="country" id="bnm">巴拿马</div>
     <div class="desc">巴拿马(首都：巴拿马城)位于中美洲地峡，印欧混血种人占65%，其他依次为非裔12%、欧裔10%、华裔7%、印地安人6%。有85%的居民信奉天主教。西班牙语为官方语言。<br>运河航运、金融服务、科隆自贸区和旅游业是巴拿马经济的主要支柱。近年来，巴拿马经济保持较快增长。主要出口产品为香蕉、虾、蔗糖、鱼粉等。主要进口石油产品、汽车、机电产品、药品等。
     </div>
-</div>
+    <div class="country" id="mlg">摩洛哥</div>
+    <div class="desc">摩洛哥(首都：拉巴特)位于非洲西北端，阿拉伯人约占80%，柏柏尔人约占20%。阿拉伯语为国语，通用法语。信奉伊斯兰教。
+摩洛哥经济总量在非洲排名第五(在尼日利亚、埃及、南非、阿尔及利亚之后)，北非排名第三。磷酸盐出口、旅游业、侨汇是摩经济主要支柱。主要出口机电产品、运输设备、非针织服装、肥料、无机化学品、建筑材料等。主要进口矿物燃料、机电产品、机械设备、运输设备、粮食等。
+    </div>
+    <div class="country" id="yd">印度</div>
+    <div class="desc">印度(首都：新德里)是世界四大文明古国之一，南亚次大陆最大国家。有100多个民族，其中印度斯坦族约占总人口的30%，其他较大的民族包括马拉提族、孟加拉族、比哈尔族、泰固族、泰米尔族等。印已成为全球软件、金融等服务业重要出口国。近年来，受世界经济形势、卢比贬值等因素影响，印对外贸易增长缓慢，由于进口增速大于出口，贸易赤字扩大。
+    </div>
+    <div class="country" id="aseby">埃塞俄比亚</div>
+    <div class="desc">埃塞俄比亚(首都：亚的斯亚贝巴)属非洲东北部内陆国，素有“非洲屋脊”之称。全国约有80多个民族，主要有奥罗莫族(40%)、阿姆哈拉族(30%)、等。居民中45%信奉埃塞正教，40-45%信奉伊斯兰教，5%信奉新教，其余信奉原始宗教。阿姆哈拉语为联邦工作语言，通用英语，主要民族语言有奥罗莫语、提格雷语等。
+埃塞俄比亚属世界最不发达国家之一。以农牧业为主，工业基础薄弱。出口商品主要有咖啡、油籽、恰特草、皮革和黄金，进口机械、汽车、石油产品、化肥、化学品等。
+    </div>
+    <div class="country" id="xxl">新西兰</div>
+    <div class="desc">新西兰(首都：惠灵顿)位于太平洋西南部，欧洲移民后裔占74%，毛利人占15%，亚裔占12%，太平洋岛国裔占7%(部分为多元族裔认同)。官方语言为英语、毛利语。48.9%的居民信奉基督教新教和天主教。
+新西兰以农牧业为主，农牧产品出口约占出口总量的50%。羊肉和奶制品出口量居世界第一位，羊毛出口量居世界第三位。严重依赖外贸。主要进口石油、机电产品、汽车、电子设备、纺织品等，出口乳制品、肉类、林产品、原油、水果和鱼类等。
+    </div>
+  </div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 300px;height:200px;"></div>
+    <!--<div id="main" style="width: 300px;height:200px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -96,6 +152,6 @@
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
-    </script>
+    </script>-->
 </body>
 </html>
