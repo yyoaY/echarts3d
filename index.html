@@ -39,6 +39,10 @@
             width: 4096,
             height: 2048
         });
+        //选中国家
+        var counName="中国";
+        //选择年份
+        var yearNum=2018;
 
         //数据变量
         var dser = [];  // 2D散点坐标系列
@@ -229,21 +233,70 @@
             })
         }
 
+        //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
+        function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+            var dat=[];
+            var datain=data.timeBins[tim-2015].data;
+            //console.log(datain);
+
+           //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
+            for(var i=0;i<datain.length;i++){
+                if(datain[i][dir]==pla&&datain[i].c==cla){
+                    dat.push({
+                        i:datain[i].i,
+                        e:datain[i].e,
+                        c:datain[i].c,
+                        v:datain[i].v
+                    });
+                    //计算总输入值
+                    vtol+=datain[i].v;
+                }
+            }
+
+            //设置被统计国家的地名散点
+            setdserp(pla,maxsize);
+
+            //设置被统计国家的数值散点
+            setdserv(pla,vtol);
+
+
+            //对被关联国的新闻流动方向是相反的
+            var dirv=(dir=="i")? "e":"i";
+
+            //关联的散点
+            for(var i=0;i<dat.length;i++)
+            {
+                val=dat[i].v; //每个被关注流动的实际数值
+                //按比例计算散点的大小
+                size=Math.round(maxsize*val/vtol);
+                pla=dat[i][dirv];
+
+                //设置每个关联国家的地名散点
+                setdserp(pla,size);
+
+                //设置每个关联国家的数值散点
+                setdserv(pla,val);
+
+            }
+            return dat;
+        }
+        //取数据为****年，国家为**，方向（i：输入，e：输入）
+        // 类型（正面：pos，负面：neg，中性：neu)
+        //var Data=sel(2015,"中国","i","neg");
+
+        
 
         let json = $.getJSON("data/all.json", function (data){
             //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
             // dir表示方向，取值为"i"或"e"，cla表示类别，取值为"pos"、"neg"、"neu"
             //结果存在dat数组中
-
-            //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
-            function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+            //聚焦某一国家的输出输入情况
+            function selectCon(pla){
                 var dat=[];
-                var datain=data.timeBins[tim-2015].data;
-                //console.log(datain);
-
-               //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
-                for(var i=0;i<datain.length;i++){
-                    if(datain[i][dir]==pla&&datain[i].c==cla){
+                var datain=data.timeBins[yearNum-2015].data;
+                var toli=0,tole=0;
+                for(var i=0;i<datain.length;i++){//遍历所有时间
+                    if(datain[i].i==pla||datain[i].e==pla){
                         dat.push({
                             i:datain[i].i,
                             e:datain[i].e,
@@ -251,60 +304,11 @@
                             v:datain[i].v
                         });
                         //计算总输入值
-                        vtol+=datain[i].v;
-                    }
-                }
-
-                //设置被统计国家的地名散点
-                setdserp(pla,maxsize);
-
-                //设置被统计国家的数值散点
-                setdserv(pla,vtol);
-
-
-                //对被关联国的新闻流动方向是相反的
-                var dirv=(dir=="i")? "e":"i";
-
-                //关联的散点
-                for(var i=0;i<dat.length;i++)
-                {
-                    val=dat[i].v; //每个被关注流动的实际数值
-                    //按比例计算散点的大小
-                    size=Math.round(maxsize*val/vtol);
-                    pla=dat[i][dirv];
-
-                    //设置每个关联国家的地名散点
-                    setdserp(pla,size);
-
-                    //设置每个关联国家的数值散点
-                    setdserv(pla,val);
-
-                }
-                return dat;
-            }
-            //取数据为****年，国家为**，方向（i：输入，e：输入）
-            // 类型（正面：pos，负面：neg，中性：neu)
-            //var Data=sel(2015,"中国","i","neg");
-
-            //聚焦某一国家的输出输入情况
-            function selectCon(pla){
-              var dat=[];
-              var datain=data.timeBins[0].data;
-              var toli=0,tole=0;
-              for(var i=0;i<datain.length;i++){//遍历所有时间
-                  if(datain[i].i==pla||datain[i].e==pla){
-                      dat.push({
-                          i:datain[i].i,
-                          e:datain[i].e,
-                          c:datain[i].c,
-                          v:datain[i].v
-                      });
-                      //计算总输入值
-                      if(datain[i].i==pla)
-                        toli+=datain[i].v;
-                      else {
-                        tole+=datain[i].v;
-                      }
+                        if(datain[i].i==pla)
+                          toli+=datain[i].v;
+                        else {
+                          tole+=datain[i].v;
+                        }
                   }
                   //设置被统计国家的地名散点
                   setdserp(pla,maxsize);
@@ -333,14 +337,13 @@
                   //设置每个关联国家的数值散点
                   setdserv(pla,val);
 
-              }
+                }
 
               //console.log(toli);
               return dat;
             }
-
             //取 “黑山”的输入输出数据
-            var Data=selectCon("黑山");
+            var Data=selectCon(counName);
             
             //添加散点数据，第二组为标注数值的散点
             dser.push(
@@ -485,70 +488,15 @@
             echarts.init(document.getElementById("container")).setOption(option, true);
         });
     </script>
+
     <script type="text/javascript">
         //查询点击事件
         function searchByName(){
             var coun=document.getElementById("countryName");//查询的国家名
-            let json = $.getJSON("data/all.json", function (data){
-                     //聚焦某一国家的输出输入情况
-            function selectCon(pla){
-              var dat=[];
-              var datain=data.timeBins[0].data;
-              var toli=0,tole=0;
-              for(var i=0;i<datain.length;i++){//遍历所有时间
-                  if(datain[i].i==pla||datain[i].e==pla){
-                      dat.push({
-                          i:datain[i].i,
-                          e:datain[i].e,
-                          c:datain[i].c,
-                          v:datain[i].v
-                      });
-                      //计算总输入值
-                      if(datain[i].i==pla)
-                        toli+=datain[i].v;
-                      else {
-                        tole+=datain[i].v;
-                      }
-                  }
-                  //设置被统计国家的地名散点
-                  setdserp(pla,maxsize);
-
-                  //设置被统计国家的数值散点
-                  //散点数值=输出+输入
-                  vtol=toli+tole;
-                  setdserv(pla,vtol);
-              }
-              //关联的散点
-              for(var i=0;i<dat.length;i++)
-              {
-                  val=dat[i].v; //每个被关注流动的实际数值
-                  //按比例计算散点的大小
-                  if(datain[i].i==pla)
-                    size=Math.round(maxsize*val/toli);
-                  else {
-                    size=Math.round(maxsize*val/tole);
-                  }
-
-                  pla=(dat[i].i==pla)?dat[i].e:dat[i].i;
-
-                  //设置每个关联国家的地名散点
-                  setdserp(pla,size);
-
-                  //设置每个关联国家的数值散点
-                  setdserv(pla,val);
-
-              }
-
-              //console.log(toli);
-              return dat;
-            }
-
-            //取输入国家coun的输入输出数据
-            var Data=selectCon(coun);
-            
-            //
-
-            }
+            //alert("chaxun");
+            myChart.setOption({
+                backgroundColor: 'rgba(3,28,72,0.9)'
+            });
 
         }
         
