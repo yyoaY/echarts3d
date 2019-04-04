@@ -283,18 +283,28 @@
 
     <!--情感 点击事件-->
     <script>
-        var ag=1;
+        //奇数-可见；偶数-不可见；
+        var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
         var btnTest1=document.getElementById("label1");
         btnTest1.onclick=function(e)
         {
             var btns = $("#importExportBtns .imports>div").not(".label");
             ag++;
-            if (ag%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
+            if (ag%2!=0){
+                btns.find('.check').removeClass('inactive');
+                if(cg%2==0)cg++;//全变奇
+                if(dg%2==0)dg++;
+                if(eg%2==0)eg++;
+            }
+            else{
+                btns.find('.check').addClass('inactive');
+                if(cg%2!=0)cg++;//全变偶
+                if(dg%2!=0)dg++;
+                if(eg%2!=0)eg++;
+            }
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var bg=1;
+        
         var btnTest2=document.getElementById("label2");
         btnTest2.onclick=function(e)
         {
@@ -304,8 +314,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var cg=1;
+        
         var btnTest3=document.getElementById("m1");
         btnTest3.onclick=function(e)
         {
@@ -315,8 +326,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var dg=1;
+        
         var btnTest4=document.getElementById("c1");
         btnTest4.onclick=function(e)
         {
@@ -326,8 +338,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var eg=1;
+        
         var btnTest5=document.getElementById("a1");
         btnTest5.onclick=function(e)
         {
@@ -337,8 +350,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var gg=1;
+        
         var btnTest6=document.getElementById("m2");
         btnTest6.onclick=function(e)
         {
@@ -348,8 +362,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var fg=1;
+        
         var btnTest7=document.getElementById("c2");
         btnTest7.onclick=function(e)
         {
@@ -359,8 +374,9 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
-        var hg=1;
+        
         var btnTest8=document.getElementById("a2");
         btnTest8.onclick=function(e)
         {
@@ -370,6 +386,7 @@
             {btns.find('.check').removeClass('inactive');}
             else
             {btns.find('.check').addClass('inactive');}
+            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
         }
     </script>
 
@@ -492,17 +509,16 @@
             var tmp2=tmp1.split("&")[0];
             var tmp3=tmp1.split("&")[1];
             counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
-            yearNum=tmp3.split("=")[1];
-
-            //设置时间条圆点位置
-            var l=document.getElementById("handle").style.left;
-            var reg = /\d+/;
-            var len=l.match(reg);
-            var le=(len*1-222)/90+2017;
-            len=(len*1)+(yearNum-le)*90;
-            document.getElementById("handle").style.left=len+'px';
+            yearNum=tmp3.split("=")[1];            
         }
-
+        
+        //设置时间条圆点位置
+        var l=document.getElementById("handle").style.left;
+        var reg = /\d+/;
+        var len=l.match(reg);
+        var le=(len*1-222)/90+2017;
+        len=(len*1)+(yearNum-le)*90;
+        document.getElementById("handle").style.left=len+'px';
 
         //数据变量
         var dser = [];  // 2D散点坐标系列
