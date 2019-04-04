@@ -303,6 +303,7 @@
                 if(eg%2!=0)eg++;
             }
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest2=document.getElementById("label2");
@@ -310,11 +311,20 @@
         {
             var btns = $("#importExportBtns .exports>div").not(".label");
             bg++;
-            if (bg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
+            if (bg%2!=0){
+                btns.find('.check').removeClass('inactive');
+                if(cg%2==0)gg++;//全变奇
+                if(dg%2==0)fg++;
+                if(eg%2==0)hg++;
+            }
+            else{
+                btns.find('.check').addClass('inactive');
+                if(cg%2!=0)gg++;//全变偶
+                if(dg%2!=0)fg++;
+                if(eg%2!=0)hg++;
+            }
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest3=document.getElementById("m1");
@@ -327,6 +337,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest4=document.getElementById("c1");
@@ -339,6 +350,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest5=document.getElementById("a1");
@@ -351,6 +363,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest6=document.getElementById("m2");
@@ -363,6 +376,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest7=document.getElementById("c2");
@@ -375,6 +389,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
         
         var btnTest8=document.getElementById("a2");
@@ -387,6 +402,7 @@
             else
             {btns.find('.check').addClass('inactive');}
             //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
     </script>
 
@@ -396,7 +412,7 @@
         function copyText() {
             var country1;
             country1=document.getElementById("countries").value;
-            window.location.href="index_w.html"+"?"+"c="+country1+"&"+"y="+yearNum;
+            window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
         }
     </script>
 
@@ -417,7 +433,7 @@
                     // le=(len*1-222)/90+2017;
                     // len=(len*1)+(year-le)*90;
                     // document.getElementById("handle").style.left=len+'px';
-                    window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year;
+                    window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
                 }
             }
         }
@@ -502,16 +518,31 @@
         //选择年份
         var yearNum=2018;//年份 初始值“2018”
 
+        //筛选方向和情感 初始值 “1” 都可见
+        var de={"i":{pos:1,neu:1,neg:1},"e":{pos:1,neu:1,neg:1}};
+        var de_i=1,de_e=1;
+
         //解析url
         var url=location.href;
         var tmp1=url.split("?")[1];
         if(tmp1!=null){
             var tmp2=tmp1.split("&")[0];
             var tmp3=tmp1.split("&")[1];
+            var tmp4=tmp1.split("&")[2];
             counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
-            yearNum=tmp3.split("=")[1];            
+            yearNum=tmp3.split("=")[1];
+
+            alert(tmp4);
+            de["i"].pos=tmp4.split("_")[0];
+            de["i"].neu=tmp4.split("_")[1];
+            de["i"].neg=tmp4.split("_")[2];
+            de_i=tmp4.split("_")[3];
+            de["e"].neu=tmp4.split("_")[4];
+            de["e"].pos=tmp4.split("_")[5];
+            de["e"].neg=tmp4.split("_")[6];
+            de_e=tmp4.split("_")[7];
         }
-        
+
         //设置时间条圆点位置
         var l=document.getElementById("handle").style.left;
         var reg = /\d+/;
@@ -770,7 +801,7 @@
                 var dat=[];
                 var datain=data.timeBins[yearNum-2015].data;
                 var toli=0,tole=0;
-                for(var i=0;i<datain.length;i++){//遍历所有时间
+                for(var i=0;i<datain.length;i++){
                     if(datain[i].i==pla||datain[i].e==pla){
                         dat.push({
                             i:datain[i].i,
@@ -817,8 +848,138 @@
               //console.log(toli);
               return dat;
             }
-            //取 “黑山”的输入输出数据
-            var Data=selectCon(counName);
+
+            //判断奇偶 奇数-true;偶数-false 
+            function isOdd(num){
+                if(num%2==0)
+                    return false;
+                else
+                    return true;
+            }
+
+            function getData(){//yearNum：时间(年) coun:国家 de:方向感情
+                //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
+                var dat=[];
+                var datain=data.timeBins[yearNum-2015].data;//筛选年份
+
+                //筛选方向和情感
+                if (isOdd(de_i)) {
+                    //导入输入数据
+                    if (isOdd(de["i"].pos)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="pos"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                //计算总输入值
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["i"].neu)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="neu"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["i"].neg)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="neg"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                }
+                if (isOdd(de_e)) {
+                    //导入输出数据
+                    if (isOdd(de["e"].pos)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="pos"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                //计算总输入值
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["e"].neu)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="neu"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["e"].neg)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="neg"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                }
+
+                //设置被统计国家的地名散点
+                setdserp(counName,maxsize);
+
+                //设置被统计国家的数值散点
+                setdserv(counName,vtol);
+
+
+                //对被关联国的新闻流动方向是相反的
+                //var dirv=(dir=="i")? "e":"i";
+                var pla;
+
+                //关联的散点
+                for(var i=0;i<dat.length;i++)
+                {
+                    val=dat[i].v; //每个被关注流动的实际数值
+                    //按比例计算散点的大小
+                    size=Math.round(maxsize*val/vtol);
+                    pla=(dat[i]["i"]==counName)?dat[i]["e"]:dat[i]["i"];
+
+                    //设置每个关联国家的地名散点
+                    setdserp(pla,size);
+
+                    //设置每个关联国家的数值散点
+                    setdserv(pla,val);
+
+                }
+                return dat;
+            }
+
+            var Data=getData();
 
             //添加散点数据，第二组为标注数值的散点
             dser.push(
