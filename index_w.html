@@ -253,7 +253,7 @@
     </div>
     <div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
         <input type="button" value="相关" class="aboutBtn armsBtn pointer">
-        <input type="button" value="查询" class="searchBtn armsBtn pointer"onclick="copyText()">
+        <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
         <input type="text" name="country" id="countries"
                class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
                >
@@ -281,144 +281,134 @@
         <br class="clear">
     </div>
 
-    <!--情感 点击事件-->
     <script>
-        //奇数-可见；偶数-不可见；
         var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
-        var btnTest1=document.getElementById("label1");
-        btnTest1.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .imports>div").not(".label");
-            ag++;
-            if (ag%2!=0){
-                btns.find('.check').removeClass('inactive');
-                if(cg%2==0)cg++;//全变奇
-                if(dg%2==0)dg++;
-                if(eg%2==0)eg++;
-            }
-            else{
-                btns.find('.check').addClass('inactive');
-                if(cg%2!=0)cg++;//全变偶
-                if(dg%2!=0)dg++;
-                if(eg%2!=0)eg++;
-            }
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest2=document.getElementById("label2");
-        btnTest2.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .exports>div").not(".label");
-            bg++;
-            if (bg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest3=document.getElementById("m1");
-        btnTest3.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .imports .mil");
-            cg++;
-            if (cg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest4=document.getElementById("c1");
-        btnTest4.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .imports .civ");
-            dg++;
-            if (dg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest5=document.getElementById("a1");
-        btnTest5.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .imports #a1");
-            eg++;
-            if (eg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest6=document.getElementById("m2");
-        btnTest6.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .exports .mil");
-            gg++;
-            if (gg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest7=document.getElementById("c2");
-        btnTest7.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .exports .civ");
-            fg++;
-            if (fg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-        
-        var btnTest8=document.getElementById("a2");
-        btnTest8.onclick=function(e)
-        {
-            var btns = $("#importExportBtns .exports #a2");
-            hg++;
-            if (hg%2!=0)
-            {btns.find('.check').removeClass('inactive');}
-            else
-            {btns.find('.check').addClass('inactive');}
-            //alert(cg+","+dg+","+eg+","+ag+";"+gg+","+fg+","+hg+","+bg+";");
-        }
-    </script>
-
-    <!--查询按钮 点击事件-->
-    <script>
-        //查询按钮 点击事件
-        function copyText() {
-            var country1;
-            country1=document.getElementById("countries").value;
-            window.location.href="index_w.html"+"?"+"c="+country1+"&"+"y="+yearNum;
-        }
-    </script>
-
-    <!--时间条-->
-    <script>
         window.onload = function() {
+            //时间条
             var obj_lis = document.getElementById("line").getElementsByTagName("li");
             var year;
-            // var l;
-            // var le;
-            // var len;
+            var l=document.getElementById("handle").style.left;
+            var reg = /\d+/;
+            var len=l.match(reg);
+            var le=(len*1-222)/90+2017;
+            year=le;
             for (i = 0; i < obj_lis.length; i++) {
                 obj_lis[i].onclick = function () {
                     year=this.innerHTML;
-                    // l=document.getElementById("handle").style.left;
-                    // var reg = /\d+/;
-                    // len=l.match(reg);
-                    // le=(len*1-222)/90+2017;
-                    // len=(len*1)+(year-le)*90;
-                    // document.getElementById("handle").style.left=len+'px';
-                    window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year;
+                    window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
                 }
+            }
+
+            //情感&方向 （奇数-可见；偶数-不可见）
+            var btnTest1=document.getElementById("label1");
+            btnTest1.onclick=function(e){
+                var btns = $("#importExportBtns .imports>div").not(".label");
+                ag++;
+                if (ag%2!=0){
+                    btns.find('.check').removeClass('inactive');
+                    if(cg%2==0)cg++;//全变奇
+                    if(dg%2==0)dg++;
+                    if(eg%2==0)eg++;
+                }
+                else{
+                    btns.find('.check').addClass('inactive');
+                    if(cg%2!=0)cg++;//全变偶
+                    if(dg%2!=0)dg++;
+                    if(eg%2!=0)eg++;
+                }
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest2=document.getElementById("label2");
+            btnTest2.onclick=function(e){
+                var btns = $("#importExportBtns .exports>div").not(".label");
+                bg++;
+                if (bg%2!=0){
+                    btns.find('.check').removeClass('inactive');
+                    if(gg%2==0)gg++;//全变奇
+                    if(fg%2==0)fg++;
+                    if(hg%2==0)hg++;
+                }
+                else{
+                    btns.find('.check').addClass('inactive');
+                    if(gg%2!=0)gg++;//全变偶
+                    if(fg%2!=0)fg++;
+                    if(hg%2!=0)hg++;
+                }
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest3=document.getElementById("m1");
+            btnTest3.onclick=function(e){
+                var btns = $("#importExportBtns .imports .mil");
+                cg++;
+                if (cg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest4=document.getElementById("c1");
+            btnTest4.onclick=function(e){
+                var btns = $("#importExportBtns .imports .civ");
+                dg++;
+                if (dg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest5=document.getElementById("a1");
+            btnTest5.onclick=function(e){
+                var btns = $("#importExportBtns .imports #a1");
+                eg++;
+                if (eg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest6=document.getElementById("m2");
+            btnTest6.onclick=function(e){
+                var btns = $("#importExportBtns .exports .mil");
+                gg++;
+                if (gg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest7=document.getElementById("c2");
+            btnTest7.onclick=function(e){
+                var btns = $("#importExportBtns .exports .civ");
+                fg++;
+                if (fg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+            
+            var btnTest8=document.getElementById("a2");
+            btnTest8.onclick=function(e){
+                var btns = $("#importExportBtns .exports #a2");
+                hg++;
+                if (hg%2!=0)
+                {btns.find('.check').removeClass('inactive');}
+                else
+                {btns.find('.check').addClass('inactive');}
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
+            }
+
+            //查询按钮 点击事件
+            var btnSearch=document.getElementById("btnSearch");
+            btnSearch.onclick=function(e){
+                counName=document.getElementById("countries").value;
+                window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
         }
     </script>
@@ -502,16 +492,31 @@
         //选择年份
         var yearNum=2018;//年份 初始值“2018”
 
+        //筛选方向和情感 初始值 “1” 都可见
+        var de={"i":{pos:1,neu:1,neg:1},"e":{pos:1,neu:1,neg:1}};
+        var de_i=1,de_e=1;
+
         //解析url
         var url=location.href;
         var tmp1=url.split("?")[1];
         if(tmp1!=null){
             var tmp2=tmp1.split("&")[0];
             var tmp3=tmp1.split("&")[1];
+            var tmp4=tmp1.split("&")[2];
             counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
-            yearNum=tmp3.split("=")[1];            
+            yearNum=tmp3.split("=")[1];
+
+            //alert(tmp4);
+            de["i"].pos=tmp4.split("_")[0];
+            de["i"].neu=tmp4.split("_")[1];
+            de["i"].neg=tmp4.split("_")[2];
+            de_i=tmp4.split("_")[3];
+            de["e"].pos=tmp4.split("_")[4];
+            de["e"].neu=tmp4.split("_")[5];
+            de["e"].neg=tmp4.split("_")[6];
+            de_e=tmp4.split("_")[7];
         }
-        
+
         //设置时间条圆点位置
         var l=document.getElementById("handle").style.left;
         var reg = /\d+/;
@@ -520,6 +525,50 @@
         len=(len*1)+(yearNum-le)*90;
         document.getElementById("handle").style.left=len+'px';
 
+        //设置右下角值
+        cg=de["i"].pos;dg=de["i"].neu;eg=de["i"].neg;ag=de_i;
+        gg=de["e"].pos;fg=de["e"].neu;hg=de["e"].neg;bg=de_e;
+        var btns = $("#importExportBtns .imports>div").not(".label");
+        if (ag%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .exports>div").not(".label");
+        if (bg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .imports .mil");
+        if (cg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .imports .civ");
+        if (dg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .imports #a1");
+        if (eg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .exports .mil");
+        if (gg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .exports .civ");
+        if (fg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+        var btns = $("#importExportBtns .exports #a2");
+        if (hg%2!=0)
+        {btns.find('.check').removeClass('inactive');}
+        else
+        {btns.find('.check').addClass('inactive');}
+
         //数据变量
         var dser = [];  // 2D散点坐标系列
         var series = [];// 3D飞线
@@ -527,9 +576,7 @@
         var pointsData=[]; //用于保存每一个需要被筛选的散点名称、经纬度和大小
         var pointsDatav=[]; //用于保存每一个需要被筛选的散点新闻数、经纬度，大小为1
         var vtol=0;//针对某国特定类型的流入或流出新闻总数
-
-        //不同情况的线条颜色，正面为绿色，负面为红色，中性为蓝色
-        var lcolor={pos:"#006600",neg:"#CC3333",neu:"#9ae5fc"};
+        var lcolor={pos:"#006600",neg:"#CC3333",neu:"#9ae5fc"};//不同情况的线条颜色，正面为绿色，负面为红色，中性为蓝色
 
         //各国的经纬度数据
         var geoCoordMap = {
@@ -695,7 +742,6 @@
                 name: pla,    //散点的name为国家名
                 value: geoCoordMap[pla], //散点的value为该点的经纬度
                 symbolSize: size   //散点对应的大小
-                // data:{"数量":100}
             })
         }
 
@@ -709,116 +755,129 @@
             })
         }
 
-        let json = $.getJSON("data/all.json", function (data){
-            //函数sel选择需要显示的数据，其中tim表示时间，范围是2015-2019，pla表示地点
-            // dir表示方向，取值为"i"或"e"，cla表示类别，取值为"pos"、"neg"、"neu"
-            //结果存在dat数组中
+        let json = $.getJSON("data/all.json", function (data){            
+            //取数据为yearNum年，国家为pla，方向（i：输入，e：输出）
+            // 情感（正面：pos，负面：neg，中性：neu)
 
-            //定义函数，筛选在特定时间，针对某一国家输入或输出特定感情取向的新闻流动数据
-            function sel(tim,pla,dir,cla){//tim：时间 pla:国家 dir:流动方向 cla：感情取向
+            //判断奇偶 奇数-true;偶数-false 
+            function isOdd(num){
+                if(num%2==0)
+                    return false;
+                else
+                    return true;
+            }
+
+            function getData(){
+                //yearNum：时间(年) coun:国家 de:方向感情
+                //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
                 var dat=[];
-                var datain=data.timeBins[tim-2015].data;
-                //console.log(datain);
-
-               //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
-                for(var i=0;i<datain.length;i++){
-                    if(datain[i][dir]==pla&&datain[i].c==cla){
-                        dat.push({
-                            i:datain[i].i,
-                            e:datain[i].e,
-                            c:datain[i].c,
-                            v:datain[i].v
-                        });
-                        //计算总输入值
-                        vtol+=datain[i].v;
+                var datain=data.timeBins[yearNum-2015].data;//筛选年份
+                
+                //筛选方向和情感
+                if (isOdd(de_i)) {
+                    //导入输入数据
+                    if (isOdd(de["i"].pos)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="pos"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                //计算总输入值
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["i"].neu)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="neu"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["i"].neg)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["i"]==counName&&datain[i].c=="neg"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                }
+                if (isOdd(de_e)) {
+                    //导入输出数据
+                    if (isOdd(de["e"].pos)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="pos"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                //计算总输入值
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["e"].neu)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="neu"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
+                    }
+                    if (isOdd(de["e"].neg)) {
+                        for(var i=0;i<datain.length;i++){
+                            if(datain[i]["e"]==counName&&datain[i].c=="neg"){
+                                dat.push({
+                                    i:datain[i].i,
+                                    e:datain[i].e,
+                                    c:datain[i].c,
+                                    v:datain[i].v
+                                });
+                                vtol+=datain[i].v;
+                            }
+                        }
                     }
                 }
 
-                //设置被统计国家的地名散点
-                setdserp(pla,maxsize);
-
-                //设置被统计国家的数值散点
-                setdserv(pla,vtol);
-
-
-                //对被关联国的新闻流动方向是相反的
-                var dirv=(dir=="i")? "e":"i";
+                setdserp(counName,maxsize);//设置被统计国家的地名散点
+                setdserv(counName,vtol);//设置被统计国家的数值散点
 
                 //关联的散点
                 for(var i=0;i<dat.length;i++)
                 {
-                    val=dat[i].v; //每个被关注流动的实际数值
-                    //按比例计算散点的大小
-                    size=Math.round(maxsize*val/vtol);
-                    pla=dat[i][dirv];
-
-                    //设置每个关联国家的地名散点
-                    setdserp(pla,size);
-
-                    //设置每个关联国家的数值散点
-                    setdserv(pla,val);
+                    var val=dat[i].v; //每个被关注流动的实际数值
+                    var size=Math.round(maxsize*val/vtol);//按比例计算散点的大小
+                    var pla=(dat[i]["i"]==counName)?dat[i]["e"]:dat[i]["i"];//设置相关国（coun为输出国，pla为输入国；coun为输入国，pla为输出国）
+                    setdserp(pla,size);//设置每个关联国家的地名散点
+                    setdserv(pla,val);//设置每个关联国家的数值散点
 
                 }
                 return dat;
             }
-            //取数据为****年，国家为**，方向（i：输入，e：输入）
-            // 类型（正面：pos，负面：neg，中性：neu)
-            //var Data=sel(2015,"中国","i","neg");
 
-            //聚焦某一国家的输出输入情况
-            function selectCon(pla){
-                var dat=[];
-                var datain=data.timeBins[yearNum-2015].data;
-                var toli=0,tole=0;
-                for(var i=0;i<datain.length;i++){//遍历所有时间
-                    if(datain[i].i==pla||datain[i].e==pla){
-                        dat.push({
-                            i:datain[i].i,
-                            e:datain[i].e,
-                            c:datain[i].c,
-                            v:datain[i].v
-                        });
-                        //计算总输入值
-                        if(datain[i].i==pla)
-                          toli+=datain[i].v;
-                        else {
-                          tole+=datain[i].v;
-                        }
-                  }
-                  //设置被统计国家的地名散点
-                  setdserp(pla,maxsize);
-
-                  //设置被统计国家的数值散点
-                  //散点数值=输出+输入
-                  vtol=toli+tole;
-                  setdserv(pla,vtol);
-              }
-              //关联的散点
-              for(var i=0;i<dat.length;i++)
-              {
-                  val=dat[i].v; //每个被关注流动的实际数值
-                  //按比例计算散点的大小
-                  if(datain[i].i==pla)
-                    size=Math.round(maxsize*val/toli);
-                  else {
-                    size=Math.round(maxsize*val/tole);
-                  }
-
-                  pla=(dat[i].i==pla)?dat[i].e:dat[i].i;
-
-                  //设置每个关联国家的地名散点
-                  setdserp(pla,size);
-
-                  //设置每个关联国家的数值散点
-                  setdserv(pla,val);
-
-                }
-
-              //console.log(toli);
-              return dat;
-            }
-            //取 “黑山”的输入输出数据
-            var Data=selectCon(counName);
+            var Data=getData();
 
             //添加散点数据，第二组为标注数值的散点
             dser.push(
