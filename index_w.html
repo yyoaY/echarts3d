@@ -2,10 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>echarts 3D earth</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link href="roll2.css" id="css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <title>“一带一路”国家间新闻流动可视化</title>
     <style>
         html{height:100%;}
         body{
@@ -13,14 +10,15 @@
             margin:0;
             background:url('img/timg.png') center/cover no-repeat;
         }
-    	h1{
-			color:#FFF;
-		}
-    	p{
-			color:#FFF;
+        h1{
+            color:#FFF;
+        }
+        p{
+            color:#FFF;
             text-align: right;
-		}
+        }
         #text{
+            position: absolute;
             width: 450px;
         }
         #history{
@@ -28,7 +26,7 @@
             height: 50px;
             width: 500px;
             background-color:rgba(43,43,43,0.9);
-            bottom:-10%;
+            bottom:1%;
             left:430px;
         }
         #history ul {
@@ -228,56 +226,57 @@
             box-sizing: border-box;
         }
     </style>
+
     <script type="text/javascript" src="js/echarts.min.js"></script>
     <script type="text/javascript" src="js/echarts-gl.min.js"></script>
     <script type="text/javascript" src="js/world.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-    <div id="text">
-        <h1>一带一路相关国家间的新闻流通</h1>
-        <p>自2015年-2019年3月</p>
+<div id="text">
+    <h1>“一带一路”相关国家间的新闻流通</h1>
+    <p>自2015年-2019年3月</p>
+</div>
+<div id="container">
+</div>
+<div id="history">
+    <ul class="timeline pointer" id="line">
+        <li>2015</li>
+        <li>2016</li>
+        <li>2017</li>
+        <li>2018</li>
+        <li>2019</li>
+        <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
+    </ul>
+</div>
+<div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
+    <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
+    <input type="text" name="country" id="countries"
+           class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
+    >
+    <ul id="data_list" class="list"></ul>
+    <br class="clear">
+</div>
+<div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
+    <div class="typeLabels">
+        <div class="mil">正面</div>
+        <div class="civ">中性</div>
+        <div class="ammo">负面</div><br class="clear">
     </div>
-    <div id="container">
+    <div class="imports imex">
+        <div class="mil" id="m1"><div class="check"></div></div>
+        <div class="civ" id="c1"><div class="check"></div></div>
+        <div class="ammo" id="a1"><div class="check"></div></div>
+        <div class="label" id="label1">输入</div><br class="clear">
     </div>
-    <div id="history">
-        <ul class="timeline pointer" id="line">
-            <li>2015</li>
-            <li>2016</li>
-            <li>2017</li>
-            <li>2018</li>
-            <li>2019</li>
-            <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
-        </ul>
+    <div class="exports imex">
+        <div class="mil" id="m2"><div class="check"></div></div>
+        <div class="civ" id="c2"><div class="check"></div></div>
+        <div class="ammo" id="a2"><div class="check"></div></div>
+        <div class="label" id="label2">输出</div><br class="clear">
     </div>
-    <div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
-        <input type="button" value="相关" class="aboutBtn armsBtn pointer">
-        <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
-        <input type="text" name="country" id="countries"
-               class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
-               >
-        <ul id="data_list" class="list"></ul>
-        <br class="clear">
-    </div>
-    <div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
-        <div class="typeLabels">
-            <div class="mil">正面</div>
-            <div class="civ">中性</div>
-            <div class="ammo">负面</div><br class="clear">
-        </div>
-        <div class="imports imex">
-            <div class="mil" id="m1"><div class="check"></div></div>
-            <div class="civ" id="c1"><div class="check"></div></div>
-            <div class="ammo" id="a1"><div class="check"></div></div>
-            <div class="label" id="label1">输入</div><br class="clear">
-        </div>
-        <div class="exports imex">
-            <div class="mil" id="m2"><div class="check"></div></div>
-            <div class="civ" id="c2"><div class="check"></div></div>
-            <div class="ammo" id="a2"><div class="check"></div></div>
-            <div class="label" id="label2">输出</div><br class="clear">
-        </div>
-        <br class="clear">
+    <br class="clear">
+</div>
     </div>
 
     <script>
@@ -896,36 +895,41 @@
 
             var Data=getData();
 
-            //添加散点数据，第二组为标注数值的散点
+            //给每个国家都添加固定尺寸的散点     //是否添加所有一带一路国家(所有国家的闪闪响应点都有)
+            for(k in geoCoordMap){
+                pointsData.push({
+                    name:k,
+                    value:geoCoordMap[k],
+                    SymbolSize:1
+                });
+            }
+
+
+            //添加散点数据，第一组为标注地名的散点       //(国家的普通响应点与名字标签)
             dser.push(
+                //被统计国家对应的散点
                 {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
-                    zlevel: 1000,
+                    zlevel: 3,
                     rippleEffect: {
                         brushType: 'stroke'
                     },
                     label: {
-                        fontSize:24, //标签的字号
-                        show: true,
-                        position: [0,-20],
-                        formatter: '{b}',  //标签内容格式器，a：系列名，b:数据名，c：数据值
-                        color: '#FFF',
-                        fontFamily: 'Arial',
-                        borderWidth: 3,
-                        backgroundColor: 'rgba(0,23,11,0.3)',
-                        padding: [5, 10, 10, 5],
-                        lineHeight: 30
+                        fontSize:14, //标签的字号
+                        show: true,   //是否显示散点文字
+                        position: 'right',  //显示文字位于散点的位置
+                        formatter: '{b}'  //标签内容格式器，a：系列名，b:数据名，c：数据值
                     },
                     itemStyle: {
                         normal: {
                             color: '#FFF'  //散点的颜色
                         }
                     },
-                    data:pointsDatav
+                    data:pointsData
                 }
-            );
 
+            );
             //统计飞线数据
             for(var i=0;i<Data.length;i++)
             {
@@ -933,9 +937,8 @@
                     {
                         type: 'lines3D',
                         effect: {
-                            color: lcolor[Data[i].c],
                             show: true,
-                            period: 3,//周期，数值越小越块
+                            period: 4,//周期，数值越小越块
                             trailLength: Data[i].v/vtol//尾部阴影，范围0-1，用当前线条v值除以总v值，当前流动占总数的比例
                         },
                         lineStyle: {//航线的视图效果
@@ -945,9 +948,8 @@
                             opacity: 0.6
                         },
                         data: convertData(Data[i])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
-                    })
+                    });
             }
-
             myChart.setOption({
                 backgroundColor: 'rgba(3,28,72,0.3)',
                 title: {
@@ -973,46 +975,13 @@
                             areaColor: '#357cf8'
                         }
                     },
-                    // label:{
-                    //     fontSize:24
-                    // }
+                    label:{
+                        fontSize:18    //红色悬停字体大小
+                    }
                 },
                 //考虑到有些小国比较近，不适合直接显示名称标签
                 series:dser
             });
-
-            series.push({
-                type: 'scatter3D',
-                coordinateSystem: 'globe',
-                blendMode: 'lighter',
-                symbolSize: 2,
-                itemStyle: {
-                    color: 'rgb(50, 50, 150)',
-                    opacity: 0.2
-                },
-                label: {
-                    fontSize:30, //标签的字号
-                    show: true,
-                    position: [0,-20],
-                    formatter: '{b}',  //标签内容格式器，a：系列名，b:数据名，c：数据值
-                    // formatter : function (params) {
-                    //     return params.name + ':' + params.scale;
-                    // },
-                    color: '#FFF',
-                    fontFamily: 'Arial',
-                    borderWidth: 3,
-                    backgroundColor: 'rgba(0,23,11,0.3)',
-                    padding: [5, 10, 10, 5],
-                    lineHeight: 30
-                },
-                itemStyle: {
-                    normal: {
-                        color: '#FFF'  //散点的颜色
-                    }
-                },
-                data: pointsData
-            });
-
             //3D地球
             option = {
                 backgroundColor: 'rgba(0,0,0,0)',//canvas的背景颜色
@@ -1024,17 +993,12 @@
                     environment:'none',
                     shading: 'color',
                     viewControl: {
-                        distance:240,
-                        autoRotate: false
+                        distance:220,     //距离屏幕远近
+                        autoRotate: false    //控制转动
                     }
                 },
                 roam: true,
-                series:series,
-
-                tooltip:{
-                    trigger: 'item',
-                    formatter:'{b}'
-                }
+              series:series
             };
             echarts.init(document.getElementById("container")).setOption(option, true);
         });
