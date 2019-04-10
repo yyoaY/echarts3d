@@ -323,8 +323,8 @@
                     if(dg%2!=0)dg++;
                     if(eg%2!=0)eg++;
                 }
-                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
+                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -344,7 +344,7 @@
                     if(fg%2!=0)fg++;
                     if(hg%2!=0)hg++;
                 }
-                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if((isOdd(gg)||isOdd(fg)||isOdd(hg))&&(!isOdd(bg)))bg=1;
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -357,7 +357,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if((isOdd(cg)||isOdd(dg)||isOdd(eg))&&(!isOdd(ag)))ag=1;
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -370,7 +370,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if((isOdd(cg)||isOdd(dg)||isOdd(eg))&&(!isOdd(ag)))ag=1;
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -383,7 +383,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if((isOdd(cg)||isOdd(dg)||isOdd(eg))&&(!isOdd(ag)))ag=1;
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -396,7 +396,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if((isOdd(gg)||isOdd(fg)||isOdd(hg))&&(!isOdd(bg)))bg=1;
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -409,7 +409,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if((isOdd(gg)||isOdd(fg)||isOdd(hg))&&(!isOdd(bg)))bg=1;
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
@@ -422,7 +422,7 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
-                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if((isOdd(gg)||isOdd(fg)||isOdd(hg))&&(!isOdd(bg)))bg=1;
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
