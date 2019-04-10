@@ -282,6 +282,15 @@
 
     <script>
         var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
+
+        //判断奇偶 奇数-true;偶数-false 
+        function isOdd(num){
+            if(num%2==0)
+                return false;
+            else
+                return true;
+        }
+        
         window.onload = function() {
             //时间条
             var obj_lis = document.getElementById("line").getElementsByTagName("li");
@@ -315,6 +324,8 @@
                     if(dg%2!=0)dg++;
                     if(eg%2!=0)eg++;
                 }
+                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -334,6 +345,8 @@
                     if(fg%2!=0)fg++;
                     if(hg%2!=0)hg++;
                 }
+                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -345,6 +358,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -356,6 +371,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -367,6 +384,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
+                if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -378,6 +397,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -389,6 +410,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
             
@@ -400,6 +423,8 @@
                 {btns.find('.check').removeClass('inactive');}
                 else
                 {btns.find('.check').addClass('inactive');}
+                if(isOdd(gg)&&isOdd(fg)&&isOdd(hg)&&(!isOdd(bg)))bg=1;
+                if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index_w.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
 
@@ -758,13 +783,6 @@
             //取数据为yearNum年，国家为pla，方向（i：输入，e：输出）
             // 情感（正面：pos，负面：neg，中性：neu)
 
-            //判断奇偶 奇数-true;偶数-false 
-            function isOdd(num){
-                if(num%2==0)
-                    return false;
-                else
-                    return true;
-            }
 
             function getData(){
                 //yearNum：时间(年) coun:国家 de:方向感情
