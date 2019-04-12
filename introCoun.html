@@ -829,18 +829,19 @@
     <div class="counPart">
       <div class="country" id="bl">巴林</div>
       <div class="desc">巴林(首都：麦纳麦)位于波斯湾西南部的岛国， 85%的居民信奉伊斯兰教，其中什叶派占70%，逊尼派占30%。官方语言为阿拉伯语，通用英语。<br>巴林是海湾地区最早开采石油的国家。近年来，巴开始向多元化经济发展，建立了炼油、石化及铝制品工业，大力发展金融业，成为海湾地区银行和金融中心。
-        <div class="chartDiv_bottom">
+        <div class="chartDiv_bottom" style="height: 350px;">
           <div id="chart_bl" style="width: 600px;height:400px;"></div>
         </div>
         <script type="text/javascript">
           var chart_bl = echarts.init(document.getElementById('chart_bl'));
-          var option = {tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {c} ({d}%)"},legend: {orient: 'vertical',x: 'left',data:['其他','什叶派','逊尼派']},
-              series: [ {name:'巴林',type:'pie',selectedMode: 'single',radius: [0, '30%'],center: ['50%', '50%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+          var option = {
+              title:{text:"巴林居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {c} ({d}%)"},legend: {orient: 'vertical',x: 'left',data:['其他','什叶派','逊尼派']},
+              series: [ {type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
                       data:[
                           {value:15, name:'其他'},
                           {value:85, name:'伊斯兰教', selected:true}
                         ]},
-                        {name:'访问来源',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                        {name:'居民宗教信仰',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
                       data:[
                           {value:15, name:'其他'},
                           {value:59.5, name:'什叶派'},
@@ -853,6 +854,24 @@
     <div class="counPart">
       <div class="country" id="ym">也门</div>
       <div class="desc">也门(首都：萨那)位于阿拉伯半岛西南端，绝大多数是阿拉伯人，官方语言为阿拉伯语。伊斯兰教为国教，什叶派的宰德教派和逊尼派的沙斐仪教派各占50%。<br>也门经济落后，是世界上最不发达的国家之一，主要依赖石油出口收入。运输工具、机械设备等国内建设所需物资以及大量轻工产品均需进口。
+        <div class="chartDiv_bottom" style="height: 350px;">
+          <div id="chart_ym" style="width: 700px;height:400px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_ym = echarts.init(document.getElementById('chart_ym'));
+          var option = {
+              title:{text:"也门居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {c} ({d}%)"},legend: {orient: 'vertical',x: 'left',data:['什叶派的宰德教派','逊尼派的沙斐仪教派']},
+              series: [ {type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:85, name:'伊斯兰教'}
+                        ]},
+                        {name:'居民宗教信仰',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                      data:[
+                          {value:50, name:'什叶派的宰德教派'},
+                          {value:50, name:'逊尼派的沙斐仪教派'}
+                        ]}]};
+          chart_ym.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
