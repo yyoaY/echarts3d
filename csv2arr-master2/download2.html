@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>生成下载url数组,并完成1天96个压缩文件的下载</title>
+    </head>
+    <body>
+        <p>年：<input type="text" id="year" value="2019"></p>
+        <p>月：<input type="text" id="month" value="03"></p>
+        <p>日：<input type="text" id="date" value="01"></p>
+
+        <input type="button" id="geturl" value="下载当天96个压缩文件" />
+        
+        <script>
+            let year=document.getElementById("year").value,
+                month=document.getElementById("month").value,
+                date=document.getElementById("date").value,
+                oGet=document.getElementById("geturl"),
+                str1="http://data.gdeltproject.org/gdeltv2/",
+                str2=["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],
+                str3=["00","15","30","45"],
+                str4="00.translation.gkg.csv.zip";
+                //url=[];
+            //所有链接的地址列表 http://data.gdeltproject.org/gdeltv2/masterfilelist-translation.txt
+            function downloadFile(url) {
+                try{
+                    var elemIF = document.createElement("iframe");
+                    elemIF.src = url;
+                    elemIF.style.display = "none";
+                    document.body.appendChild(elemIF);
+                }catch(e){
+
+                }
+            }
+            oGet.onclick=function(){
+                for(let i=0;i<24;i++){
+                    for(let j=0;j<4;j++){
+                        //url.push(str1+year+month+date+hour+str2[i]+str3[j]+str4);
+
+                        downloadFile(str1+year+month+date+str2[i]+str3[j]+str4);
+                    }
+
+                }
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>计算及合并指定的json格式文件</title>
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/filesave.js"></script>
+    </head>
+    <body>
+        <script>
+            //将1个小时内4个json数据文件合并为1个json数据文件
+            let file1,file2,file3,file4;
+            file1="./data/201903010000.json";
+            file2="./data/201903010015.json";
+            file3="./data/201903010030.json";
+            file4="./data/201903010045.json";
+            var json={timeBins:[]};
+            $.getJSON(file1, function (data1){
+                $.getJSON(file2, function (data2){
+                    $.getJSON(file3, function (data3){
+                        $.getJSON(file4, function (data4){
+                            let d1=data1.timeBins[0].data,
+                                d2=data2.timeBins[0].data,
+                                d3=data3.timeBins[0].data,
+                                d4=data4.timeBins[0].data
+                            ;
+                            //函数功能为data2合并到data1中
+                            function merged(d1,d2){
+                                let len1=d1.length,
+                                    len2=d2.length;
+                                for(let i=0;i<len2;i++){
+                                    let flag=0;
+                                    for(let j=0;j<len1;j++){
+                                        if(d1[j].i==d2[i].i&&d1[j].e==d2[i].e&&d1[j].c==d2[i].c){
+                                            d1[j].v+=d2[i].v;
+                                            flag=1;
+                                            continue;
+                                        }
+                                    };
+                                    if(flag==0){
+                                        d1.push(d2[i]);
+                                    }
+                                };
+                                return(d1);
+                            }
+                            //d1分别与d2、d3、d4合并
+                            d1=merged(d1,d2);
+                            d1=merged(d1,d3);
+                            d1=merged(d1,d4);
+
+                            var pos = file1.lastIndexOf("/")*1;
+                            //console.log(pos);
+                            var filename=file1.substring(pos+1,pos+11);
+
+                            var result={"timeBins":[{"data":d1,"t":filename}]};
+                            //console.log(result);
+                            //关联数据源文件保存结果
+                            var content = JSON.stringify(result);
+                            var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+                            saveAs(blob, filename+".json");
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

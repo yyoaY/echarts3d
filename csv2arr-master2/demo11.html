@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8"/>
+
+<h3>请按F12打开浏览器控制台</h3>
+<h3>Press F12 to open the console</h3>
+
+<a href="./test.csv" >点击下载示例csv</a><br /><br /><br />
+
+<input type="file" name="csvfile" onChange="getname(this)" />
+<input type="button" onclick="csv2()" value="导出所需数据文件"/>
+
+<br /><br /><br />
+<div id="resTbl"></div>
+
+<script src="./lib/jquery.js"></script>
+<script src="./lib/papaparse.js"></script>
+<script src="./lib/jschardet.js"></script>
+<script src="./lib/filesave.js"></script>
+<!--[if lte IE 9]>
+	<script src="./lib/base64.js"></script>
+<![endif]-->
+
+<script src="csv2arr2.js"></script>
+<script>
+var bnr=["CN","MG","PA","MA","IN","ET","NZ","BA","ME","TM","LT","LV","PS","AL","AF","EE","PK","SI","HR","LB","OM","BH","YE","EG","JO","SY","ID","PH","MM","BN","TL","BT","AE","TH","VN","SG","IL","AZ","AM","CZ","BD","BY","KH","GE","HU","IQ","IR","KG","LO","KZ","QA","KW","MD","MV","MY","MK","MN","NP","PL","BG","RO","RS","SA","SK","TJ","RU","ZA","LK","KR","TR","UA","UZ","BB","VU","TO","CK","EC","PT","FJ","FM","MT","SV","DO","CL","WS","SR","GD","VE","TG","GM","UG","CV","BI","TZ","ZW","CG","TD","NG","KE","AO","NA","GA","MZ","ZM","GH","SC","SS","CM","SL","KT","DZ","CR","DJ","MR","GN","SO","GR","UY","NU","DM","GY","RW","SN","TN","LY","PG","BO","AG","TT","AT","SD","IT","CU"];
+var Country=["中国","马达加斯加","巴拿马","摩洛哥","印度","埃塞俄比亚","新西兰","波黑","黑山","土库曼斯坦","立陶宛","拉脱维亚","巴勒斯坦","阿尔巴尼亚","阿富汗","爱沙尼亚","巴基斯坦","斯洛文尼亚","克罗地亚","黎巴嫩","阿曼","巴林","也门","埃及","约旦","叙利亚","印度尼西亚","菲律宾","缅甸","文莱","东帝汶","不丹","阿联酋","泰国","越南","新加坡","以色列","阿塞拜疆","亚美尼亚","捷克","孟加拉国","白俄罗斯","柬埔寨","格鲁吉亚","匈牙利","伊拉克","伊朗","吉尔吉斯斯坦","老挝","哈萨克斯坦","卡塔尔","科威特","摩尔多瓦","马尔代夫","马来西亚","马其顿","蒙古国","尼泊尔","波兰","保加利亚","罗马尼亚","塞尔维亚","沙特阿拉伯","斯洛伐克","塔吉克斯坦","俄罗斯","南非","斯里兰卡","韩国","土耳其","乌克兰","乌兹别克斯坦","巴巴多斯","瓦努阿图","汤加","库克群岛","厄瓜多尔","葡萄牙","斐济","密克罗尼西亚联邦","马耳他","萨尔瓦多","多米尼加","智利","萨摩亚","苏里南","格林纳达","委内瑞拉","多哥","冈比亚","乌干达","佛得角","布隆迪","坦桑尼亚","津巴布韦","刚果（布）","乍得","尼日利亚","肯尼亚","安哥拉","纳米比亚","加蓬","莫桑比克","赞比亚","加纳","塞舌尔","南苏丹","喀麦隆","塞拉利昂","科特迪瓦","阿尔及利亚","哥斯达黎加","吉布提","毛里塔尼亚","几内亚","索马里","希腊","乌拉圭","纽埃","多米尼克","圭亚那","卢旺达","塞内加尔","突尼斯","利比亚","巴布亚新几内亚","玻利维亚","安提瓜和巴布达","特立尼达和多巴哥","奥地利","苏丹","意大利","古巴"];
+var filename;
+function getname(obj){
+    //console.log(obj.value)
+    var pos = obj.value.lastIndexOf("\\")*1;
+    //console.log(pos);
+    filename=obj.value.substring(pos+1,pos+13);
+    //console.log(filename);
+}
+function csv2(){
+    // let file1;
+    // file1="./data/20190301000000.translation.gkg.csv";
+    // $.getJSON(file1, csv2arr(function (data1){}));
+    $("input[name=csvfile]").csv2arr(function(arr){
+        var len=arr.length;
+        var b=[];//保存每行中被报道的国家
+        var newarr=[];//拆分被报道国后的新数组
+        var newarr2=[];//临时保存数据的数组
+         //减少循环次数，一次按行循环
+        for(var i=0;i<len;i++) {
+            //只处理原数组中每行的下标为3、9、15的三个字段
+
+            //获取顶级域名
+            if(arr[i][3]==undefined){
+                continue;
+            }
+            else{
+                var doti = arr[i][3].lastIndexOf('.')
+                arr[i][3] = arr[i][3].slice(doti+1);
+
+                //顶级域名转换为大写
+
+                arr[i][3]=arr[i][3].toUpperCase();
+                //若不存在于一带一路国家表中，则删除该行
+                // 先删行，再删列
+                //以20190307064500.translation.gkg.csv文件为例，删除前3236行，删除后1245行
+
+                if(bnr.indexOf(arr[i][3])==-1){
+                    continue;
+                }
+                else{
+
+                    arr[i][15]=arr[i][15].split(',')[0];
+                    if(parseFloat(arr[i][15])>0){
+                        arr[i][15]="pos";
+                    }else if(parseFloat(arr[i][2])==0){
+                        arr[i][15]="neu";
+                    }else{
+                        arr[i][15]="neg";
+                    }
+
+                    //获取报道的国家，存入b[i],b[i]为一个国名数组
+                    b[i]=arr[i][9].split(';');
+                    var lenbi=b[i].length;
+                    for(j=0;j<lenbi;j++){
+                        b[i][j]=b[i][j].split('#')[2];
+                        if(bnr.indexOf(b[i][j])==-1){//若不存在于一带一路国家表中，则删除该国
+                            b[i].splice(j, 1);
+                            j--;
+                            lenbi--;
+                            continue;
+                        }else if(b[i][j]==arr[i][3]){//被报道的国家与报道国相同,删除该国
+                            b[i].splice(j,1);
+                            j--;
+                            lenbi--;
+                            continue;
+                        }else if(b[i].indexOf(b[i][j])!=j){//被报道的国家不是第一次出现，则删除该国
+                            b[i].splice(j,1);
+                            j--;
+                            lenbi--;
+                            continue;
+                        }
+                        else{
+                            //拆分被报道国家
+                            newarr.push([arr[i][3],b[i][j],arr[i][15],1]);
+
+                        }
+                    }
+                }
+            }
+        }
+        //清除b数组
+        //b数组清除前长度比arr的长度多1？
+        b.splice(0,b.length);
+        //console.log( arr );
+        //清除arr数组
+        arr.splice(0,arr.length);
+        //console.log( arr );
+        //console.log(newarr);
+        //统计报道和被报道的数量关系
+        var index=0;//当前要比较的位置
+        var newlen=newarr.length;
+        //var Country=["中国","马达加斯加","巴拿马","摩洛哥","印度","埃塞俄比亚","新西兰","波黑","黑山","土库曼斯坦","立陶宛","拉脱维亚","巴勒斯坦","阿尔巴尼亚","阿富汗","爱沙尼亚","巴基斯坦","斯洛文尼亚","克罗地亚","黎巴嫩","阿曼","巴林","也门","埃及","约旦","叙利亚","印度尼西亚","菲律宾","缅甸","文莱","东帝汶","不丹","阿联酋","泰国","越南","新加坡","以色列","阿塞拜疆","亚美尼亚","捷克","孟加拉国","白俄罗斯","柬埔寨","格鲁吉亚","匈牙利","伊拉克","伊朗","吉尔吉斯斯坦","老挝","哈萨克斯坦","卡塔尔","科威特","摩尔多瓦","马尔代夫","马来西亚","马其顿","蒙古国","尼泊尔","波兰","保加利亚","罗马尼亚","塞尔维亚","沙特阿拉伯","斯洛伐克","塔吉克斯坦","俄罗斯","南非","斯里兰卡","韩国","土耳其","乌克兰","乌兹别克斯坦","巴巴多斯","瓦努阿图","汤加","库克群岛","厄瓜多尔","葡萄牙","斐济","密克罗尼西亚联邦","马耳他","萨尔瓦多","多米尼加","智利","萨摩亚","苏里南","格林纳达","委内瑞拉","多哥","冈比亚","乌干达","佛得角","布隆迪","坦桑尼亚","津巴布韦","刚果（布）","乍得","尼日利亚","肯尼亚","安哥拉","纳米比亚","加蓬","莫桑比克","赞比亚","加纳","塞舌尔","南苏丹","喀麦隆","塞拉利昂","科特迪瓦","阿尔及利亚","哥斯达黎加","吉布提","毛里塔尼亚","几内亚","索马里","希腊","乌拉圭","纽埃","多米尼克","圭亚那","卢旺达","塞内加尔","突尼斯","利比亚","巴布亚新几内亚","玻利维亚","安提瓜和巴布达","特立尼达和多巴哥","奥地利","苏丹","意大利","古巴"];
+        while(index<newlen-1){
+            newarr2=newarr[index];//当前要比较的行数据
+            for(var k=index+1;k<newlen;k++){
+                if(newarr2[0]==newarr[k][0]&&newarr2[1]==newarr[k][1]&&newarr2[2]==newarr[k][2]){
+                    newarr[index][3]++;
+                    newarr.splice(k,1);
+                    k--;
+                    newlen--;
+                }
+            }
+            index++;
+        }
+        //console.log(newarr);
+        var n=newarr.length;
+        var d=[];//json格式数据的数组（不含时间信息）
+        for(var i=0;i<n;i++){
+            newarr[i][0]=Country[bnr.indexOf(newarr[i][0])];
+            newarr[i][1]=Country[bnr.indexOf(newarr[i][1])];
+            d.push({"i":newarr[i][1],"e":newarr[i][0],"c":newarr[i][2],"v":newarr[i][3]});
+        }
+        //console.log(newarr);
+        //console.log(d);
+        var result={"timeBins":[{"data":d,"t":filename}]};
+        //console.log(result);
+        //关联数据源文件保存结果
+        var content = JSON.stringify(result);
+        var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, filename+".json");
+    });}
+</script>
+</html>

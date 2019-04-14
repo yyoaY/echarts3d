@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>计算及合并指定的json格式文件</title>
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/filesave.js"></script>
+    </head>
+    <body>
+        <script>
+            //功能：将不同时间的数据合并到一个总的json格式文件中（不需要合并计算data），只增加时间轴数组中的时间节点数据
+            let file1,file2,file3,file4;
+            file1="./data/201903010000.json";
+            file2="./data/201903010015.json";
+            file3="./data/201903010030.json";
+            file4="./data/201903010045.json";
+            var json={timeBins:[]};
+            $.getJSON(file1, function (data1){
+                $.getJSON(file2, function (data2){
+                    $.getJSON(file3, function (data3){
+                        $.getJSON(file4, function (data4){
+                            json.timeBins.push(data1.timeBins[0]);
+                            json.timeBins.push(data2.timeBins[0]);
+                            json.timeBins.push(data3.timeBins[0]);
+                            json.timeBins.push(data4.timeBins[0]);
+                            console.log(json);
+                            var content = JSON.stringify(json);
+                            var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+                            saveAs(blob, "merge2.json");
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

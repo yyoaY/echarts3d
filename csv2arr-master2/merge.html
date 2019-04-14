@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>计算及合并指定的json格式文件</title>
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/filesave.js"></script>
+    </head>
+    <body>
+        <script>
+            let file1,file2;
+            file1="./data/201903010000.json";
+            file2="./data/201903010015.json";
+            var json1={timeBins:[]},
+                json2={timeBins:[]},
+                json={timeBins:[]};
+            $.getJSON(file1, function (data1){
+                json1.timeBins=data1.timeBins;
+                $.getJSON(file2, function (data2){
+                    json2.timeBins=data2.timeBins;
+                    json.timeBins.push(data1.timeBins[0]);
+                    json.timeBins.push(data2.timeBins[0]);
+                    console.log(json);
+                    var content = JSON.stringify(json);
+                    var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+                    saveAs(blob, "merge.json");
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
