@@ -121,7 +121,7 @@
         <li><a href="#bl">巴林</a></li>
         <li><a href="#ym">也门</a></li>
         <li><a href="#aj">埃及</a></li>
-        <li><a href="#yd">约旦</a></li>
+        <li><a href="#ydan">约旦</a></li>
         <li><a href="#xly">叙利亚</a></li>
         <li><a href="#ydnxy">印度尼西亚</a></li>
         <li><a href="#flb">菲律宾</a></li>
@@ -835,8 +835,8 @@
         <script type="text/javascript">
           var chart_bl = echarts.init(document.getElementById('chart_bl'));
           var option = {
-              title:{text:"巴林居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {c} ({d}%)"},legend: {orient: 'vertical',x: 'left',data:['其他','什叶派','逊尼派']},
-              series: [ {type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+              title:{text:"巴林居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},legend: {orient: 'vertical',x: 'left',data:['其他','什叶派','逊尼派']},
+              series: [ {name:'居民宗教信仰',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
                       data:[
                           {value:15, name:'其他'},
                           {value:85, name:'伊斯兰教', selected:true}
@@ -860,8 +860,8 @@
         <script type="text/javascript">
           var chart_ym = echarts.init(document.getElementById('chart_ym'));
           var option = {
-              title:{text:"也门居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {c} ({d}%)"},legend: {orient: 'vertical',x: 'left',data:['什叶派的宰德教派','逊尼派的沙斐仪教派']},
-              series: [ {type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+              title:{text:"也门居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},legend: {orient: 'vertical',x: 'left',data:['什叶派的宰德教派','逊尼派的沙斐仪教派']},
+              series: [ {name:'居民宗教信仰',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
                       data:[
                           {value:85, name:'伊斯兰教'}
                         ]},
@@ -876,48 +876,271 @@
     </div>
     <div class="counPart">
       <div class="country" id="aj">埃及</div>
-      <div class="desc">埃及(首都：开罗)跨亚、非两大洲，伊斯兰教为国教，信徒主要是逊尼派，占总人口的84%。科普特基督徒和其他信徒约占16%。另有约600万海外侨民。官方语言为阿拉伯语。<br>埃及属开放型市场经济，拥有相对完整的工业、农业和服务业体系。同120多个国家和地区建有贸易关系，主要进口商品是机械设备、谷物、电器设备、矿物燃料、塑料及其制品、钢铁及其制品、木及木制品、车辆、动物饲料等。主要出口产品是矿物燃料(原油及其制品)、棉花、陶瓷、纺织服装、铝及其制品、钢铁、谷物和蔬菜。埃及出口商品主要销往阿拉伯国家。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_aj" style="width: 400px;height:150px;"></div>
+        </div>
+        埃及(首都：开罗)跨亚、非两大洲，伊斯兰教为国教，信徒主要是逊尼派，占总人口的84%。科普特基督徒和其他信徒约占16%。另有约600万海外侨民。官方语言为阿拉伯语。<br>埃及属开放型市场经济，拥有相对完整的工业、农业和服务业体系。同120多个国家和地区建有贸易关系，主要进口商品是机械设备、谷物、电器设备、矿物燃料、塑料及其制品、钢铁及其制品、木及木制品、车辆、动物饲料等。主要出口产品是矿物燃料(原油及其制品)、棉花、陶瓷、纺织服装、铝及其制品、钢铁、谷物和蔬菜。埃及出口商品主要销往阿拉伯国家。
+        <script type="text/javascript">
+            var chart_aj = echarts.init(document.getElementById('chart_aj'));
+            var option = {
+              title:{text:"埃及居民信仰状况",left: 130,top: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',top:20,data:['科普特基督徒和其他信徒','伊斯兰教逊尼派']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '60%',center: ['50%', '55%'],
+                  data:[
+                    {value:16, name:'科普特基督徒和其他信徒'},
+                    {value:84, name:'伊斯兰教逊尼派'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_aj.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
-      <div class="country" id="yd">约旦</div>
+      <div class="country" id="ydan">约旦</div>
       <div class="desc">约旦(首都：安曼)位于亚洲西部，阿拉伯半岛西北。98%的人口为阿拉伯人，还有少量切尔克斯人、土库曼人和亚美尼亚人。国教为伊斯兰教，92%的居民属逊尼派，2%的居民属于什叶派和德鲁兹派。信奉基督教的居民约占6%，主要属希腊东正教派。官方语言为阿拉伯语，通用英语。<br>约旦系发展中国家，经济基础薄弱，资源较贫乏，可耕地少，依赖进口。国民经济主要支柱为侨汇、旅游和外援。主要进口原油、机械设备、电子电器、钢材、化学制品、粮食、成衣等。主要出口服装、磷酸盐、钾盐、蔬菜、医药制品和化肥等。
+        <div class="chartDiv_bottom" style="height: 350px;">
+          <div id="chart_ydan" style="width: 600px;height:400px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_ydan = echarts.init(document.getElementById('chart_ydan'));
+          var option = {
+              title:{text:"约旦居民信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},legend: {orient: 'vertical',x: 'left',data:['希腊东正教派','什叶派和德鲁兹派','逊尼派','其他']},
+              series: [ {name:'居民宗教信仰',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:6, name:'基督教'},
+                          {value:94, name:'伊斯兰教', selected:true}
+                        ]},
+                        {name:'居民宗教信仰',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                      data:[
+                          {value:6, name:'希腊东正教派'},
+                          {value:94*0.02, name:'什叶派和德鲁兹派'},
+                          {value:94*0.92, name:'逊尼派'},
+                          {value:94*0.06, name:'其他'}
+                        ]}]};
+          chart_ydan.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="xly">叙利亚</div>
       <div class="desc">叙利亚(首都：大马士革)位于亚洲大陆西部，地中海东岸。其中阿拉伯人占80%以上，还有库尔德人、亚美尼亚人、土库曼人等。居民中85%信奉伊斯兰教，14%信奉基督教。阿拉伯语为国语。农业在叙利亚国民经济中占据重要位置，叙局势动荡后，经济形势更趋严峻，对外贸易锐减。
+        <div class="chartDiv_bottom">
+          <div id="chart_xly" style="width: 300px;height:200px;"></div>
+          <div id="chart_xly2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_xly = echarts.init(document.getElementById('chart_xly'));
+          var option = {
+              title:{text:"叙利亚人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['阿拉伯人','其他']},
+              series: [{name:'叙利亚人口组成',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:80, name:'阿拉伯人'},
+                          {value:20, name:'其他'}
+              ]}]};
+          chart_xly.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_xly2 = echarts.init(document.getElementById('chart_xly2'));
+          var option = {
+              title:{text:"叙利亚居民信仰状况",left: 160,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['伊斯兰教','基督教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:85, name:'伊斯兰教'},
+                    {value:14, name:'基督教'},
+                    {value:1, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_xly2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="ydnxy">印度尼西亚</div>
-      <div class="desc">印度尼西亚(首都：雅加达)是世界第四人口大国，有数百个民族，民族语言共有200多种，官方语言为印尼语。约87%的人口信奉伊斯兰教，是世界上穆斯林人口最多的国家。6.1%的人口信奉基督教，3.6%信奉天主教，其余信奉印度教、佛教和原始拜物教等。<br>印尼是东盟最大的经济体。农业、工业、服务业均在国民经济中发挥重要作用。外贸在印尼国民经济中占重要地位，政府采取一系列措施鼓励和推动非油气产品出口，简化出口手续，降低关税。主要出口产品有石油、天然气、纺织品和成衣、木材、藤制品、手工艺品、鞋、铜、煤、纸浆和纸制品、电器、棕榈油、橡胶等。主要进口产品有机械运输设备、化工产品、汽车及零配件、发电设备、钢铁、塑料及塑料制品、棉花等。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_ydnxy" style="width: 400px;height:190px;"></div>
+        </div>
+        印度尼西亚(首都：雅加达)是世界第四人口大国，有数百个民族，民族语言共有200多种，官方语言为印尼语。约87%的人口信奉伊斯兰教，是世界上穆斯林人口最多的国家。6.1%的人口信奉基督教，3.6%信奉天主教，其余信奉印度教、佛教和原始拜物教等。<br>印尼是东盟最大的经济体。农业、工业、服务业均在国民经济中发挥重要作用。外贸在印尼国民经济中占重要地位，政府采取一系列措施鼓励和推动非油气产品出口，简化出口手续，降低关税。主要出口产品有石油、天然气、纺织品和成衣、木材、藤制品、手工艺品、鞋、铜、煤、纸浆和纸制品、电器、棕榈油、橡胶等。主要进口产品有机械运输设备、化工产品、汽车及零配件、发电设备、钢铁、塑料及塑料制品、棉花等。
+        <script type="text/javascript">
+            var chart_ydnxy = echarts.init(document.getElementById('chart_ydnxy'));
+            var option = {
+              title:{text:"印度尼西亚居民信仰状况",left: 130,top: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',top:20,data:['基督教','伊斯兰教','天主教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '60%',center: ['50%', '60%'],
+                  data:[
+                    {value:6.1, name:'基督教'},
+                    {value:87, name:'伊斯兰教'},
+                    {value:3.6, name:'天主教'},
+                    {value:3.3, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_ydnxy.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="flb">菲律宾</div>
       <div class="desc">菲律宾(首都：大马尼拉市)位于亚洲东南部，马来族占全国人口的85%以上，有70多种语言，国语是以他加禄语为基础的菲律宾语，英语为官方语言。国民约85%信奉天主教，4.9%信奉伊斯兰教，少数人信奉独立教和基督教新教，华人多信奉佛教，原住民多信奉原始宗教。<br>出口导向型经济，第三产业在国民经济中地位突出，农业和制造业也占相当比重。主要出口产品为电子产品、服装及相关产品、电解铜等;主要进口产品为电子产品、矿产、交通及工业设备。
+        <div class="chartDiv_bottom">
+          <div id="chart_flb" style="width: 300px;height:200px;"></div>
+          <div id="chart_flb2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_flb = echarts.init(document.getElementById('chart_flb'));
+          var option = {
+              title:{text:"菲律宾人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['马来族','其他']},
+              series: [{name:'菲律宾 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:85, name:'马来族'},
+                          {value:15, name:'其他'}
+              ]}]};
+          chart_flb.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_flb2 = echarts.init(document.getElementById('chart_flb2'));
+          var option = {
+              title:{text:"菲律宾居民信仰状况",left: 160,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['天主教','伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:85, name:'天主教'},
+                    {value:4.9, name:'伊斯兰教'},
+                    {value:10.1, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_flb2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="md">缅甸</div>
       <div class="desc">缅甸(首都：内比都)位于中南半岛西部，共有135个民族，缅族约占总人口的65%。全国85%以上的人信奉佛教，约8%的人信奉伊斯兰教。缅甸自然条件优越，资源丰富。缅甸主要出口产品为天然气、玉石、大米等，主要进口产品为石油与汽油、商业用机械、汽车零配件等。
+        <div class="chartDiv_bottom">
+          <div id="chart_md" style="width: 300px;height:200px;"></div>
+          <div id="chart_md2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_md = echarts.init(document.getElementById('chart_md'));
+          var option = {
+              title:{text:"缅甸人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['缅族','其他']},
+              series: [{name:'缅甸 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:65, name:'缅族'},
+                          {value:35, name:'其他'}
+              ]}]};
+          chart_md.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_md2 = echarts.init(document.getElementById('chart_md2'));
+          var option = {
+              title:{text:"缅甸居民信仰状况",left: 160,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['佛教','伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:85, name:'佛教'},
+                    {value:8, name:'伊斯兰教'},
+                    {value:7, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_md2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="wl">文莱</div>
-      <div class="desc">文莱(首都：斯里巴加湾市)位于加里曼丹岛西北部。其中马来人占66%，华人约占10%,其他族群和外籍人占24%。马来语为国语，通用英语，华人使用华语较广泛。伊斯兰教为国教，其他还有佛教、基督教等。
-  　　文莱经济以石油天然气产业为支柱，非油气产业均不发达。最近几年，由于油气产量下降，文莱经济增长出现停滞，而国际原油价格下滑更使文经济雪上加霜。主要出口原油、石油产品和液化天然气，进口机器和运输设备、工业品、食物、药品等。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_wl" style="width: 400px;height:150px;"></div>
+        </div>
+        文莱(首都：斯里巴加湾市)位于加里曼丹岛西北部。其中马来人占66%，华人约占10%,其他族群和外籍人占24%。马来语为国语，通用英语，华人使用华语较广泛。伊斯兰教为国教，其他还有佛教、基督教等。<br/>文莱经济以石油天然气产业为支柱，非油气产业均不发达。最近几年，由于油气产量下降，文莱经济增长出现停滞，而国际原油价格下滑更使文经济雪上加霜。主要出口原油、石油产品和液化天然气，进口机器和运输设备、工业品、食物、药品等。
+        <script type="text/javascript">
+            var chart_wl = echarts.init(document.getElementById('chart_wl'));
+            var option = {
+              title:{text:"文莱人口组成",left: 190,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',top:10,data:['马来人','华人','其他族群和外籍人']},
+              series: [{name:'文莱人口组成',type:'pie',radius: ['40%', '60%'],center: ['60%', '40%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:66, name:'马来人'},
+                          {value:10, name:'华人'},
+                          {value:24, name:'其他族群和外籍人'}
+              ]}]};
+            chart_wl.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="ddw">东帝汶</div>
       <div class="desc">东帝汶(首都：帝力)，78%为土著人(巴布亚族与马来族或波利尼西亚族的混血人种)，20%为印尼人，2%为华人。德顿(TETUM)语和葡萄牙语为官方语言，印尼语和英语为工作语言，德顿语为通用语和主要民族语言。约91.4%人口信奉天主教，2.6%信奉基督教，1.7%信奉伊斯兰教。<br>东帝汶经济发展水平落后，结构失衡，严重依赖油气收入和外国援助。近年来积极发展外贸，努力扩大出口。主要出口产品为咖啡、木材、橡胶、椰子等经济作物，进口燃油、谷物、车辆、机电设备等。
+        <div class="chartDiv_bottom">
+          <div id="chart_ddw" style="width: 300px;height:200px;"></div>
+          <div id="chart_ddw2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_ddw = echarts.init(document.getElementById('chart_ddw'));
+          var option = {
+              title:{text:"东帝汶人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['土著人','印尼人','华人']},
+              series: [{name:'东帝汶人口组成',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:78, name:'土著人'},
+                          {value:20, name:'印尼人'},
+                          {value:2, name:'华人'}
+              ]}]};
+          chart_ddw.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_ddw2 = echarts.init(document.getElementById('chart_ddw2'));
+          var option = {
+              title:{text:"东帝汶居民信仰状况",left: 140,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['天主教','基督教','伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:91.4, name:'天主教'},
+                    {value:2.6, name:'基督教'},
+                    {value:1.7, name:'伊斯兰教'},
+                    {value:4.3, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_ddw2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="bd">不丹</div>
-      <div class="desc">不丹(首都：廷布)位于喜马拉雅山脉东段南坡，其东、北、西三面与中国接壤，南部与印度交界，为内陆国。不丹族约占总人口的50%，尼泊尔族约占35%。不丹语“宗卡”为官方语言。藏传佛教(噶举派)为国教，尼泊尔族居民信奉印度教。<br>不丹为最不发达国家之一，农业是其支柱产业。对外贸易主要在南盟成员间进行，主要出口产品为电力、化学制品、木材、加工食品、矿产品等。主要进口产品为燃料、谷物、汽车、机械、金属、塑料等。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_bd" style="width: 400px;height:150px;"></div>
+        </div>不丹(首都：廷布)位于喜马拉雅山脉东段南坡，其东、北、西三面与中国接壤，南部与印度交界，为内陆国。不丹族约占总人口的50%，尼泊尔族约占35%。不丹语“宗卡”为官方语言。藏传佛教(噶举派)为国教，尼泊尔族居民信奉印度教。<br>不丹为最不发达国家之一，农业是其支柱产业。对外贸易主要在南盟成员间进行，主要出口产品为电力、化学制品、木材、加工食品、矿产品等。主要进口产品为燃料、谷物、汽车、机械、金属、塑料等。
+        <script type="text/javascript">
+            var chart_bd = echarts.init(document.getElementById('chart_bd'));
+            var option = {
+                title:{text:"不丹人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['不丹族','尼泊尔族','其他']},
+                series: [{name:'不丹 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:50, name:'不丹族'},
+                            {value:35, name:'尼泊尔族'},
+                            {value:15, name:'其他'}
+                ]}]};
+            chart_bd.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
@@ -927,77 +1150,413 @@
     </div>
     <div class="counPart">
       <div class="country" id="tg">泰国</div>
-      <div class="desc">泰国(首都：曼谷)位于中南半岛中南部，与柬埔寨、老挝、缅甸、马来西亚接壤。全国共有30多个民族。泰族为主要民族，占人口总数的40%。泰语为国语。90%以上的民众信仰佛教，马来族信奉伊斯兰教，还有少数民众信仰基督教、天主教、印度教和锡克教。<br>泰国是世界天然橡胶最大出口国，实行自由经济政策，农产品是外汇收入的主要来源之一，对外贸易在国民经济中具有重要地位。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_tg" style="width: 400px;height:150px;"></div>
+        </div>泰国(首都：曼谷)位于中南半岛中南部，与柬埔寨、老挝、缅甸、马来西亚接壤。全国共有30多个民族。泰族为主要民族，占人口总数的40%。泰语为国语。90%以上的民众信仰佛教，马来族信奉伊斯兰教，还有少数民众信仰基督教、天主教、印度教和锡克教。<br>泰国是世界天然橡胶最大出口国，实行自由经济政策，农产品是外汇收入的主要来源之一，对外贸易在国民经济中具有重要地位。
+        <script type="text/javascript">
+            var chart_tg = echarts.init(document.getElementById('chart_tg'));
+            var option = {
+                title:{text:"泰国人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['泰族','其他']},
+                series: [{name:'泰国 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:40, name:'泰族'},
+                            {value:60, name:'其他'}
+                ]}]};
+            chart_tg.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="yn">越南</div>
-      <div class="desc">越南(首都：河内)位于中南半岛东部，全国有54个民族，京族占总人口86%。主要语言为越南语(官方语言、通用语言、主要民族语言)。主要宗教：佛教、天主教、和好教与高台教。<br>越南系发展中国家，革新开放以来，越南经济保持较快增长，其中对外贸易保持高速增长，主要出口商品有：原油、服装纺织品、水产品、鞋类、大米、木材、电子产品、咖啡。主要进口商品有：汽车、机械设备及零件、成品油、钢材、纺织原料、电子产品和零件。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_yn" style="width: 400px;height:150px;"></div>
+        </div>越南(首都：河内)位于中南半岛东部，全国有54个民族，京族占总人口86%。主要语言为越南语(官方语言、通用语言、主要民族语言)。主要宗教：佛教、天主教、和好教与高台教。<br>越南系发展中国家，革新开放以来，越南经济保持较快增长，其中对外贸易保持高速增长，主要出口商品有：原油、服装纺织品、水产品、鞋类、大米、木材、电子产品、咖啡。主要进口商品有：汽车、机械设备及零件、成品油、钢材、纺织原料、电子产品和零件。
+        <script type="text/javascript">
+            var chart_yn = echarts.init(document.getElementById('chart_yn'));
+            var option = {
+                title:{text:"越南人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['京族','其他']},
+                series: [{name:'越南 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:86, name:'京族'},
+                            {value:14, name:'其他'}
+                ]}]};
+            chart_yn.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="xjp">新加坡</div>
-      <div class="desc">新加坡位于马来半岛南端、马六甲海峡出入口。华人占75%左右，其余为马来人、印度人和其他种族。马来语为国语，英语、华语、马来语、泰米尔语为官方语言，英语为行政用语。主要宗教为佛教、道教、伊斯兰教、基督教和印度教。<br>新加坡属外贸驱动型经济，以电子、石油化工、金融、航运、服务业为主。主要出口商品为：成品油、电子元器件、化工品和工业机械等;主要进口商品为：成品油、电子元器件、原油、化工品(塑料除外)和发电设备等。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_xjp" style="width: 400px;height:150px;"></div>
+        </div>新加坡位于马来半岛南端、马六甲海峡出入口。华人占75%左右，其余为马来人、印度人和其他种族。马来语为国语，英语、华语、马来语、泰米尔语为官方语言，英语为行政用语。主要宗教为佛教、道教、伊斯兰教、基督教和印度教。<br>新加坡属外贸驱动型经济，以电子、石油化工、金融、航运、服务业为主。主要出口商品为：成品油、电子元器件、化工品和工业机械等;主要进口商品为：成品油、电子元器件、原油、化工品(塑料除外)和发电设备等。
+        <script type="text/javascript">
+            var chart_xjp = echarts.init(document.getElementById('chart_xjp'));
+            var option = {
+                title:{text:"新加坡人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['华人','其他']},
+                series: [{name:'新加坡人口组成',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:75, name:'华人'},
+                            {value:25, name:'其他'}
+                ]}]};
+            chart_xjp.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="ysl">以色列</div>
-      <div class="desc">以色列位于亚洲最西端，毗邻巴勒斯坦。犹太人约占74.9%，其余为阿拉伯人、德鲁兹人等。大部分居民信奉犹太教，其余信奉伊斯兰教、基督教和其他宗教。希伯来语和阿拉伯语均为官方语言，通用英语。以色列总体经济实力较强，竞争力居世界先列。国内市场相对狭小，经济对外依存度高。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_ysl" style="width: 400px;height:150px;"></div>
+        </div>以色列位于亚洲最西端，毗邻巴勒斯坦。犹太人约占74.9%，其余为阿拉伯人、德鲁兹人等。大部分居民信奉犹太教，其余信奉伊斯兰教、基督教和其他宗教。希伯来语和阿拉伯语均为官方语言，通用英语。以色列总体经济实力较强，竞争力居世界先列。国内市场相对狭小，经济对外依存度高。
+        <script type="text/javascript">
+            var chart_ysl = echarts.init(document.getElementById('chart_ysl'));
+            var option = {
+                title:{text:"以色列人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['犹太人','其他']},
+                series: [{name:'以色列人口组成',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:74.9, name:'犹太人'},
+                            {value:25.1, name:'其他'}
+                ]}]};
+            chart_ysl.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="asbj">阿塞拜疆</div>
-      <div class="desc">阿塞拜疆(首都：巴库)位于外高加索东南部，主要为阿塞拜疆族(占90.6%)，还有俄罗斯族、亚美尼亚族等。官方语言为阿塞拜疆语，居民多通晓俄语，主要信仰伊斯兰教。立国之初阿就制定“石油兴国”发展战略。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_asbj" style="width: 400px;height:150px;"></div>
+        </div>阿塞拜疆(首都：巴库)位于外高加索东南部，主要为阿塞拜疆族(占90.6%)，还有俄罗斯族、亚美尼亚族等。官方语言为阿塞拜疆语，居民多通晓俄语，主要信仰伊斯兰教。立国之初阿就制定“石油兴国”发展战略。
+        <script type="text/javascript">
+            var chart_asbj = echarts.init(document.getElementById('chart_asbj'));
+            var option = {
+                title:{text:"阿塞拜疆人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['阿塞拜疆族','其他']},
+                series: [{name:'阿塞拜疆 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:90.6, name:'阿塞拜疆族'},
+                            {value:9.4, name:'其他'}
+                ]}]};
+            chart_asbj.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="ymny">亚美尼亚</div>
-      <div class="desc">亚美尼亚位(首都：埃里温)于亚洲与欧洲交界处的外高加索南部的内陆国，亚美尼亚族约占96%，官方语言为亚美尼亚语，居民多通晓俄语。主要信仰基督教。<br>2009年以来亚政府采取调整产业结构、扩大内需、加快基础设施建设、大力扶植农业等措施，努力消除金融危机后果，收到一定成效。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_ymny" style="width: 400px;height:150px;"></div>
+        </div>亚美尼亚位(首都：埃里温)于亚洲与欧洲交界处的外高加索南部的内陆国，亚美尼亚族约占96%，官方语言为亚美尼亚语，居民多通晓俄语。主要信仰基督教。<br>2009年以来亚政府采取调整产业结构、扩大内需、加快基础设施建设、大力扶植农业等措施，努力消除金融危机后果，收到一定成效。
+        <script type="text/javascript">
+            var chart_ymny = echarts.init(document.getElementById('chart_ymny'));
+            var option = {
+                title:{text:"亚美尼亚人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['亚美尼亚族','其他']},
+                series: [{name:'亚美尼亚 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:96, name:'亚美尼亚族'},
+                            {value:4, name:'其他'}
+                ]}]};
+            chart_ymny.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="jk">捷克</div>
-      <div class="desc">捷克(首都：布拉格)地处欧洲中部，其中约90%以上为捷克族，斯洛伐克族占2.9%，德意志族占1%，此外还有少量波兰族和罗姆族(吉普赛人)。官方语言为捷克语。主要宗教为罗马天主教。<br>捷克为中等发达国家，工业基础雄厚。外贸在捷克经济中占有重要位置，国内生产总值80%依靠出口实现。进口商品主要有：石油、天然气、计算机、轿车及配件、电信设备、机械设备、医药产品和器械、铁矿石、载重汽车和家用电器等。出口商品主要有：轿车及配件、电力、钢材、机械设备、玻璃制品、木材、化工产品、轮胎、家具等。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_jk" style="width: 400px;height:150px;"></div>
+        </div>捷克(首都：布拉格)地处欧洲中部，其中约90%以上为捷克族，斯洛伐克族占2.9%，德意志族占1%，此外还有少量波兰族和罗姆族(吉普赛人)。官方语言为捷克语。主要宗教为罗马天主教。<br>捷克为中等发达国家，工业基础雄厚。外贸在捷克经济中占有重要位置，国内生产总值80%依靠出口实现。进口商品主要有：石油、天然气、计算机、轿车及配件、电信设备、机械设备、医药产品和器械、铁矿石、载重汽车和家用电器等。出口商品主要有：轿车及配件、电力、钢材、机械设备、玻璃制品、木材、化工产品、轮胎、家具等。
+        <script type="text/javascript">
+            var chart_jk = echarts.init(document.getElementById('chart_jk'));
+            var option = {
+                title:{text:"捷克人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['捷克族','斯洛伐克族','德意志族','其他']},
+                series: [{name:'捷克 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:90, name:'捷克族'},
+                            {value:2.9, name:'斯洛伐克族'},
+                            {value:1, name:'德意志族'},
+                            {value:6.1, name:'其他'}
+                ]}]};
+            chart_jk.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="mjlg">孟加拉国</div>
       <div class="desc">孟加拉国(首都：达卡)东、西、北三面与印度毗邻，东南与缅甸接壤，南濒临孟加拉湾。孟加拉族占98%，另有20多个少数民族。孟加拉语为国语，英语为官方语言。伊斯兰教为国教，穆斯林占总人口的88%。孟加拉国是最不发达国家之一，经济发展水平较低，国民经济主要依靠农业。
+        <div class="chartDiv_bottom">
+          <div id="chart_mjlg" style="width: 300px;height:200px;"></div>
+          <div id="chart_mjlg2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_mjlg = echarts.init(document.getElementById('chart_mjlg'));
+          var option = {
+              title:{text:"孟加拉国人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['孟加拉族','其他']},
+              series: [{name:'孟加拉国人口组成',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:98, name:'孟加拉族'},
+                          {value:2, name:'其他'}
+              ]}]};
+          chart_mjlg.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_mjlg2 = echarts.init(document.getElementById('chart_mjlg2'));
+          var option = {
+              title:{text:"孟加拉国居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['穆斯林','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:88, name:'穆斯林'},
+                    {value:12, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_mjlg2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="bels">白俄罗斯</div>
       <div class="desc">白俄罗斯(首都：明斯克)位于东欧平原西部，有100多个民族，其中白俄罗斯族占81.2%，俄罗斯族占11.4%。主要信奉东正教(70%以上)，西北部一些地区信奉天主教及东正教与天主教的合并教派。官方语言为白俄罗斯语和俄语。<br>白俄罗斯工农业基础较好。机械制造业、冶金加工业、机床、电子及激光技术比较先进，农业和畜牧业较发达。
+        <div class="chartDiv_bottom">
+          <div id="chart_bels" style="width: 300px;height:200px;"></div>
+          <div id="chart_bels2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_bels = echarts.init(document.getElementById('chart_bels'));
+          var option = {
+              title:{text:"白俄罗斯人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['白俄罗斯族','俄罗斯族','其他']},
+              series: [{name:'白俄罗斯 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:81.2, name:'白俄罗斯族'},
+                          {value:11.4, name:'俄罗斯族'},
+                          {value:7.4, name:'其他'}
+              ]}]};
+          chart_bels.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_bels2 = echarts.init(document.getElementById('chart_bels2'));
+          var option = {
+              title:{text:"白俄罗斯居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['东正教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:70, name:'东正教'},
+                    {value:30, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_bels2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="jpz">柬埔寨</div>
       <div class="desc">柬埔寨(首都：金边)位于中南半岛南部，有20多个民族，高棉族是主体民族，占总人口的80%。高棉语为通用语言，与英语、法语同为官方语言。佛教为国教，93%以上的居民信奉佛教，占族信奉伊斯兰教，少数城市居民信奉天主教。<br>柬埔寨是传统农业国，工业基础薄弱，属世界上最不发达国家之一。主要出口商品是服装、橡胶、大米和木薯等。主要进口商品为成衣原辅料、燃油、食品、化工、建材、汽车等。
+        <div class="chartDiv_bottom">
+          <div id="chart_jpz" style="width: 300px;height:200px;"></div>
+          <div id="chart_jpz2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_jpz = echarts.init(document.getElementById('chart_jpz'));
+          var option = {
+              title:{text:"柬埔寨人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['高棉族','其他']},
+              series: [{name:'柬埔寨 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:80, name:'高棉族'},
+                          {value:20, name:'其他'}
+              ]}]};
+          chart_jpz.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_jpz2 = echarts.init(document.getElementById('chart_jpz2'));
+          var option = {
+              title:{text:"柬埔寨居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['佛教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:93, name:'佛教'},
+                    {value:7, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_jpz2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="gljy">格鲁吉亚</div>
-      <div class="desc">格鲁吉亚(首都：第比利斯)位于南高加索中西部，主要为格鲁吉亚族(占86.8%)。官方语言为格鲁吉亚语，居民多通晓俄语。主要信奉东正教，少数信奉伊斯兰教。<br>近年来致力于建立自由市场经济，大力推进经济改革，进一步降低各种税率及关税，加快结构调整和私有化步伐，积极吸引外资。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_gljy" style="width: 400px;height:150px;"></div>
+        </div>格鲁吉亚(首都：第比利斯)位于南高加索中西部，主要为格鲁吉亚族(占86.8%)。官方语言为格鲁吉亚语，居民多通晓俄语。主要信奉东正教，少数信奉伊斯兰教。<br>近年来致力于建立自由市场经济，大力推进经济改革，进一步降低各种税率及关税，加快结构调整和私有化步伐，积极吸引外资。
+        <script type="text/javascript">
+            var chart_gljy = echarts.init(document.getElementById('chart_gljy'));
+            var option = {
+                title:{text:"格鲁吉亚人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['格鲁吉亚族','其他']},
+                series: [{name:'格鲁吉亚 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:86.8, name:'格鲁吉亚族'},
+                            {value:13.2, name:'其他'}
+                ]}]};
+            chart_gljy.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="xyl">匈牙利</div>
       <div class="desc">匈牙利(首都：布达佩斯)属中欧内陆国。主要民族为匈牙利(马扎尔)族，约占90%。官方语言为匈牙利语。居民主要信奉天主教(66.2%)和基督教(17.9%)。匈牙利经济属中等发达国家，积极鼓励吸收外资。
+        <div class="chartDiv_bottom">
+          <div id="chart_xyl" style="width: 300px;height:200px;"></div>
+          <div id="chart_xyl2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_xyl = echarts.init(document.getElementById('chart_xyl'));
+          var option = {
+              title:{text:"匈牙利人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['匈牙利(马扎尔)族','其他']},
+              series: [{name:'匈牙利 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:90, name:'匈牙利(马扎尔)族'},
+                          {value:10, name:'其他'}
+              ]}]};
+          chart_xyl.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_xyl2 = echarts.init(document.getElementById('chart_xyl2'));
+          var option = {
+              title:{text:"匈牙利居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['天主教','基督教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:66.2, name:'天主教'},
+                    {value:17.9, name:'基督教'},
+                    {value:15.9, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_xyl2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="ylk">伊拉克</div>
       <div class="desc">伊拉克(首都：巴格达)位于亚洲西南部，阿拉伯半岛东北部。其中阿拉伯民族约占78%(什叶派约占60%，逊尼派约占18%)，库尔德族约占15%。居民中95%以上信奉伊斯兰教，少数人信奉基督教等其他宗教。伊拉克战争后，实行开放的外贸政策，对大部分进口商品免征关税。
+        <div class="chartDiv_bottom" style="height: 350px;">
+          <div id="chart_ylk" style="width: 600px;height:400px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_ylk = echarts.init(document.getElementById('chart_ylk'));
+          var option = {
+              title:{text:"伊拉克人口组成及其信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},legend: {orient: 'vertical',x: 'left',data:['什叶派','逊尼派','其他']},
+              series: [ {name:'居民宗教信仰',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:78, name:'阿拉伯民族'},
+                          {value:15, name:'库尔德族'},
+                          {value:7, name:'其他'}
+                        ]},
+                        {name:'居民宗教信仰',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                      data:[
+                          {value:78*0.6, name:'什叶派'},
+                          {value:78*0.18, name:'逊尼派'},
+                          {value:100-78*0.78, name:'其他'}
+                        ]}]};
+          chart_ylk.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="yl">伊朗</div>
       <div class="desc">伊朗(首都：德黑兰)位于亚洲西南部，全国人口中波斯人占66%，阿塞拜疆人占25%，库尔德人占5%，其余为阿拉伯人、土库曼人等少数民族。官方语言为波斯语。伊斯兰教为国教，98.8%的居民信奉伊斯兰教，其中91%为什叶派，7.8%为逊尼派。<br>石油产业是伊朗经济支柱和外汇收入的主要来源之一，石油收入占伊外汇总收入的一半以上。主要出口商品为油气、金属矿石、皮革、地毯、水果、干果及鱼子酱等，主要进口产品有粮油食品、药品、运输工具、机械设备、牲畜、化工原料、饮料及烟草等。
+        <div class="chartDiv_bottom">
+          <div id="chart_yl" style="width: 300px;height:200px;"></div>
+          <div id="chart_yl2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_yl = echarts.init(document.getElementById('chart_yl'));
+          var option = {
+              title:{text:"伊朗人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['波斯人','阿塞拜疆人','库尔德人','其他']},
+              series: [{name:'伊朗人口组成',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:66, name:'波斯人'},
+                          {value:25, name:'阿塞拜疆人'},
+                          {value:5, name:'库尔德人'},
+                          {value:4, name:'其他'}
+              ]}]};
+          chart_yl.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_yl2 = echarts.init(document.getElementById('chart_yl2'));
+          var option = {
+              title:{text:"伊朗居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['天主教','基督教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:91, name:'伊斯兰教什叶派'},
+                    {value:7.8, name:'伊斯兰教逊尼派'},
+                    {value:1.2, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_yl2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
       <div class="country" id="jejsst">吉尔吉斯斯坦</div>
       <div class="desc">吉尔吉斯斯坦(首都：比什凯克)位于中亚东北部，有90多个民族，其中吉尔吉斯族占68.4%，乌兹别克族占14.3%，俄罗斯族占9.5%。70%居民信仰伊斯兰教，多数属逊尼派。其次为东正教和天主教。国语为吉尔吉斯语，俄语为官方语言。国民经济以农牧业为主，工业基础薄弱，主要生产原材料。
+        <div class="chartDiv_bottom">
+          <div id="chart_jejsst" style="width: 300px;height:200px;"></div>
+          <div id="chart_jejsst2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_jejsst = echarts.init(document.getElementById('chart_jejsst'));
+          var option = {
+              title:{text:"吉尔吉斯斯坦人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['吉尔吉斯族','乌兹别克族','俄罗斯族','其他']},
+              series: [{name:'吉尔吉斯斯坦 民族',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:68.4, name:'吉尔吉斯族'},
+                          {value:14.3, name:'乌兹别克族'},
+                          {value:9.5, name:'俄罗斯族'},
+                          {value:7.8, name:'其他'}
+              ]}]};
+          chart_jejsst.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_jejsst2 = echarts.init(document.getElementById('chart_jejsst2'));
+          var option = {
+              title:{text:"吉尔吉斯斯坦居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:70 name:'伊斯兰教'},
+                    {value:30, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_jejsst2.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
