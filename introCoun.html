@@ -1545,12 +1545,12 @@
         <script type="text/javascript">
           var chart_jejsst2 = echarts.init(document.getElementById('chart_jejsst2'));
           var option = {
-              title:{text:"吉尔吉斯斯坦居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              title:{text:"吉尔吉斯斯坦居民信仰状况",left: 150,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
               legend: {orient: 'vertical',x: 'left',data:['伊斯兰教','其他']},
               series: [{
                   name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
                   data:[
-                    {value:70 name:'伊斯兰教'},
+                    {value:70, name:'伊斯兰教'},
                     {value:30, name:'其他'}
                   ],
                   itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
@@ -1566,7 +1566,24 @@
     </div>
     <div class="counPart">
       <div class="country" id="hskst">哈萨克斯坦</div>
-      <div class="desc">哈萨克斯坦(首都：阿斯塔纳)位于亚洲中部，其中哈萨克族占65.5%，俄罗斯族占21.4%。50%以上居民信奉伊斯兰教(逊尼派)。此外，还有东正教、天主教和佛教等。哈萨克语为国语，官方语言为哈萨克语和俄语。哈经济以石油、采矿、煤炭和农牧业为主。
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_hskst" style="width: 400px;height:150px;"></div>
+        </div>
+        哈萨克斯坦(首都：阿斯塔纳)位于亚洲中部，其中哈萨克族占65.5%，俄罗斯族占21.4%。50%以上居民信奉伊斯兰教(逊尼派)。此外，还有东正教、天主教和佛教等。哈萨克语为国语，官方语言为哈萨克语和俄语。哈经济以石油、采矿、煤炭和农牧业为主。
+        <script type="text/javascript">
+            var chart_hskst = echarts.init(document.getElementById('chart_hskst'));
+            var option = {
+                title:{text:"哈萨克斯坦人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['哈萨克族','俄罗斯族','其他']},
+                series: [{name:'哈萨克斯坦 民族',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
+                        data:[
+                            {value:65.5, name:'哈萨克族'},
+                            {value:21.4, name:'俄罗斯族'},
+                            {value:13.1, name:'其他'}
+                ]}]};
+            chart_hskst.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
@@ -1577,6 +1594,26 @@
     <div class="counPart">
       <div class="country" id="kwt">科威特</div>
       <div class="desc">科威特位于亚洲西部波斯湾西北岸，伊斯兰教为国教，居民中95%信奉伊斯兰教，其中约70%属逊尼派，30%为什叶派。官方语言为阿拉伯语。<br>石油、天然气工业为国民经济主要支柱，外贸在经济中占有重要地位。出口商品主要有石油和化工产品。进口商品有机械、运输设备、工业制品、粮食和食品等。
+        <div class="chartDiv_bottom" style="height: 350px;">
+          <div id="chart_kwt" style="width: 600px;height:400px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_kwt = echarts.init(document.getElementById('chart_kwt'));
+          var option = {
+              title:{text:"科威特人口组成及其信仰状况",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},legend: {orient: 'vertical',x: 'left',data:['什叶派','逊尼派','其他']},
+              series: [ {name:'居民宗教信仰',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:95, name:'伊斯兰教'},
+                          {value:5, name:'其他'}
+                        ]},
+                        {name:'居民宗教信仰',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                      data:[
+                          {value:95*0.3, name:'什叶派'},
+                          {value:95*0.7, name:'逊尼派'},
+                          {value:5, name:'其他'}
+                        ]}]};
+          chart_kwt.setOption(option);
+        </script>
       </div>
     </div>
     <div class="counPart">
