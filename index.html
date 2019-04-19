@@ -10,7 +10,7 @@
             margin:0;
             background:url('img/timg.png') center/cover no-repeat;
         }
-        h1{
+        #text h1{
             position:absolute;
             width:800px;
             color:#FFF;
@@ -18,7 +18,7 @@
             top:10px;
             left:20px;
         }
-        p{
+        #text p{
             position: absolute;
             left:60px;
             top:80px;
@@ -233,60 +233,130 @@
             height:100%;
             box-sizing: border-box;
         }
+        #data{
+            z-index: 100;
+            width: 20%;
+            min-width: 150px;
+            height: 300px;
+            position: absolute;
+            top: 25%;
+            left: 2%;
+            background-color: rgba(255,255,255,0.5);
+            padding: 10px;
+        }
+        #dataRight{
+            z-index: 100;
+            width: 250px;
+            min-width: 150px;
+            height: 330px;
+            position: absolute;
+            top: 25%;
+            right: 2%;
+            background-color: rgba(0,0,0,0.5);
+            padding: 10px;
+        }
+        #drDiv1,#drDiv2{
+            height: 100px;
+            margin: 1px;
+            border-top: 1px solid white;;
+            overflow: auto;
+        }
+        .linePos,.lineNeu,.lineNeg{
+            width: 200px;
+            margin: 2px;
+            padding: 0px 5px;
+        }
+        .linePos{
+            color: green;
+        }
+        .lineNeu{
+            color: wheat;
+        }
+        .lineNeg{
+            color: red;
+        }
+        .drp{
+            color: white;
+        }
     </style>
-
     <script type="text/javascript" src="js/echarts.min.js"></script>
     <script type="text/javascript" src="js/echarts-gl.min.js"></script>
     <script type="text/javascript" src="js/world.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-<div id="text">
-    <h1>“一带一路”相关国家间的新闻流通</h1>
-    <p>自2019年4月8日-2019年4月12日</p>
-</div>
-<div id="container">
-</div>
-<div id="history">
-    <ul class="timeline pointer" id="line">
-        <li>20190408</li>
-        <li>20190409</li>
-        <li>20190410</li>
-        <li>20190411</li>
-        <li>20190412</li>
-        <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
-    </ul>
-</div>
-<div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
-    <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
-    <input type="text" name="country" id="countries"
-           class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
-    >
-    <ul id="data_list" class="list"></ul>
-    <br class="clear">
-</div>
-<div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
-    <div class="typeLabels">
-        <div class="mil">正面</div>
-        <div class="civ">中性</div>
-        <div class="ammo">负面</div><br class="clear">
+    <div id="text">
+        <h1>“一带一路”相关国家间的新闻流通</h1>
+        <p>自2019年4月8日-2019年4月12日</p>
     </div>
-    <div class="imports imex">
-        <div class="mil" id="m1"><div class="check"></div></div>
-        <div class="civ" id="c1"><div class="check"></div></div>
-        <div class="ammo" id="a1"><div class="check"></div></div>
-        <div class="label" id="label1">输入</div><br class="clear">
+    <div id="container">
     </div>
-    <div class="exports imex">
-        <div class="mil" id="m2"><div class="check"></div></div>
-        <div class="civ" id="c2"><div class="check"></div></div>
-        <div class="ammo" id="a2"><div class="check"></div></div>
-        <div class="label" id="label2">输出</div><br class="clear">
+    <div id="history">
+        <ul class="timeline pointer" id="line">
+            <li>20190408</li>
+            <li>20190409</li>
+            <li>20190410</li>
+            <li>20190411</li>
+            <li>20190412</li>
+            <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
+        </ul>
     </div>
-    <br class="clear">
-</div>
+    <div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
+        <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
+        <input type="text" name="country" id="countries"
+               class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
+        >
+        <ul id="data_list" class="list"></ul>
+        <br class="clear">
     </div>
-
+    <div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
+        <div class="typeLabels">
+            <div class="mil">正面</div>
+            <div class="civ">中性</div>
+            <div class="ammo">负面</div><br class="clear">
+        </div>
+        <div class="imports imex">
+            <div class="mil" id="m1"><div class="check"></div></div>
+            <div class="civ" id="c1"><div class="check"></div></div>
+            <div class="ammo" id="a1"><div class="check"></div></div>
+            <div class="label" id="label1">输入</div><br class="clear">
+        </div>
+        <div class="exports imex">
+            <div class="mil" id="m2"><div class="check"></div></div>
+            <div class="civ" id="c2"><div class="check"></div></div>
+            <div class="ammo" id="a2"><div class="check"></div></div>
+            <div class="label" id="label2">输出</div><br class="clear">
+        </div>
+        <br class="clear">
+    </div>
+    <div id="data">
+        <p id="countryName">中国<label id="dataAll"></label></p>
+        <p>输入<label id="dataIn"></label></p>
+        <p>正面：<label id="dataInPos"></label></p>
+        <p>中性：<label id="dataInNeu"></label></p>
+        <p>负面：<label id="dataInNeg"></label></p>
+        <p>输出<label id="dataOut"></label></p>
+        <p>正面：<label id="dataOutPos"></label></p>
+        <p>中性：<label id="dataOutNeu"></label></p>
+        <p>负面：<label id="dataOutNeg"></label></p>
+    </div>
+    <div id="dataRight">
+        <!-- <input type="text" id="drsearch" style="width: 100px;"></input>
+        <input type="button" id="btndrsearch" value="搜索"></input>
+        <input type="button" id="btndrsearchAll" value="全部"></input> -->
+        <p class="drp">输入</p>
+        <div id="drDiv1">
+            <!-- <p class="linePos">中国-俄罗斯   4</p>
+            <p class="lineNeu">中国-俄罗斯   1</p>
+            <p class="lineNeg">中国-俄罗斯   15</p> -->
+        </div>
+        <p class="drp">输出</p>
+        <div id="drDiv2">
+            <!-- <p class="linePos">中国-俄罗斯   4</p>
+            <p class="lineNeu">中国-俄罗斯   1</p>
+            <p class="lineNeg">中国-俄罗斯   15</p> -->
+        </div>
+    </div>
     <script>
         var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
 
@@ -303,12 +373,12 @@
             var obj_lis = document.getElementById("line").getElementsByTagName("li");
             var year;
             var l=document.getElementById("handle").style.left;
-            console.log(l);
+            //console.log(l);
             var reg = /\d+/;
             var len=l.match(reg);
-            console.log(len);
+            //console.log(len);
             var le=(len*1-222)/90+20190410;
-            console.log(le);
+            //console.log(le);
             year=le;
             for (i = 0; i < obj_lis.length; i++) {
                 obj_lis[i].onclick = function () {
@@ -444,9 +514,12 @@
                 counName=document.getElementById("countries").value;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
+
+            var btndrsearch=document.getElementById("btndrsearch");
+            btndrsearch.onclick=function(e){
+            }
         }
     </script>
-
     <!--输入框-->
     <script>
         var data = [
@@ -507,7 +580,6 @@
             }
         }
     </script>
-
     <!--3d地球-->
     <script>
         //数据处理
@@ -525,42 +597,40 @@
         var counName="中国";//国家 初始值“中国”
         //选择年份
         var yearNum=20190410;//年份 初始值“2018”
-
         //筛选方向和情感 初始值 “1” 都可见
         var de={"i":{pos:1,neu:1,neg:1},"e":{pos:1,neu:1,neg:1}};
         var de_i=1,de_e=1;
-
         //解析url
         var url=location.href;
         var tmp1=url.split("?")[1];
-        if(tmp1!=null){
-            var tmp2=tmp1.split("&")[0];
-            var tmp3=tmp1.split("&")[1];
-            var tmp4=tmp1.split("&")[2];
-            counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
-            yearNum=tmp3.split("=")[1];
+            if(tmp1!=null){
+                var tmp2=tmp1.split("&")[0];
+                var tmp3=tmp1.split("&")[1];
+                var tmp4=tmp1.split("&")[2];
+                counName=decodeURI(tmp2.split("=")[1]);//decodeURI解码
+                yearNum=tmp3.split("=")[1];
 
-            //alert(tmp4);
-            de["i"].pos=tmp4.split("_")[0];
-            de["i"].neu=tmp4.split("_")[1];
-            de["i"].neg=tmp4.split("_")[2];
-            de_i=tmp4.split("_")[3];
-            de["e"].pos=tmp4.split("_")[4];
-            de["e"].neu=tmp4.split("_")[5];
-            de["e"].neg=tmp4.split("_")[6];
-            de_e=tmp4.split("_")[7];
-        }
+                //alert(tmp4);
+                de["i"].pos=tmp4.split("_")[0];
+                de["i"].neu=tmp4.split("_")[1];
+                de["i"].neg=tmp4.split("_")[2];
+                de_i=tmp4.split("_")[3];
+                de["e"].pos=tmp4.split("_")[4];
+                de["e"].neu=tmp4.split("_")[5];
+                de["e"].neg=tmp4.split("_")[6];
+                de_e=tmp4.split("_")[7];
+            }
 
         //设置时间条圆点位置
         var l=document.getElementById("handle").style.left;
-        console.log(l);
+        //console.log(l);
         var reg = /\d+/;
         var len=l.match(reg);
-        console.log(len);
+        //console.log(len);
         var le=(len*1-222)/90+20190410;
-        console.log(le);
+        //console.log(le);
         len=(len*1)+(yearNum-le)*90;
-        console.log(len);
+        //console.log(len);
         document.getElementById("handle").style.left=len+'px';
 
         //设置右下角值
@@ -804,7 +874,7 @@
 
 
             function getData(){
-                //yearNum：时间(年) coun:国家 de:方向感情
+                //yearNum：时间(年) counName:国家 de:方向感情
                 //筛选出符合条件的数据dat，并计算中心国的流动新闻总数vtol
                 var dat=[];
                 //var time=['20190408','20190409','20190410','20190411','20190412'];
@@ -906,7 +976,7 @@
                 {
                     var val=dat[i].v; //每个被关注流动的实际数值
                     var size=Math.round(maxsize*val/vtol);//按比例计算散点的大小
-                    var pla=(dat[i]["i"]==counName)?dat[i]["e"]:dat[i]["i"];//设置相关国（coun为输出国，pla为输入国；coun为输入国，pla为输出国）
+                    var pla=(dat[i]["i"]==counName)?dat[i]["e"]:dat[i]["i"];//设置相关国（counName为输出国，pla为输入国；counName为输入国，pla为输出国）
                     setdserp(pla,size);//设置每个关联国家的地名散点
                     setdserv(pla,val);//设置每个关联国家的数值散点
 
@@ -914,7 +984,111 @@
                 return dat;
             }
 
+            function setLblData(){
+                //yearNum：时间(年) counName:国家
+                var dataInPos=[],dataInNeu=[],dataInNeg=[];
+                var dataOutPos=[],dataOutNeu=[],dataOutNeg=[];
+                var datain=data.timeBins[yearNum-20190408].data;//筛选时间
+                var cAll=0,cIn=0,cOut=0,cInPos=0,cInNeu=0,cInNeg=0,cOutPos=0,cOutNeu=0,cOutNeg=0;
+                //筛选出符合条件的数据
+                for(var i=0;i<datain.length;i++){
+                    if(datain[i]["i"]==counName&&datain[i].c=="pos"){
+                        dataInPos.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cInPos+=datain[i].v;
+                    }
+                    if(datain[i]["i"]==counName&&datain[i].c=="neu"){
+                        dataInNeu.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cInNeu+=datain[i].v;
+                    }
+                    if(datain[i]["i"]==counName&&datain[i].c=="neg"){
+                        dataInNeg.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cInNeg+=datain[i].v;
+                    }
+                    if(datain[i]["e"]==counName&&datain[i].c=="pos"){
+                        dataOutPos.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cOutPos+=datain[i].v;
+                    }
+                    if(datain[i]["e"]==counName&&datain[i].c=="neu"){
+                        dataOutNeu.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cOutNeu+=datain[i].v;
+                    }
+                    if(datain[i]["e"]==counName&&datain[i].c=="neg"){
+                        dataOutNeg.push({
+                            i:datain[i].i,
+                            e:datain[i].e,
+                            c:datain[i].c,
+                            v:datain[i].v
+                        });
+                        cOutNeg+=datain[i].v;
+                    }
+                }
+                cIn=cInPos+cInNeu+cInNeg;
+                cOut=cOutPos+cOutNeu+cOutNeg;
+                cAll=cIn+cOut;
+                // console.log(dataInPos);
+                // console.log(dataInNeu);
+                // console.log(dataInNeg);
+                // console.log(dataOutPos);
+                // console.log(dataOutNeu);
+                // console.log(dataOutNeg);
+                document.getElementById("dataAll").innerHTML=""+cAll;
+                document.getElementById("dataIn").innerHTML=""+cIn+"["+(cIn/cAll*100).toFixed(2)+"%]";
+                document.getElementById("dataOut").innerHTML=""+cOut+"["+(cOut/cAll*100).toFixed(2)+"%]";
+                document.getElementById("dataInPos").innerHTML=""+cInPos+"["+(cInPos/cIn*100).toFixed(2)+"%]";
+                document.getElementById("dataInNeu").innerHTML=""+cInNeu+"["+(cInNeu/cIn*100).toFixed(2)+"%]";
+                document.getElementById("dataInNeg").innerHTML=""+cInNeg+"["+(cInNeg/cIn*100).toFixed(2)+"%]";
+                document.getElementById("dataOutPos").innerHTML=""+cOutPos+"["+(cOutPos/cOut*100).toFixed(2)+"%]";
+                document.getElementById("dataOutNeu").innerHTML=""+cOutNeu+"["+(cOutNeu/cOut*100).toFixed(2)+"%]";
+                document.getElementById("dataOutNeg").innerHTML=""+cOutNeg+"["+(cOutNeg/cOut*100).toFixed(2)+"%]";
+
+                //dataRight
+                for (var i = dataInPos.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv1").innerHTML+="<p class='linePos'>"+dataInPos[i].e+"-"+dataInPos[i].i+"&nbsp;&nbsp;"+dataInPos[i].v+"</p>";
+                }
+                for (var i = dataInNeu.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv1").innerHTML+="<p class='lineNeu'>"+dataInNeu[i].e+"-"+dataInNeu[i].i+"&nbsp;&nbsp;"+dataInNeu[i].v+"</p>";
+                }
+                for (var i = dataInNeg.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv1").innerHTML+="<p class='lineNeg'>"+dataInNeg[i].e+"-"+dataInNeg[i].i+"&nbsp;&nbsp;"+dataInNeg[i].v+"</p>";
+                }
+                for (var i = dataOutPos.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv2").innerHTML+="<p class='linePos'>"+dataOutPos[i].e+"-"+dataOutPos[i].i+"&nbsp;&nbsp;"+dataOutPos[i].v+"</p>";
+                }
+                for (var i = dataOutNeu.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv2").innerHTML+="<p class='lineNeu'>"+dataOutNeu[i].e+"-"+dataOutNeu[i].i+"&nbsp;&nbsp;"+dataOutNeu[i].v+"</p>";
+                }
+                for (var i = dataOutNeg.length - 1; i >= 0; i--) {
+                    document.getElementById("drDiv2").innerHTML+="<p class='lineNeg'>"+dataOutNeg[i].e+"-"+dataOutNeg[i].i+"&nbsp;&nbsp;"+dataOutNeg[i].v+"</p>";
+                }
+            }
+
             var Data=getData();
+            setLblData();
 
             //给每个国家都添加固定尺寸的散点     //是否添加所有一带一路国家(所有国家的闪闪响应点都有)
             for(k in geoCoordMap){
