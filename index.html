@@ -235,9 +235,8 @@
         }
         #data{
             z-index: 100;
-            width: 20%;
-            min-width: 150px;
-            height: 300px;
+            width: 270px;
+            height: 330px;
             position: absolute;
             top: 25%;
             left: 2%;
@@ -246,8 +245,7 @@
         }
         #dataRight{
             z-index: 100;
-            width: 250px;
-            min-width: 150px;
+            width: 270px;
             height: 330px;
             position: absolute;
             top: 25%;
@@ -259,12 +257,13 @@
             min-height: 101px;
             margin: 1px;
             position: relative;
+            width: 260px;
             /*滚轮*/
             /*height: 101px;
             overflow: auto;*/
         }
         .linePos,.lineNeu,.lineNeg{
-            width: 200px;
+            width: 260px;
             margin: 2px;
             padding: 0px 5px;
         }
@@ -284,7 +283,7 @@
             padding: 8px 0px;
         }
         #drDiv1,#drDiv2{
-            overflow:hidden; height:101px; width:250px; margin:0; position:relative;
+            overflow:hidden; height:101px; width:270px; margin:0; position:relative;
         }
     </style>
     <script type="text/javascript" src="js/echarts.min.js"></script>
@@ -338,7 +337,7 @@
         <br class="clear">
     </div>
     <div id="data">
-        <p id="countryName">中国<label id="dataAll"></label></p>
+        <p style="margin: 0;font-size: x-large;"><label id="countryName"></label>&nbsp;<label id="dataAll"></label></p>
         <p>输入<label id="dataIn"></label></p>
         <p>正面：<label id="dataInPos"></label></p>
         <p>中性：<label id="dataInNeu"></label></p>
@@ -411,8 +410,10 @@
             var drDiv2_2=document.getElementById("drDiv2_2");
             drDiv1_2.innerHTML = drDiv1_1.innerHTML;
             drDiv2_2.innerHTML = drDiv2_1.innerHTML;
+            console.log(drDiv1_1.height);
+            console.log(drDiv2_1.height);
             function Marquee(){
-                if(drDiv1.scrollTop>=drDiv1.offsetHeight+100){
+                if(drDiv1.scrollTop>=drDiv1.offsetHeight+101){
                     drDiv1.scrollTop=0;
                 }
                 else{
@@ -420,7 +421,7 @@
                 }
             }
             function Marquee2(){
-                if(drDiv2.scrollTop>=drDiv2.offsetHeight+100){
+                if(drDiv2.scrollTop>=drDiv2.offsetHeight+101){
                     drDiv2.scrollTop=0;
                 }
                 else{
@@ -1103,15 +1104,56 @@
                 // console.log(dataOutPos);
                 // console.log(dataOutNeu);
                 // console.log(dataOutNeg);
+                document.getElementById("countryName").innerHTML=""+counName;
                 document.getElementById("dataAll").innerHTML=""+cAll;
-                document.getElementById("dataIn").innerHTML=""+cIn+"["+(cIn/cAll*100).toFixed(2)+"%]";
-                document.getElementById("dataOut").innerHTML=""+cOut+"["+(cOut/cAll*100).toFixed(2)+"%]";
-                document.getElementById("dataInPos").innerHTML=""+cInPos+"["+(cInPos/cIn*100).toFixed(2)+"%]";
-                document.getElementById("dataInNeu").innerHTML=""+cInNeu+"["+(cInNeu/cIn*100).toFixed(2)+"%]";
-                document.getElementById("dataInNeg").innerHTML=""+cInNeg+"["+(cInNeg/cIn*100).toFixed(2)+"%]";
-                document.getElementById("dataOutPos").innerHTML=""+cOutPos+"["+(cOutPos/cOut*100).toFixed(2)+"%]";
-                document.getElementById("dataOutNeu").innerHTML=""+cOutNeu+"["+(cOutNeu/cOut*100).toFixed(2)+"%]";
-                document.getElementById("dataOutNeg").innerHTML=""+cOutNeg+"["+(cOutNeg/cOut*100).toFixed(2)+"%]";
+                if (cIn==0) {
+                    document.getElementById("dataIn").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataIn").innerHTML=""+cIn+"["+(cIn/cAll*100).toFixed(2)+"%]";
+                }
+                if (cOut==0) {
+                    document.getElementById("dataOut").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataOut").innerHTML=""+cOut+"["+(cOut/cAll*100).toFixed(2)+"%]";
+                }
+                if (cInPos==0) {
+                    document.getElementById("dataInPos").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataInPos").innerHTML=""+cInPos+"["+(cInPos/cIn*100).toFixed(2)+"%]";
+                }
+                if (cInNeu==0) {
+                    document.getElementById("dataInNeu").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataInNeu").innerHTML=""+cInNeu+"["+(cInNeu/cIn*100).toFixed(2)+"%]";
+                }
+                if (cInNeg==0) {
+                    document.getElementById("dataInNeg").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataInNeg").innerHTML=""+cInNeg+"["+(cInNeg/cIn*100).toFixed(2)+"%]";
+                }
+                if (cOutPos==0) {
+                    document.getElementById("dataOutPos").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataOutPos").innerHTML=""+cOutPos+"["+(cOutPos/cOut*100).toFixed(2)+"%]";
+                }
+                if (cOutNeu==0) {
+                    document.getElementById("dataOutNeu").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataOutNeu").innerHTML=""+cOutNeu+"["+(cOutNeu/cOut*100).toFixed(2)+"%]";
+                }
+                if (cOutNeg==0) {
+                    document.getElementById("dataOutNeg").innerHTML="0[0.00%]";
+                }
+                else{
+                    document.getElementById("dataOutNeg").innerHTML=""+cOutNeg+"["+(cOutNeg/cOut*100).toFixed(2)+"%]";
+                }
 
                 //dataRight
                 // for (var i = dataInPos.length - 1; i >= 0; i--) {
