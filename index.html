@@ -255,11 +255,13 @@
             background-color: rgba(0,0,0,0.5);
             padding: 10px;
         }
-        #drDiv1,#drDiv2{
-            height: 100px;
+        #drDiv1_1,#drDiv1_2,#drDiv2_1,#drDiv2_2{
+            min-height: 101px;
             margin: 1px;
-            border-top: 1px solid white;;
-            overflow: auto;
+            position: relative;
+            /*滚轮*/
+            /*height: 101px;
+            overflow: auto;*/
         }
         .linePos,.lineNeu,.lineNeg{
             width: 200px;
@@ -277,6 +279,12 @@
         }
         .drp{
             color: white;
+            border-bottom: 1px solid white;
+            margin: 8px 0px;
+            padding: 8px 0px;
+        }
+        #drDiv1,#drDiv2{
+            overflow:hidden; height:101px; width:250px; margin:0; position:relative;
         }
     </style>
     <script type="text/javascript" src="js/echarts.min.js"></script>
@@ -346,15 +354,21 @@
         <input type="button" id="btndrsearchAll" value="全部"></input> -->
         <p class="drp">输入</p>
         <div id="drDiv1">
-            <!-- <p class="linePos">中国-俄罗斯   4</p>
-            <p class="lineNeu">中国-俄罗斯   1</p>
-            <p class="lineNeg">中国-俄罗斯   15</p> -->
+            <div id="drDiv1_1">
+                <!-- <p class="linePos">中国-俄罗斯   4</p>
+                <p class="lineNeu">中国-俄罗斯   1</p>
+                <p class="lineNeg">中国-俄罗斯   15</p> -->
+            </div>
+            <div id="drDiv1_2"></div>
         </div>
         <p class="drp">输出</p>
         <div id="drDiv2">
-            <!-- <p class="linePos">中国-俄罗斯   4</p>
-            <p class="lineNeu">中国-俄罗斯   1</p>
-            <p class="lineNeg">中国-俄罗斯   15</p> -->
+            <div id="drDiv2_1">
+                <!-- <p class="linePos">中国-俄罗斯   4</p>
+                <p class="lineNeu">中国-俄罗斯   1</p>
+                <p class="lineNeg">中国-俄罗斯   15</p> -->
+            </div>
+            <div id="drDiv2_2"></div>
         </div>
     </div>
     <script>
@@ -386,6 +400,39 @@
                     window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
                 }
             }
+            
+            //滚动
+            var speed = 100;
+            var drDiv1=document.getElementById("drDiv1");
+            var drDiv1_1=document.getElementById("drDiv1_1");
+            var drDiv1_2=document.getElementById("drDiv1_2");
+            var drDiv2=document.getElementById("drDiv2");
+            var drDiv2_1=document.getElementById("drDiv2_1");
+            var drDiv2_2=document.getElementById("drDiv2_2");
+            drDiv1_2.innerHTML = drDiv1_1.innerHTML;
+            drDiv2_2.innerHTML = drDiv2_1.innerHTML;
+            function Marquee(){
+                if(drDiv1.scrollTop>=drDiv1.offsetHeight+100){
+                    drDiv1.scrollTop=0;
+                }
+                else{
+                    drDiv1.scrollTop=drDiv1.scrollTop+1;
+                }
+            }
+            function Marquee2(){
+                if(drDiv2.scrollTop>=drDiv2.offsetHeight+100){
+                    drDiv2.scrollTop=0;
+                }
+                else{
+                    drDiv2.scrollTop=drDiv2.scrollTop+1;
+                }
+            }
+            var MyMar=setInterval(Marquee,speed);
+            drDiv1.onmouseover=function(){clearInterval(MyMar)};
+            drDiv1.onmouseout=function(){MyMar=setInterval(Marquee,speed); };
+            var MyMar2=setInterval(Marquee2,speed);
+            drDiv2.onmouseover=function(){clearInterval(MyMar2)};
+            drDiv2.onmouseout=function(){MyMar2=setInterval(Marquee2,speed); };
 
             //情感&方向 （奇数-可见；偶数-不可见）
             var btnTest1=document.getElementById("label1");
@@ -515,9 +562,9 @@
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
 
-            var btndrsearch=document.getElementById("btndrsearch");
-            btndrsearch.onclick=function(e){
-            }
+            // var btndrsearch=document.getElementById("btndrsearch");
+            // btndrsearch.onclick=function(e){
+            // }
         }
     </script>
     <!--输入框-->
@@ -1067,23 +1114,150 @@
                 document.getElementById("dataOutNeg").innerHTML=""+cOutNeg+"["+(cOutNeg/cOut*100).toFixed(2)+"%]";
 
                 //dataRight
-                for (var i = dataInPos.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv1").innerHTML+="<p class='linePos'>"+dataInPos[i].e+"-"+dataInPos[i].i+"&nbsp;&nbsp;"+dataInPos[i].v+"</p>";
+                // for (var i = dataInPos.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv1_1").innerHTML+="<p class='linePos'>"+dataInPos[i].e+"-"+dataInPos[i].i+"&nbsp;&nbsp;"+dataInPos[i].v+"</p>";
+                // }
+                // for (var i = dataInNeu.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv1_1").innerHTML+="<p class='lineNeu'>"+dataInNeu[i].e+"-"+dataInNeu[i].i+"&nbsp;&nbsp;"+dataInNeu[i].v+"</p>";
+                // }
+                // for (var i = dataInNeg.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv1_1").innerHTML+="<p class='lineNeg'>"+dataInNeg[i].e+"-"+dataInNeg[i].i+"&nbsp;&nbsp;"+dataInNeg[i].v+"</p>";
+                // }
+                // for (var i = dataOutPos.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv2_1").innerHTML+="<p class='linePos'>"+dataOutPos[i].e+"-"+dataOutPos[i].i+"&nbsp;&nbsp;"+dataOutPos[i].v+"</p>";
+                // }
+                // for (var i = dataOutNeu.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv2_1").innerHTML+="<p class='lineNeu'>"+dataOutNeu[i].e+"-"+dataOutNeu[i].i+"&nbsp;&nbsp;"+dataOutNeu[i].v+"</p>";
+                // }
+                // for (var i = dataOutNeg.length - 1; i >= 0; i--) {
+                //     document.getElementById("drDiv2_1").innerHTML+="<p class='lineNeg'>"+dataOutNeg[i].e+"-"+dataOutNeg[i].i+"&nbsp;&nbsp;"+dataOutNeg[i].v+"</p>";
+                // }
+
+                var coundata = [
+                    "中国", "马达加斯加", "巴拿马", "摩洛哥", "印度",
+                    "埃塞俄比亚", "新西兰", "波黑", "黑山", "土库曼斯坦",
+                    "立陶宛","拉脱维亚","巴勒斯坦","阿尔巴尼亚","阿富汗",
+                    "爱沙尼亚","巴基斯坦","斯洛文尼亚","克罗地亚","黎巴嫩",
+                    "阿曼","巴林","也门","埃及","约旦","叙利亚","印度尼西亚",
+                    "菲律宾","缅甸","文莱","东帝汶","不丹","阿联酋","泰国",
+                    "越南","新加坡","以色列","阿塞拜疆","亚美尼亚","捷克","孟加拉国",
+                    "白俄罗斯", "柬埔寨","格鲁吉亚","匈牙利","伊拉克","伊朗","吉尔吉斯斯坦",
+                    "老挝","哈萨克斯坦","卡塔尔","科威特","摩尔多瓦","马尔代夫","马来西亚",
+                    "马其顿","蒙古国","尼泊尔","波兰","保加利亚","罗马尼亚","塞尔维亚","沙特阿拉伯",
+                    "斯洛伐克","塔吉克斯坦","俄罗斯","南非","斯里兰卡","韩国","土耳其","乌克兰","乌兹别克斯坦",
+                    "巴巴多斯","瓦努阿图","汤加","库克群岛","厄瓜多尔","葡萄牙","斐济","密克罗尼西亚联邦",
+                    "马耳他", "萨尔瓦多","多米尼加","智利","萨摩亚","苏里南","格林纳达","委内瑞拉","多哥","冈比亚",
+                    "乌干达","佛得角","布隆迪","坦桑尼亚","津巴布韦","刚果（布）","乍得","尼日利亚","肯尼亚",
+                    "安哥拉", "纳米比亚","加蓬","莫桑比克","赞比亚","加纳","塞舌尔","南苏丹","喀麦隆","塞拉利昂",
+                    "科特迪瓦", "阿尔及利亚","哥斯达黎加","吉布提","毛里塔尼亚","几内亚","索马里","希腊","乌拉圭",
+                    "纽埃","多米尼克","圭亚那","卢旺达","塞内加尔","突尼斯","利比亚","巴布亚新几内亚","玻利维亚",
+                    "安提瓜和巴布达","特立尼达和多巴哥","奥地利","苏丹","意大利","古巴","卢森堡","牙买加"
+                ]
+                var DATAIN=[],DATAOUT=[];
+                for (var i = 0; i < dataInPos.length; i++) {
+                    DATAIN.push({
+                        e:dataInPos[i].e,
+                        i:dataInPos[i].i,
+                        c:dataInPos[i].c,
+                        v:dataInPos[i].v
+                    }); 
                 }
-                for (var i = dataInNeu.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv1").innerHTML+="<p class='lineNeu'>"+dataInNeu[i].e+"-"+dataInNeu[i].i+"&nbsp;&nbsp;"+dataInNeu[i].v+"</p>";
+                for (var i = 0; i < dataInNeu.length; i++) {
+                    DATAIN.push({
+                        e:dataInNeu[i].e,
+                        i:dataInNeu[i].i,
+                        c:dataInNeu[i].c,
+                        v:dataInNeu[i].v
+                    }); 
                 }
-                for (var i = dataInNeg.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv1").innerHTML+="<p class='lineNeg'>"+dataInNeg[i].e+"-"+dataInNeg[i].i+"&nbsp;&nbsp;"+dataInNeg[i].v+"</p>";
+                for (var i = 0; i < dataInNeg.length; i++) {
+                    DATAIN.push({
+                        e:dataInNeg[i].e,
+                        i:dataInNeg[i].i,
+                        c:dataInNeg[i].c,
+                        v:dataInNeg[i].v
+                    }); 
                 }
-                for (var i = dataOutPos.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv2").innerHTML+="<p class='linePos'>"+dataOutPos[i].e+"-"+dataOutPos[i].i+"&nbsp;&nbsp;"+dataOutPos[i].v+"</p>";
+                console.log(DATAIN);
+                for (var i = 0; i < dataOutPos.length; i++) {
+                    DATAOUT.push({
+                        e:dataOutPos[i].e,
+                        i:dataOutPos[i].i,
+                        c:dataOutPos[i].c,
+                        v:dataOutPos[i].v
+                    }); 
                 }
-                for (var i = dataOutNeu.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv2").innerHTML+="<p class='lineNeu'>"+dataOutNeu[i].e+"-"+dataOutNeu[i].i+"&nbsp;&nbsp;"+dataOutNeu[i].v+"</p>";
+                for (var i = 0; i < dataOutNeu.length; i++) {
+                    DATAOUT.push({
+                        e:dataOutNeu[i].e,
+                        i:dataOutNeu[i].i,
+                        c:dataOutNeu[i].c,
+                        v:dataOutNeu[i].v
+                    }); 
                 }
-                for (var i = dataOutNeg.length - 1; i >= 0; i--) {
-                    document.getElementById("drDiv2").innerHTML+="<p class='lineNeg'>"+dataOutNeg[i].e+"-"+dataOutNeg[i].i+"&nbsp;&nbsp;"+dataOutNeg[i].v+"</p>";
+                for (var i = 0; i < dataOutNeg.length; i++) {
+                    DATAOUT.push({
+                        e:dataOutNeg[i].e,
+                        i:dataOutNeg[i].i,
+                        c:dataOutNeg[i].c,
+                        v:dataOutNeg[i].v
+                    }); 
+                }
+                console.log(DATAOUT);
+                console.log(coundata);
+                console.log(coundata[0]);
+
+                for (var k = 0; k < coundata.length; k++) {
+                    //coundata[k]为各个国家的名称
+                    //ev-export value
+                    //iv-import value
+                    //if(coundata[k]==counName) continue;
+                    var ev_pos=0,ev_neu=0,ev_neg=0,ev_sum=0;
+                    var iv_pos=0,iv_neu=0,iv_neg=0,iv_sum=0;
+                    //coundata[k]该相关国家报导主国家的数据量按语调不同 分别累计
+                    for (var i = DATAIN.length - 1; i >= 0; i--) {
+                        if (DATAIN[i].e==coundata[k]) {
+                            switch(DATAIN[i].c){
+                                case "pos":ev_pos+=DATAIN[i].v;break;
+                                case "neu":ev_neu+=DATAIN[i].v;break;
+                                case "neg":ev_neg+=DATAIN[i].v;break;
+                            }
+                        }
+                    }
+                    //coundata[k]该相关国家被主国家报导的数据量按语调不同 分别累计
+                    for (var i = DATAOUT.length - 1; i >= 0; i--) {
+                        if (DATAOUT[i].i==coundata[k]) {
+                            switch(DATAOUT[i].c){
+                                case "pos":iv_pos+=DATAOUT[i].v;break;
+                                case "neu":iv_neu+=DATAOUT[i].v;break;
+                                case "neg":iv_neg+=DATAOUT[i].v;break;
+                            }
+                        }
+                    }
+                    //累计完成
+                    ev_sum=ev_pos+ev_neu+ev_neg;
+                    iv_sum=iv_pos+iv_neu+iv_neg;
+                    //输出
+                    if (ev_pos!=0) {
+                        document.getElementById("drDiv1_1").innerHTML+="<p class='linePos'>"+coundata[k]+"-"+DATAIN[0].i+"&nbsp;&nbsp;"+ev_pos+"["+(ev_pos/ev_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+                    if (ev_neu!=0) {
+                        document.getElementById("drDiv1_1").innerHTML+="<p class='lineNeu'>"+coundata[k]+"-"+DATAIN[0].i+"&nbsp;&nbsp;"+ev_neu+"["+(ev_neu/ev_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+                    if (ev_neg!=0) {
+                        document.getElementById("drDiv1_1").innerHTML+="<p class='lineNeg'>"+coundata[k]+"-"+DATAIN[0].i+"&nbsp;&nbsp;"+ev_neg+"["+(ev_neg/ev_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+                    if (iv_pos!=0) {
+                        document.getElementById("drDiv2_1").innerHTML+="<p class='linePos'>"+DATAOUT[0].e+"-"+coundata[k]+"&nbsp;&nbsp;"+iv_pos+"["+(iv_pos/iv_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+                    if (iv_neu!=0) {
+                        document.getElementById("drDiv2_1").innerHTML+="<p class='lineNeu'>"+DATAOUT[0].e+"-"+coundata[k]+"&nbsp;&nbsp;"+iv_neu+"["+(iv_neu/iv_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+                    if (iv_neg!=0) {
+                        document.getElementById("drDiv2_1").innerHTML+="<p class='lineNeg'>"+DATAOUT[0].e+"-"+coundata[k]+"&nbsp;&nbsp;"+iv_neg+"["+(iv_neg/iv_sum*100).toFixed(2)+"%]"+"</p>";
+                    }
+
+
                 }
             }
 
