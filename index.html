@@ -410,10 +410,12 @@
             var drDiv2_2=document.getElementById("drDiv2_2");
             drDiv1_2.innerHTML = drDiv1_1.innerHTML;
             drDiv2_2.innerHTML = drDiv2_1.innerHTML;
-            console.log(drDiv1_1.height);
-            console.log(drDiv2_1.height);
+            console.log(drDiv1.offsetHeight);
+            console.log(drDiv2.offsetHeight);
+            console.log(drDiv1_1.offsetHeight);
+            console.log(drDiv2_1.offsetHeight);
             function Marquee(){
-                if(drDiv1.scrollTop>=drDiv1.offsetHeight+101){
+                if(drDiv1.scrollTop>=drDiv1_1.offsetHeight){
                     drDiv1.scrollTop=0;
                 }
                 else{
@@ -421,7 +423,7 @@
                 }
             }
             function Marquee2(){
-                if(drDiv2.scrollTop>=drDiv2.offsetHeight+101){
+                if(drDiv2.scrollTop>=drDiv2_1.offsetHeight){
                     drDiv2.scrollTop=0;
                 }
                 else{
@@ -916,7 +918,7 @@
             })
         }
 
-        let json = $.getJSON("data/20190408-12merge.json", function (data){
+        let json = $.getJSON("data/20190408-12newmerge.json", function (data){
             //取数据为yearNum年，国家为pla，方向（i：输入，e：输出）
             // 情感（正面：pos，负面：neg，中性：neu)
 
