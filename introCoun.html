@@ -101,7 +101,13 @@
 <body>
 <div class="counInto">
   <div class="counNav">
-    <p id="proName">国家间新闻流动</p>
+    <p id="proName">国家间新闻报道</p>
+    <script type="text/javascript">
+      var proName=document.getElementById("proName");
+            proName.onclick=function(e){
+                window.location.href="index.html";
+            }
+    </script>
     <div style="overflow: scroll;height: 590px;">
       <ul class="z">
           <li><a href="#sd">非洲</a></li>
@@ -149,7 +155,6 @@
           <li><a href="#hg">亚洲</a></li>
       </ul>
       <ul class="g">
-          <li><a href="#zg">中国</a></li>
           <li><a href="#hg">韩国</a></li>
           <li><a href="#mg">蒙古</a></li>
           <li><a href="#xjp">新加坡</a></li>
@@ -263,11 +268,10 @@
     </div>
   </div>
   <div class="counDetil">
-    <div class="counPart">
-      <div class="country" id="sd">苏丹</div>
-      <div class="desc">苏丹共和国（阿拉伯语：جمهورية السودان‎；英语：Republic of the Sudan），简称苏丹，位于非洲东北部、红海沿岸、撒哈拉沙漠东端。国土面积1886068平方公里，为非洲面积第3大国，世界面积第15大国。首都喀土穆。
-      苏丹经济结构单一，以农牧业为主，工业落后，基础薄弱，对自然及外援依赖性强。苏丹是联合国宣布的世界最不发达国家之一。曾被失败国家指数列表评为“世界上最不安定的国家”。</div>
-    </div>
+    <div class="counPart"><div class="country" id="sd">苏丹</div>
+    <div class="desc">苏丹，位于非洲东北部、红海沿岸、撒哈拉沙漠东端。国土面积1886068平方公里，为非洲面积第3大国，世界面积第15大国。阿拉伯语为官方语言。通用英语。居民大多信奉伊斯兰教，属逊尼派。<br>
+    苏丹是联合国公布的世界最不发达国家之一，经济结构单一，基础薄弱，工业落后，对自然环境及外援依赖性强。受益于石油大量出口及借助高油价的拉动，苏丹经济曾一度成为非洲经济发展最快的国家之一。<br>
+  农业是苏经济的主要支柱。农业人口占全国总人口的80%。农作物主要有高粱、谷子、玉米和小麦。经济作物在农业生产中占重要地位，占农产品出口额的66%，主要有棉花、花生、芝麻和阿拉伯胶，大多数供出口。</div></div>
     <div class="counPart">
       <div class="country" id="nf">南非</div>
       <div class="desc">
@@ -292,28 +296,43 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="snje">塞内加尔</div><div class="desc">塞内加尔共和国（The Republic of Senegal），简称塞内加尔，位于非洲西部凸出部位的最西端，首都达喀尔。北接毛里塔尼亚，东邻马里，南接几内亚和几内亚比绍，西临佛得角群岛。海岸线长约700公里。
-    塞内加尔是世界最不发达国家之一，为农业国，森林占土地总面积的31%。可耕地约占27%，花生是最重要的经济和出口作物，其他产业包括渔业、采矿、制造业和旅游业。
-  塞内加尔有丰富的磷酸盐和铁矿储量。作为西非国家经济共同体与非洲工商业法规一体化组织的成员国，塞内加尔正在努力实现区域一体化以及对外统一关税。不过，在消极的一面，由来已久的城市人口高失业率，社会经济发展不平衡以及青少年犯罪问题一直困扰该国。</div></div>
-    <div class="counPart"><div class="country" id="slla">塞拉利昂</div><div class="desc">塞拉利昂共和国（The Republic of Sierra Leone），简称塞拉利昂。位于西非大西洋岸，北部及东部被几内亚包围、东南与利比里亚接壤，首都弗里敦。台湾译为狮子山共和国，中国大陆和香港译为塞拉利昂共和国。
-    由于矿产丰富，塞拉利昂的经济主要依赖矿业，尤其钻矿业占了很大分量。其中最为世人所知的是从塞拉利昂开采的血钻石。</div></div>
-    <div class="counPart"><div class="country" id="ktdw">科特迪瓦</div><div class="desc">科特迪瓦（Côte d'Ivoire）全称科特迪瓦共和国（The Republic of Côte d'Ivoire, La République de Côte d'Ivoire），科特迪瓦在法语的意思是“象牙海岸”，应该国政府要求，中华人民共和国用音译名为科特迪瓦。联合国自1985年12月31日起使用此音译名。是西非国家，与加纳、利比里亚、几内亚、马里和布基纳法索相邻。海岸线长约500公里。
-    科特迪瓦是一个以农立国的国家，面对全球农产品价格下降，使该国的主要农产品可可和咖啡的出口面临较大的竞争。</div></div>
-    <div class="counPart"><div class="country" id="sml">索马里</div><div class="desc">索马里联邦共和国（索马里语：Jamhuuriyadda Federaalka Soomaaliya；阿拉伯语： جمهورية الصومال الفدرالية‎；英语：The Federal Republic of Somalia），简称索马里，位于非洲大陆最东部的索马里半岛，拥有非洲最长的海岸线，总面积637660平方公里。</div></div>
-    <div class="counPart"><div class="country" id="kml">喀麦隆</div><div class="desc">喀麦隆共和国（法语：République du Cameroun）通称喀麦隆，是位于非洲中西部的单一制共和国，西方与尼日利亚接壤，东北与东边分别和乍得与中非相靠，南方则与赤道几内亚、加蓬及刚果共和国毗邻。海岸线紧依邦尼湾，其属于几内亚湾及大西洋的一部分。
-喀麦隆由于其地质与文化的多样性，而有“小非洲”美誉，其自然地理风貌相当丰富。当地的最高峰是西南部的喀麦隆火山，大城市则有杜阿拉、雅温得及加鲁阿等，并栖居了超过200个种族与语言族群。
-喀麦隆以其国家足球队及本土音乐风格著称，其中又以马库萨与比库西最为人知。</div></div>
-    <div class="counPart"><div class="country" id="nsd">南苏丹</div><div class="desc">南苏丹共和国（英语：The Republic of South Sudan），简称”南苏丹“，是东非的一个内陆国家，全国分为10个州。国土总面积619745平方公里，人口约1190万（2016年2月）。南苏丹东与埃塞俄比亚接壤，西与中非共和国为邻，南与刚果民主共和国、肯尼亚和乌干达毗连，北部邻近苏丹。首都为朱巴（南苏丹总统基尔于2011年9月发布命令，决定把拉姆塞尔定为该国新首都，并计划在5至8年内完成迁都）。</div></div>
-    <div class="counPart"><div class="country" id="sse">塞舌尔</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="jny">几内亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="jny">加纳</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="zby">赞比亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="msbk">莫桑比克</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="jp">加蓬</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="nmby">纳米比亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="mltny">毛里塔尼亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="agl">安哥拉</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="jbl">吉布提</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="snje">塞内加尔</div>
+    <div class="desc">塞内加尔共和国（The Republic of Senegal），简称塞内加尔，位于非洲西部凸出部位的最西端，首都达喀尔。北接毛里塔尼亚，东邻马里，南接几内亚和几内亚比绍，西临佛得角群岛。海岸线长约700公里。塞内加尔全国有20多个民族，主要是沃洛夫族（占全国人口的43%）、颇尔族（24%）和谢列尔族（15%）。<br>
+    塞内加尔系全球最不发达国家之一，70%的人口从事农业，具备一定的工业基础，第三产业发展较平衡。农业以种植花生、棉花、小米、高粱、玉米、木薯等为主。渔业、花生、磷酸盐出口以及旅游业是塞四大传统创汇产业。</div></div>
+    <div class="counPart"><div class="country" id="slla">塞拉利昂</div>
+    <div class="desc">塞拉利昂共和国（The Republic of Sierra Leone），简称塞拉利昂。位于西非大西洋岸，北部及东部被几内亚包围、东南与利比里亚接壤，首都弗里敦。由于矿产丰富，塞拉利昂的经济主要依赖矿业，尤其钻矿业占了很大分量。其中最为世人所知的是从塞拉利昂开采的血钻石。<br>
+    全国有20多个民族。南部的曼迪族最大，北部和中部的泰姆奈族次之，两者各占全国人口的30%左右；林姆巴族占8.4%；由英、美移入的“自由”黑人后裔克里奥尔人占10%。官方语言为英语，民族语言主要有曼迪语、泰姆奈语、林姆巴语和克里奥尔语。60%的居民信奉伊斯兰教，30%的居民信奉基督教，10%信奉拜物教。</div></div>
+    <div class="counPart"><div class="country" id="ktdw">科特迪瓦</div>
+    <div class="desc">科特迪瓦总面积322463平方公里。位于非洲西部，西与利比里亚和几内亚交界，北同马里和布基纳法索为邻，东与加纳相连，南濒几内亚湾。全国有69个民族，分为4大族系：阿肯族系约占42%，曼迪族系约占27%，沃尔特族系约占16%，克鲁族系约占15%。<br>
+来自布基纳法索、加纳、几内亚、马里和利比里亚等国的外国侨民人口数目增长较快，约占人口总数的26%。</div></div>
+    <div class="counPart"><div class="country" id="sml">索马里</div>
+    <div class="desc">索马里位于非洲大陆最东部的索马里半岛，北临亚丁湾，东濒印度洋，西接肯尼亚和埃塞俄比亚，西北接吉布提。<br>
+    截至2017年，索马里共有1430万。绝大多数是索马里族，又分萨马莱和萨布两大族系。其中萨马莱族系占全国人口的80%以上，分为达鲁德、哈维耶、伊萨克和迪尔四大部族。萨布族系分为迪吉尔和拉汉文两大部族。官方语言为索马里语和阿拉伯语，通用英语和意大利语。伊斯兰教为国教，穆斯林占总人口99%。</div></div>
+    <div class="counPart"><div class="country" id="kml">喀麦隆</div>
+    <div class="desc">喀麦隆，是位于非洲中西部的单一制共和国，西方与尼日利亚接壤，东北与东边分别和乍得与中非相靠，南方则与赤道几内亚、加蓬及刚果共和国毗邻。喀麦隆全国总人口2405万（2017年）。约有200多个民族，主要有富尔贝族、巴米累克族、赤道班图族（包括芳族和贝蒂族）、俾格米族、西北班图族（包括杜阿拉族）。</div></div>
+    <div class="counPart"><div class="country" id="nsd">南苏丹</div>
+    <div class="desc">南苏丹位于非洲东北部。南苏丹系多部族国家，有尼罗特、尼罗哈姆、班图和努巴四大族群。主要有丁卡人、努维尔人、希鲁克人、巴里人等64个部族。南苏丹居民大多信奉原始部落宗教，另有约18%和17%的居民分别信奉伊斯兰教和基督教。</div></div>
+    <div class="counPart"><div class="country" id="sse">塞舌尔</div>
+    <div class="desc">塞舌尔地处西印度洋，由115个大小岛屿组成。居民主要为班图人、克里奥尔人（欧洲人和非洲人混血）、印巴人后裔、华裔和英法后裔等。官方语言为克里奥尔语、英语、法语。居民90%信奉天主教，4%信奉伊斯兰教，其余信奉新教、印度教或其他宗教。</div></div>
+    <div class="counPart"><div class="country" id="jny">几内亚</div>
+    <div class="desc">几内亚共和国（英语：The Republic of Guinea；法语：La République de Guinée），简称几内亚，位于西非西岸，北邻几内亚比绍、塞内加尔和马里，东与科特迪瓦、南与塞拉利昂和利比里亚接壤，西濒大西洋。几内亚全国有20多个民族，其中富拉族（又称颇尔族）约占全国人口的40%以上，马林凯族约占30%以上，苏苏族约占20%。</div></div>
+    <div class="counPart"><div class="country" id="jny">加纳</div>
+    <div class="desc">加纳共和国（The Republic of Ghana），是非洲西部的一个国家，位于非洲西部、几内亚湾北岸，西邻科特迪瓦，北接布基纳法索，东毗多哥，南濒大西洋，海岸线长约562公里。在西非国家中加纳经济较为发达。以农业为主。黄金、可可和木材三大传统出口产品是加经济支柱。全国有4个主要民族：阿肯族（52.4%）、莫西—达戈姆巴族（15.8%）、埃维族（11.9%）和加—阿丹格贝族（7.8%）。</div></div>
+    <div class="counPart"><div class="country" id="zby">赞比亚</div>
+    <div class="desc">赞比亚共和国（The Republic of Zambia）是非洲中南部的一个内陆国家，大部分属于高原地区。北靠刚果民主共和国，东北邻坦桑尼亚，东面和马拉维接壤，东南和莫桑比克相连，南接津巴布韦、博茨瓦纳和纳米比亚，西面与安哥拉相邻。赞比亚全国总人口1760万（2018年），大多属班图语系黑人。有73个民族，奔巴族为最大部族，约占全国人口的33.6%。其他较大民族还有娘家族、通加族。</div></div>
+    <div class="counPart"><div class="country" id="msbk">莫桑比克</div>
+    <div class="desc">莫桑比克（葡萄牙语：República de Moçambique，全称：莫桑比克共和国）是非洲南部国家，以葡萄牙语作为官方语言，1975年脱离葡萄牙殖民地而独立。作为与英国并无宪制关系的国家，在1995年以特殊例子加入英联邦。莫桑比克的前身，就是葡属东非洲，它是在1498年3月，被葡萄牙航海家达伽马所率领的船队发现，当时就有阿拉伯的贸易站在沿海一带设立。<br>
+莫桑比克政府通过加大基础设施投入，大力发展旅游业，改善投资环境，鼓励开发矿产、能源、农林渔业等资源，保持了经济平稳增长。2013年，莫桑比克国民生产总值约合146.7亿美元，增长率达7%。</div></div>
+    <div class="counPart"><div class="country" id="jp">加蓬</div>
+    <div class="desc">加蓬位于非洲中部，跨越赤道，西濒大西洋，东、南与刚果（布）为邻，北与喀麦隆、赤道几内亚交界。加蓬有40多个民族，主要有芳族（占全国人口40%）、巴普努族（占22%）等。</div></div>
+    <div class="counPart"><div class="country" id="nmby">纳米比亚</div>
+    <div class="desc">纳米比亚地处非洲南部，北与安哥拉、赞比亚接壤，东、南邻博茨瓦纳和南非。2019年1月，纳米比亚全国总人口253万。88%为黑人，白人和有色人约占总人口的12%。奥万博族是最大的民族，占总人口的50%。其他主要民族有：卡万戈、达马拉、赫雷罗以及卡普里维、纳马、布须曼、雷霍伯特和茨瓦纳族。官方语言为英语，通用阿非利卡语、德语和广雅语、纳马语及赫雷罗语。90%的居民信仰基督教，其余信奉原始宗教。</div></div>
+    <div class="counPart"><div class="country" id="mltny">毛里塔尼亚</div>
+    <div class="desc">毛里塔尼亚位于非洲两北部，地处北纬15～27度之间，面积103.07万平方公里。毛塔西濒大西洋，北部与西撒哈拉和阿尔及利亚接壤，东南部与马里为邻，南与塞内加尔相望。海岸线全长 667公里，国土面积世界排名第28名。全境地势平坦。有2/3的地区是沙漠，大部分地区是海拔300米左右的低高原。东南边境和沿海地区为平原。<br>全国总体上分为摩尔族和黑非民族（非洲黑人）两大类。摩尔族中白摩尔人（阿拉伯－柏柏尔血统）占30%，具有阿拉伯文化语言传统的哈拉廷人（又称黑摩尔人）占40%，非洲黑人占30%。主要黑非民族是图库勒族、颇耳族、索宁克族、沃洛夫族和班巴拉族。阿拉伯语为官方语言，法语为通用语言。民族语言有哈桑语、布拉尔语、索宁克语和沃洛夫语。约96%的居民信奉伊斯兰教。</div></div>
+    <div class="counPart"><div class="country" id="agl">安哥拉</div>
+    <div class="desc">安哥拉位于非洲大陆西海岸，非洲西南部，南纬5～18度，东经11～24度，北面是刚果共和国，东与赞比亚接壤，南邻纳米比亚，东北部与刚果民主共和国毗连，西面濒临大西洋。截至2018年安哥拉人口共有2925万。主要有奥温本杜（约占总人口的37%）、姆本杜（25%）、巴刚果（13%）、隆达等民族。全国平均人口密度为16人/平方公里，首都罗安达人口密度最大，卡宾达人口密度最小。</div></div>
+    <div class="counPart"><div class="country" id="jbl">吉布提</div>
+    <div class="desc">吉布提共和国地处非洲东北部亚丁湾西岸，扼红海进入印度洋的要冲曼德海峡，东南同索马里接壤，北与厄立特里亚为邻，西部、西南及南部与埃塞俄比亚毗连吉布提共和国主要有伊萨族和阿法尔族。伊萨族占全国人口的50%，讲索马里语；阿法尔族约占40%，讲阿法尔语。另有少数阿拉伯人和欧洲人。</div></div>
     <div class="counPart">
       <div class="country" id="aseby">埃塞俄比亚</div>
       <div class="desc">埃塞俄比亚(首都：亚的斯亚贝巴)属非洲东北部内陆国，素有“非洲屋脊”之称。全国约有80多个民族，主要有奥罗莫族(40%)、阿姆哈拉族(30%)等。居民中45%信奉埃塞正教，40-45%信奉伊斯兰教，5%信奉新教，其余信奉原始宗教。阿姆哈拉语为联邦工作语言，通用英语，主要民族语言有奥罗莫语、提格雷语等。<br>埃塞俄比亚属世界最不发达国家之一。以农牧业为主，工业基础薄弱。出口商品主要有咖啡、油籽、恰特草、皮革和黄金，进口机械、汽车、石油产品、化肥、化学品等。
@@ -353,19 +372,19 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="kny">肯尼亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="nrly">尼日利亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="zd">乍得</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="ggb">刚果布</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="jbbw">津巴布韦</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="aejly">阿尔及利亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="tsny">坦桑尼亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="bld">布隆迪</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="fdj">佛得角</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="wgd">乌干达</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="gby">冈比亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="dg">多哥</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="lwd">卢旺达</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="kny">肯尼亚</div><div class="desc">肯尼亚共和国（The Republic of Kenya）位于非洲东部，赤道横贯中部，东非大裂谷纵贯南北。东邻索马里，南接坦桑尼亚，西连乌干达，北与埃塞俄比亚、南苏丹交界，东南濒临印度洋，海岸线长536公里。国土面积的18%为可耕地，其余主要适于畜牧业。全国共有42个民族，主要有基库尤族（17%）、卢希亚族（14%）、卡伦金族（13%）、卢奥族（10%）和康巴族（10%）等。此外，还有少数印巴人、阿拉伯人和欧洲人。</div></div>
+    <div class="counPart"><div class="country" id="nrly">尼日利亚</div><div class="desc">尼日利亚联邦共和国，位于北纬06°27′，东经03°24′，处于西非东南部，非洲几内亚湾西岸的顶点，邻国包括西边的贝宁，北边的尼日尔，东北方隔乍得湖与乍得接壤一小段国界，东和东南与喀麦隆毗连，南濒大西洋几内亚湾。尼日利亚全国有250多个民族，其中最大的3个部族是北部的豪萨-富拉尼族（占全国人口的29%）、西南部的约鲁巴族（21%）和东部的伊博族（18%）。其他比较大的部族还有：卡努尼族、伊比比奥族、蒂夫族、伊贾族、埃多族、安南族、努佩族、乌罗博族、伊加拉族、伊多马族。此外，尼日利亚还有少数的英国人、印巴人和亚裔人。</div></div>
+    <div class="counPart"><div class="country" id="zd">乍得</div><div class="desc">乍得共和国（英语：Republic of Chad），简称“乍得”，是非洲中部的一个内陆国家，北接利比亚，东邻苏丹，南与中非共和国接壤，西南与喀麦隆、尼日利亚为邻，西与尼日尔交界。首都及最大城市为恩贾梅纳。乍得全国共有民族256个。北部、中部和东部居民主要是阿拉伯血统的柏柏尔族、瓦达伊族、图布族、巴吉尔米族等，约占全国人口的45%；南部和西南部的居民主要为萨拉族、马萨族、科托科族、蒙当族等，约占全国人口的55%</div></div>
+    <div class="counPart"><div class="country" id="ggb">刚果布</div><div class="desc">刚果共和国（英语：The Republic of Congo；法语：République du Congo），简称为刚果（布），位于非洲中西部，赤道横贯中部，东、南两面邻刚果（金）、安哥拉，北接中非、喀麦隆，西连加蓬，西南临大西洋。全国有56个民族，属班图语系。最大的民族是南方的刚果族，包括拉利族、巴刚果族、维利族，约占总人口的45%；北方的姆博希族占16%；中部太凯族占20%；北方原始森林里还生活着少数俾格米人。</div></div>
+    <div class="counPart"><div class="country" id="jbbw">津巴布韦</div><div class="desc">津巴布韦共和国（The Republic of Zimbabwe），原称罗得西亚（1980年前），是非洲东南部内陆国，1980年4月18日独立。截至2019年1月，津巴布韦主要有绍纳族（占84.5%）和恩德贝莱族（占14.9%）。<br>津巴布韦是非洲工业较发达的国家，制造业、农业、矿业为经济三大支柱，津巴布韦以出产优质鳄鱼皮而闻名，有“鳄鱼之乡”的誉称。该国自然资源丰富，工农业基础较好。</div></div>
+    <div class="counPart"><div class="country" id="aejly">阿尔及利亚</div><div class="desc">阿尔及利亚（阿拉伯语：الجزائر‎ al-Jazāʼir，法语：Algérie），全称阿尔及利亚民主人民共和国，是非洲北部马格里布的一个国家。<br>阿尔及利亚经济规模在非洲居第四位，仅次于南非、尼日利亚和埃及。石油与天然气是阿国民经济的支柱。阿尔及利亚天然气储量为全世界第五，是全世界第二大天然气出口国。石油储量为全世界第14。<br>2013年，阿尔及利亚人口共有3790万。大多数是阿拉伯人，其次是柏柏尔人（约占总人口20%）。少数民族有姆扎布族和图阿雷格族。</div></div>
+    <div class="counPart"><div class="country" id="tsny">坦桑尼亚</div><div class="desc">坦桑尼亚联合共和国（英文：The United Republic of Tanzania），简称坦桑尼亚，是古人类发源地之一。位于非洲东部、赤道以南。坦桑尼亚总人口中班图语系人约占95%，尼罗特语系人占4%，另外1%的人口由阿拉伯人、印巴人和欧洲人后裔及上述少数民族与当地人通婚的后代组成。现有126个民族，主要有苏库马（SUKUMA）、马孔德（MAKONDE）、查加（CHAGA）、哈亚（HAYA）、尼亚姆韦齐（NYAMWEZI）等。</div></div>
+    <div class="counPart"><div class="country" id="bld">布隆迪</div><div class="desc">布隆迪共和国（The Republic of Burundi），简称布隆迪，位于非洲中东部赤道南侧。北与卢旺达接壤，东、南与坦桑尼亚交界，西与刚果（金）为邻，西南濒坦噶尼喀湖。人口由胡图（84%）、图西（15%）和特瓦（1%）三个部族组成。官方语言为基隆迪语和法语，国语为基隆迪语，部分居民讲斯瓦希里语。居民中61%信奉天主教，24%信奉基督教新教，3.2%信奉原始宗教，其余信奉其他宗教或不信教。</div></div>
+    <div class="counPart"><div class="country" id="fdj">佛得角</div><div class="desc">佛得角共和国（英语：Republic of Cape Verde，葡萄牙语：República de Cabo Verde），简称佛得角，是非洲的一个国家。位于北大西洋的佛得角群岛上，东距非洲大陆最西点佛得角（塞内加尔境内）500多公里，扼欧洲与南美、南非间交通要冲，包括圣安唐、圣尼古拉、萨尔、博阿维什塔、福古、圣地亚哥等15个大小岛屿，分北面的向风群岛和南面的背风群岛两组。民族语言为克里奥尔语。绝大部分为克里奥尔人，占人口总数的71%；黑色人种占28%，欧洲人种占1%。</div></div>
+    <div class="counPart"><div class="country" id="wgd">乌干达</div><div class="desc">乌干达共和国（The Republic of Uganda），简称乌干达。是位于非洲东部的国家，横跨赤道，东邻肯尼亚，南接坦桑尼亚和卢旺达，西接刚果（金），北连南苏丹，总面积24.1550万平方公里。全境大部位于东非高原，多湖，平均海拔1000~1200米，有“高原水乡”之称。<br>全国约有65个民族。按语言划分，有班图人、尼罗人、尼罗－闪米特人和苏丹人四大族群。每个族群由若干民族组成。班图族群占总人口的2/3以上，包括巴干达（占总人口的18%）、巴尼安科莱（占总人口的16%）、巴基加和巴索加等20个民族。尼罗族群包括兰吉、阿乔利等5个民族。尼罗－闪米特族群包括伊泰索、卡拉莫琼等7个民族。苏丹族群包括卢格巴拉、马迪等4个民族。</div></div>
+    <div class="counPart"><div class="country" id="gby">冈比亚</div><div class="desc">冈比亚共和国（Republic of The Gambia），简称冈比亚，台湾地区翻译为甘比亚。位于北纬 13°28'，西经 16°39'，非洲西部大西洋沿岸地区，它西邻大西洋，北、东、南三面被塞内加尔紧紧包围，国土面积约为10380平方公里。<br>冈比亚全国总人口有210万（2017年）。主要民族有：曼丁哥族（占人口的42%）、富拉族（又称颇尔族，占16%）、沃洛夫族（占16%）、朱拉族（占10%）和塞拉胡里族（占9%）。</div></div>
+    <div class="counPart"><div class="country" id="dg">多哥</div><div class="desc">多哥共和国（法语：République Togolaise），简称多哥，是西非国家之一，东面与贝宁，北面与布基纳法索，西面与加纳相邻，南面有一小段海岸线面向几内亚湾。全国有41个部族：南部以埃维族和米纳族为主，分别占全国人口的22%和6%；中部阿克波索、阿凯布等族占33%；北部卡布列族占13%。官方语言为法语。民族语言以埃维语和卡布列语较通用。居民中约70%信奉拜物教，20%信奉基督教，10%信奉伊斯兰教。</div></div>
+    <div class="counPart"><div class="country" id="lwd">卢旺达</div><div class="desc">卢旺达共和国（Republika y'u Rwanda） ，简称卢旺达。是位于非洲中东部赤道南侧的内陆国家。东邻坦桑尼亚，南连布隆迪，西和西北与刚果（金）交界，北与乌干达接壤，国土面积26338平方公里。境内多山，有“千丘之国”的称谓。主要民族有胡图族、图西族和特瓦族。官方语言为卢旺达语、英语、法语和斯瓦西里语。</div></div>
     <div class="counPart">
       <div class="country" id="mlg">摩洛哥</div>
       <div class="desc">
@@ -536,8 +555,8 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="tns">突尼斯</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="lby">利比亚</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="tns">突尼斯</div><div class="desc">突尼斯位于非洲北部、西欧和亚洲的中东、西亚、南亚、东南亚之间的海运线的必经之路——地中海航路中间，是中东石油运到西欧、美国的必经之路，地理位置非常重要，在非洲北端，西与阿尔及利亚为邻。全国有90%以上是阿拉伯人，其余为柏柏尔人。阿拉伯语为国语，通用法语。伊斯兰教为国教，主要是逊尼派，少数人信奉天主教、犹太教。</div></div>
+    <div class="counPart"><div class="country" id="lby">利比亚</div><div class="desc">利比亚国（阿拉伯语：دولة ليبيا‎‎，英语：State of Libya），简称“利比亚”，是北非的一个国家，位于地中海南岸，与埃及、苏丹、乍得、尼日尔、阿尔及利亚跟突尼斯相邻。利比亚全国总人口637万（2017年），主要是阿拉伯人，其他为柏柏尔人。</div></div>
     <div class="counPart">
       <div class="country" id="aj">埃及</div>
       <div class="desc">
@@ -562,13 +581,12 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="zg">中国</div><div class="desc"></div></div>
     <div class="counPart">
       <div class="country" id="hg">韩国</div>
       <div class="desc">韩国(首都：首尔)位于亚洲大陆东北部朝鲜半岛南半部。为单一民族，通用韩国语，50%左右的人口信奉基督教、佛教等宗教。<br>1996年加入经济合作与发展组织(OECD)，同年成为世界贸易组织(WTO)创始国之一。1997年，亚洲金融危机后，韩国经济进入中速增长期。主要进口产品有原油、半导体、天然气、石油制品、半导体零部件、钢板、煤炭、通讯器材、电缆等。主要出口产品有汽车及零部件、半导体、有线无线通讯器材、船舶、石油制品、平板液晶显示器、个人电脑、影视器材等。
       </div>
     </div>
-    <div class="counPart"><div class="country" id="mg">蒙古</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="mg">蒙古</div><div class="desc">蒙古国（蒙古语：Монголулс，英语：Mongolia），简称“蒙古”。位于中华人民共和国和俄罗斯之间，被两国包围的一个内陆国家，蒙古虽然不与哈萨克斯坦边境接壤，但其最西点到哈萨克斯坦的最东端只有38公里。首都及全国最大城市为乌兰巴托，占全国总人口的45%。</div></div>
     <div class="counPart">
       <div class="country" id="xjp">新加坡</div>
       <div class="desc">
@@ -989,6 +1007,7 @@
       <div class="desc">卡塔尔(首都：多哈)位于波斯湾西南岸的卡塔尔半岛上，其中卡塔尔公民约占15%。阿拉伯语为官方语言，通用英语。居民大多信奉伊斯兰教，多数属逊尼派中的瓦哈比教派，什叶派占全国人口的16%。<br>石油、天然气产业是卡塔尔经济支柱。主要出口产品石油、液化气、凝析油合成氨、尿素、乙烯等，主要进口产品是机械和运输设备、食品、工业原材料及轻工产品、药品等。
       </div>
     </div>
+
     <div class="counPart">
       <div class="country" id="am">阿曼</div>
       <div class="desc">阿曼(首都：马斯喀特)位于阿拉伯半岛东南部，阿曼人230.3万，约占56.3%。伊斯兰教为国教，90%本国穆斯林属伊巴德教派。官方语言为阿拉伯语，通用英语。<br>阿曼是典型的资源输出型国家，油气产业是国民经济的支柱。阿曼出口产品主要为石油。非石油类出口主要有大理石、铜、化工产品、鱼类、椰枣等。进口机械、运输工具、食品及工业制成品等。
@@ -1024,7 +1043,7 @@
           chart_am2.setOption(option);
         </script>
       </div>
-    </div>
+    </div>    
     <div class="counPart">
       <div class="country" id="lbn">黎巴嫩</div>
       <div class="desc">
@@ -1461,6 +1480,7 @@
         </script>
       </div>
     </div>
+    
     <div class="counPart">
       <div class="country" id="els">俄罗斯</div>
       <div class="desc">
@@ -1482,8 +1502,9 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="adl">奥地利</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="xl">希腊</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="adl">奥地利</div><div class="desc">奥地利共和国（ 德语：Republik Österreich，英语：The Republic of Austria），简称“奥地利”（Austria），是一个位于欧洲中部的议会制共和制国家，下属九个联邦州，作为一个内陆国家，与多国接壤，东邻是匈牙利和斯洛伐克，南邻意大利和斯洛文尼亚，西邻列支敦士登和瑞士，北邻德国和捷克，国土面积83855km²。首都维也纳，人口超过170万，是奥地利最大的城市。<br>全国人口中，奥地利民族占88.8%，少数民族有斯洛文尼亚人、克罗地亚人和匈牙利人，约占总人口的0.5%。官方语言德语。61.4%的人口信奉天主教。
+    </div></div>
+    <div class="counPart"><div class="country" id="xl">希腊</div><div class="desc">希腊共和国（希腊语：Ελληνική Δημοκρατία），简称希腊（希腊语：Ελλάδα），是地处欧洲东南角、巴尔干半岛的南端的共和制国家。全国由半岛南部的伯罗奔尼撒半岛和爱琴海中的3000余座岛屿共同构成。希腊为连接欧亚非的战略要地，本土从西北至正北部分别邻阿尔巴尼亚、马其顿、保加利亚三国，东北与土耳其国境接壤。周围则自东而西分别濒临爱琴海、地中海本域与伊奥尼亚海。<br>截至2016年，希腊全国总人口为1075万人，人口密度83.4人/平方公里（世界第88名）。约98%为希腊人，余为土耳其人、马其顿人、保加利亚人等。</div></div>
     <div class="counPart">
       <div class="country" id="bol">波兰</div>
       <div class="desc">
@@ -1719,11 +1740,11 @@
       <div class="country" id="ltw">立陶宛</div>
       <div class="desc">
         <div class="chartDiv_right">
-          <div id="chart_lty" style="width: 400px;height:150px;"></div>
+          <div id="chart_ltw" style="width: 400px;height:150px;"></div>
         </div>
         立陶宛(首都：维尔纽斯)位于波罗的海东岸，立陶宛族占84.2%，波兰族占6.6%，俄罗斯族占5.8%。此外还有白俄罗斯、乌克兰、犹太等民族。官方语言为立陶宛语，多数居民懂俄语。主要信奉罗马天主教，此外还有东正教、新教路德宗等。主要出口商品为矿产品、机电设备、电气设备、木材等，主要进口商品为矿产品、机电设备、电气设备、化工产品、蔬菜及水果等。
         <script type="text/javascript">
-            var chart_lty = echarts.init(document.getElementById('chart_lty'));
+            var chart_ltw = echarts.init(document.getElementById('chart_ltw'));
             var option = {
                 title:{text:"立陶宛人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
                 legend: {orient:'vertical',right:2,data:['立陶宛族','波兰族','俄罗斯族','其他']},
@@ -1734,7 +1755,7 @@
                             {value:5.8, name:'俄罗斯族'},
                             {value:3.4, name:'其他'}
                 ]}]};
-            chart_lty.setOption(option);
+            chart_ltw.setOption(option);
         </script>
       </div>
     </div>
@@ -1961,10 +1982,11 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="met">马耳他</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="pty">葡萄牙</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="ydl">意大利</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="lsb">卢森堡</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="met">马耳他</div><div class="desc">马耳他共和国（马耳他语：Repubblika ta' Malta，英语：Republic of Malta），简称马耳他，位于南欧的共和制的一个微型国家，是一个位于地中海中心的岛国，有“地中海心脏”，“欧洲的乡村”之称“。官方语言为马耳他语和英语，首都瓦莱塔（Valletta）。居民多信奉天主教，少数人信奉基督新教和东正教。</div></div>
+    <div class="counPart"><div class="country" id="pty">葡萄牙</div><div class="desc">葡萄牙共和国（葡萄牙语：República Portuguesa），简称“葡萄牙”，是一个位于欧洲西南部的共和制国家。东邻同处于伊比利亚半岛的西班牙，葡萄牙的西部和南部是大西洋的海岸。除了欧洲大陆的领土以外，大西洋的亚速群岛和马德拉群岛也是葡萄牙领土。葡萄牙首都里斯本以西的罗卡角是欧洲大陆的最西端，葡萄牙语是2.4亿人的共同母语，也是世界第六大语言。<br>葡萄牙总人口为1029.1万人（2017年），人口密度为111.8人/平方公里。主要为葡萄牙人。外国合法居民约40万人，主要来自巴西、安哥拉、莫桑比克等葡语国家及部分欧盟国家。官方语言为葡萄牙语。劳动人口522.6万。约85%的居民为天主教徒。</div></div>
+    <div class="counPart"><div class="country" id="ydl">意大利</div><div class="desc">意大利共和国（意大利语：Repubblica Italiana），简称意大利（意大利语：Italia），是一个欧洲国家，主要由南欧的亚平宁半岛及两个位于地中海中的岛屿西西里岛与萨丁岛所组成。主要是意大利人。讲意大利语，个别边境地区讲法语和德语。大部分居民信奉天主教。</div></div>
+    <div class="counPart"><div class="country" id="lsb">卢森堡</div><div class="desc">卢森堡大公国（卢森堡语：Groussherzogtum Lëtzebuerg，法语：Grand-Duché de Luxembourg，德语：Großherzogtum Luxemburg)，简称卢森堡，位于欧洲西北部，被邻国法国、德国和比利时包围，是一个内陆小国，也是现今欧洲大陆仅存的大公国（以世袭大公为元首的国家），首都卢森堡市。因国土小、古堡多，又有“袖珍王国”、“千堡之国”的称呼 。
+      <br>官方语言是法语、德语和卢森堡语。法语多用于行政、司法和外交；德语多用于报刊新闻；卢森堡语为民间口语，亦用于地方行政和司法。卢森堡的外国侨民特别多，占全国人口的三成以上，最大的移民团体是葡萄牙人和意大利人。</div></div>
     <div class="counPart">
       <div class="country" id="xxl">新西兰</div>
       <div class="desc">
@@ -1986,22 +2008,22 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="bbyxjny">巴布亚新几内亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="smy">萨摩亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="na">纽埃</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="fj">斐济</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="mklnxylb">密克罗尼西亚联邦</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="kkqd">库克群岛</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="tj">汤加</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="wnat">瓦努阿图</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="zl">智利</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="gyn">圭亚那</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="blwy">玻利维亚</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="wlg">乌拉圭</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="wnrl">委内瑞拉</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="sln">苏里南</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="egde">厄瓜多尔</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="gsdlj">哥斯达黎加</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="bbyxjny">巴布亚新几内亚</div><div class="desc">巴布亚新几内亚是南太平洋西部的一个岛国，是大洋洲第二大国，英联邦成员国，位于太平洋西南部。巴布亚新几内亚是世界上较不发达的国家之一。经济主要是农业，占巴布亚新几内亚经济32%。主要出口有矿产和农产咖啡、可可、椰干、棕油、橡胶、木材及海产等。截止2013年巴布亚新几内亚全国总人口有705万人，是大洋洲人口第二多的国家，仅次于澳大利亚。出生率30.52%，死亡率7.5%。因其多山崎岖地形，国内陆路交通很不方便，海路也很不方便。首都莫尔斯比港已经开通了公路通往国内大部分城市。</div></div>
+    <div class="counPart"><div class="country" id="smy">萨摩亚</div><div class="desc">萨摩亚位于太平洋南部，萨摩亚群岛西部，由萨瓦伊和乌波卢两个主岛及七个小岛组成。境内大部分地区为丛林覆盖。绝大多数为萨摩亚人，属波利尼西亚人种；还有少数其他太平洋岛国人、欧洲人和华裔以及混血人种。华人华侨约300人。</div></div>
+    <div class="counPart"><div class="country" id="na">纽埃</div><div class="desc">纽埃（Niue），位于太平洋中南部的一个岛国，其西为汤加、以北是萨摩亚，以东则是邻国的库克群岛。纽埃人为波利尼西亚人种，讲纽埃语和英语，岛屿南、北讲两种方言，多信奉埃克利西亚纽埃教。该国出产西番果、椰子和柠檬、香蕉等。有小型水果加工厂。出售邮票亦为重要经济收入。首府阿洛菲。</div></div>
+    <div class="counPart"><div class="country" id="fj">斐济</div><div class="desc">斐济共和国（斐济共和国（The Republic of Fiji、斐济语：Matanitu Tugalala o Viti），简称斐济，位于西南太平洋中心，瓦努阿图以东、汤加以西、图瓦卢以南，陆地面积18333平方公里，海洋专属经济区面积129万平方公里。全国56.8%为斐济族人，37.5%为印度族人。华人华侨约8000人。官方语言为英语、斐济语和印地语，通用英语。53%的人信奉基督教，38%的人信奉印度教，8%的人信奉伊斯兰教。</div></div>
+    <div class="counPart"><div class="country" id="mklnxylb">密克罗尼西亚联邦</div><div class="desc">密克罗尼西亚联邦（The Federated States of Micronesia），位于中部太平洋地区，属加罗林群岛，陆地面积702平方公里，海洋专属经济区面积298万平方公里。全国密克罗尼西亚人占97%，亚洲人占2.5%，其他人占0.5%。华人华侨数十人。官方语言为英语。天主教徒占50%，新教徒占47%，其他教派和不信教者占3%。</div></div>
+    <div class="counPart"><div class="country" id="kkqd">库克群岛</div><div class="desc">库克群岛（The Cook Islands），位于南太平洋上，介于法属波利尼西亚与斐济之间，面积240平方公里，由15个小岛组成。毛利人（属波利尼西亚人种）占92%，欧洲后裔占3%。居民69%信奉基督教新教，15%信奉罗马天主教。通用库克群岛毛利语和英语。</div></div>
+    <div class="counPart"><div class="country" id="tj">汤加</div><div class="desc">汤加王国（英语：The Kingdom of Tonga），简称汤加，属大洋洲，位于南太平洋西部、国际日期变更线西侧，是由173个岛屿组成的岛国，其中36个有人居住，大部分为珊瑚岛。汤加98%是汤加人，属波利尼西亚人种，其余为其他太平洋岛国人、欧洲人、亚洲人及其后裔。华人华侨约有2000人。</div></div>
+    <div class="counPart"><div class="country" id="wnat">瓦努阿图</div><div class="desc">瓦努阿图全国人口28.2万（2017年）。其中98%为瓦努阿图人，属美拉尼西亚人种，其余为法、英、华后裔和越南、波利尼西亚移民以及其他一些附近岛国人。华人华侨约600人。官方语言为英语、法语和比斯拉马语，通用比斯拉马语。84%的人信奉基督教。</div></div>
+    <div class="counPart"><div class="country" id="zl">智利</div><div class="desc">智利共和国（西班牙语：República de Chile），简称智利。位于南美洲西南部，安第斯山脉西麓。东同阿根廷为邻，北与秘鲁、玻利维亚接壤，西临太平洋，南与南极洲隔海相望，是世界上地形最狭长的国家，国土面积756715平方公里。</div></div>
+    <div class="counPart"><div class="country" id="gyn">圭亚那</div><div class="desc">圭亚那合作共和国（英语：Cooperative Republic of Guyana），简称圭亚那（Guyana，印第安语意为“多水之乡”），位于南美洲北部，国土总面积21.5万平方公里。总 73.8万（2017年），国民主要是印度裔和非洲裔， 多信奉基督新教和印度教，是南美洲唯一以英语为官方语言的国家。西北与委内瑞拉交界，南与巴西毗邻，东与苏里南接壤，东北濒大西洋。</div></div>
+    <div class="counPart"><div class="country" id="blwy">玻利维亚</div><div class="desc">玻利维亚 (Bolivia)，古巴中部城市，古巴谢戈德阿维拉省所辖县区之一，位于该省东北部，人口密度为每平方公里18.1人。</div></div>
+    <div class="counPart"><div class="country" id="wlg">乌拉圭</div><div class="desc">乌拉圭东岸共和国（西班牙语：República Oriental del Uruguay；英语：The Oriental Republic of Uruguay），简称乌拉圭。位于南美洲的东南部，乌拉圭河与拉普拉塔河的东岸，北邻巴西，西接阿根廷，东南濒大西洋。乌拉圭居民约90%是白人，其余有8%的印欧混血种人。多信奉天主教。官方语言是西班牙语。首都为蒙得维的亚。</div></div>
+    <div class="counPart"><div class="country" id="wnrl">委内瑞拉</div><div class="desc">委内瑞拉北临加勒比海与大西洋，东与圭亚那为邻，南同巴西接壤，西与哥伦比亚交界，而在委内瑞拉外海则有阿鲁巴、荷属安的列斯（皆为荷兰的海外自治领土）与特立尼达和多巴哥等岛屿邦国。印欧混血种人占58%，白人29%，黑人11%，印第安人2%。官方语言为西班牙语。多数居民信奉天主教。</div></div>
+    <div class="counPart"><div class="country" id="sln">苏里南</div><div class="desc">苏里南共和国（荷兰语：Republiek Suriname），简称苏里南（苏里南语：Sranan；博杰普尔语：Sarnam）。位于南美洲北部，东邻法属圭亚那，南界巴西，西连圭亚那，北濒大西洋，属热带雨林气候，年均气温23~27℃，是南美洲国家联盟成员国，首都帕拉马里博为苏里南河河口的商港。苏里南是一个种族、语言、宗教极为多元的国家，当中穆斯林人口占苏里南的13%，其比例在所有美洲国家中最高。</div></div>
+    <div class="counPart"><div class="country" id="egde">厄瓜多尔</div><div class="desc">厄瓜多尔共和国位于南美洲西北部。东北同哥伦比亚毗邻，东南与秘鲁接壤，西临太平洋。厄瓜多尔全国总人口15,789,330（2013年）。其中，印欧混血种人占77.42%，印第安人占6.83%，白种人占10.46%，黑白混血种人占2.74%，黑人和其他人种占2.55%。</div></div>
+    <div class="counPart"><div class="country" id="gsdlj">哥斯达黎加</div><div class="desc">哥斯达黎加共和国（西班牙语：La República de Costa Rica），简称哥斯达黎加，是位于拉丁美洲的一个总统共和制国家，北邻尼加拉瓜，南与巴拿马接壤。白人和印欧混血种人占95%，黑人占3%，印第安土著居民约0.5%，其他民族占1.5%。</div></div>
     <div class="counPart">
       <div class="country" id="bnm">巴拿马</div>
       <div class="desc">
@@ -2069,15 +2091,18 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="sewd">萨尔瓦多</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="dmnj">多米尼加</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="tlndhdbg">特立尼达和多巴哥</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="atghbbd">安提瓜和巴布达</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="dmnk">多米尼克</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="glnd">格林纳达</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="bbsd">巴巴多斯</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="gb">古巴</div><div class="desc"></div></div>
-    <div class="counPart"><div class="country" id="ymj">牙买加</div><div class="desc"></div></div>
+    <div class="counPart"><div class="country" id="sewd">萨尔瓦多</div><div class="desc">萨尔瓦多位于中美洲北部，北邻洪都拉斯，南濒太平洋，西部、西北部同危地马拉接壤，东临太平洋丰塞卡湾。印欧混血人占86%，欧洲人后裔占13%，印第安人占1%。</div></div>
+    <div class="counPart"><div class="country" id="dmnj">多米尼加</div><div class="desc">多米尼加位于伊斯帕尼奥拉岛，占全岛64%面积，全国
+总面积约48734平方公里。西与海地接壤，南临加勒比海，北濒大西洋，东隔莫纳海峡同波多黎各相望。海岸线全长1350公里。截至2017年，多米尼加共和国共有人口1083.53万。黑白混血种人和印欧混血种人占73%，白人占16%，黑人占11%。</div></div>
+    <div class="counPart"><div class="country" id="tlndhdbg">特立尼达和多巴哥</div><div class="desc">特立尼达和多巴哥共和国位于北纬 10°38', 西经 61°31'，中美洲加勒比海南部、紧邻于委内瑞拉外海。全国是由两个主要的大岛特立尼达岛与多巴哥岛，再加上21个较小岛屿组成，而全国大部分的人口，都是集中在特立尼达岛之上。截至2017年，特立尼达和多巴哥共和国共有人口121.8万，印度裔和非洲裔为两大主要族裔，分别占总人口约35.4%和34.2%，其余为混血人种、欧洲人、阿拉伯人后裔及华人。英语为官方语言和通用语。居民多信奉基督教新教、天主教、印度教，少数信奉伊斯兰教等。</div></div>
+    <div class="counPart"><div class="country" id="atghbbd">安提瓜和巴布达</div><div class="desc">安提瓜和巴布达（Antigua and Barbuda），位于加勒比海小安的列斯群岛的北部。为英联邦成员国。2017年，人口总数为9.1万人，绝大多数为非洲黑人后裔。英语为官方语言和通用语。多数居民信奉基督教。首都为圣约翰。</div></div>
+    <div class="counPart"><div class="country" id="dmnk">多米尼克</div><div class="desc">多米尼克国（The Commonwealth of Dominica）是位于东加勒比海向风群岛东北部的一个岛国。东临大西洋，西濒加勒比海，南与马提尼克岛隔马提尼克海峡、北同瓜德罗普隔多米尼克海峡相望。多米尼克主要为黑人和黑白混血人种。</div></div>
+    <div class="counPart"><div class="country" id="glnd">格林纳达</div><div class="desc">格林纳达（英文：Grenada）位于东加勒比海向风群岛的最南端，南距委内瑞拉海岸约160公里。属热带海洋性气候，年平均气温26℃。<br>
+农业和旅游业是经济的基础，主要农产品肉豆蔻产量约占世界总产量的三分之一，仅次于印度尼西亚，居世界第二位。现为英联邦成员国之一。<br>格林纳达人口以非洲后裔为主，并有少部分印第安后裔。黑人约占82%，混血人占13%，白人及其他人种占5%。大约50%的人口年龄在30岁以下。 [9] 
+</div></div>
+    <div class="counPart"><div class="country" id="bbsd">巴巴多斯</div><div class="desc">巴巴多斯位于东加勒比海小安的列斯群岛最东端，西距特立尼达岛322公里。海岸线长101公里。东西宽22公里，南北长34公里，幅员面积为431平方公里。<br>2017年，巴巴多斯人口28.1万，其中80%以上为非洲黑人后裔，4%为欧洲后裔。英语为官方语言和通用语。居民多信奉基督教。2017年，巴人均寿命75.5岁，人口增长率0.28%。</div></div>
+    <div class="counPart"><div class="country" id="gb">古巴</div><div class="desc">古巴位于加勒比海西北部，东与海地相望，南距牙买加140公里，北离美国佛罗里达半岛顶端217公里。古巴由古巴岛和青年岛（原松树岛）等1600多个岛屿组成，是西印度群岛中最大的岛国。全国白人占总人口66%，黑人占11%，混血种人占22%，华人占1%。</div></div>
+    <div class="counPart"><div class="country" id="ymj">牙买加</div><div class="desc">牙买加（英语：Jamaica），是加勒比海的其中一个岛国。牙买加人有90﹪以上均是非洲黑人，其余主要为穆拉托人，且有普遍年轻化的倾向，约60﹪的人口年龄在29岁以下。牙买加还是一个体育强国，在田径方面非常出色，伦敦奥运会上以4金、4银、4铜，赢得了第十八名。从第一次参加奥运会取得1银到2012年已经达到10金、18银、15铜的成绩。大部分是在田径上取得的。博尔特是该国最著名的运动员。截至2012年底，牙买加著名短跑健将博尔特已经取得了17枚金牌，包括6枚奥运会金牌和打破了7项世界纪录。</div></div>
 
   </div>
 </body>

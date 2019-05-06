@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>“一带一路”国家间新闻流动可视化</title>
+    <title>“一带一路”国家间新闻报道可视化交互系统</title>
     <style>
         html{height:100%;}
         body{
@@ -14,16 +14,17 @@
             position:absolute;
             width:800px;
             color:#FFF;
-            font-size:30px;
+            font-size:24px;
             top:10px;
             left:20px;
         }
         #text p{
             position: absolute;
-            left:60px;
-            top:80px;
-            color:#FFF;
-            font-size:20px;
+            left: 40px;
+            top: 60px;
+            color: #FFF;
+            font-size: 14px;
+            width: 800px;
         }
         #text{
             position: absolute;
@@ -33,9 +34,10 @@
             position: absolute;
             height: 50px;
             width: 500px;
-            background-color:rgba(43,43,43,0.9);
-            bottom:1%;
-            left:430px;
+            background-color: rgba(43,43,43,0.9);
+            bottom: 1%;
+            left: 50%;
+            margin-left: -250px;
         }
         #history ul {
             list-style-type:none;
@@ -64,10 +66,12 @@
             bottom:10px;
         }
         #hudButtons{
-            display: none;
+            display: block;
             position: absolute;
             top: 30px;
             width: 489px;
+            left: 100%;
+            margin-left: -500px;
 
         }
         #hudButtons .countryTextInput {
@@ -135,11 +139,13 @@
 
         }
         #importExportBtns {
-            width:298px;
-            position:absolute;
-            bottom:0px;
-            color:white;
-            display:none;
+            width: 298px;
+            position: absolute;
+            bottom: 0px;
+            color: white;
+            display: block;
+            left: 100%;
+            margin-left: -300px;
         }
         #importExportBtns>div>div {
             float:left;
@@ -235,7 +241,7 @@
         }
         #data{
             z-index: 100;
-            width: 270px;
+            width: 290px;
             height: 330px;
             position: absolute;
             top: 25%;
@@ -294,8 +300,8 @@
 </head>
 <body>
     <div id="text">
-        <h1>“一带一路”相关国家间的新闻流通</h1>
-        <p>自2019年4月8日-2019年4月12日</p>
+        <h1>“一带一路”国家间新闻报道可视化交互系统</h1>
+        <p>自2019年4月8日至2019年4月12日</p>
     </div>
     <div id="container">
     </div>
@@ -309,7 +315,8 @@
             <div id="handle" class="noMapDrag ui-draggable"style="left: 222px"></div>
         </ul>
     </div>
-    <div class="overlayCountries noPointer" id="hudButtons" style="left: 800px; display: block;">
+    <div class="overlayCountries noPointer" id="hudButtons">
+        <input type="button" value="介绍" id="btnIntro" class="searchBtn armsBtn pointer">
         <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
         <input type="text" name="country" id="countries"
                class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
@@ -317,7 +324,7 @@
         <ul id="data_list" class="list"></ul>
         <br class="clear">
     </div>
-    <div id="importExportBtns" class="overlayCountries" style="left: 1073px; display: block;">
+    <div id="importExportBtns" class="overlayCountries">
         <div class="typeLabels">
             <div class="mil">正面</div>
             <div class="civ">中性</div>
@@ -338,21 +345,30 @@
         <br class="clear">
     </div>
     <div id="data">
-        <p style="margin: 0;font-size: x-large;border-bottom: 2px solid #fff;text-align: center;padding: 5px;color: white;"><label id="countryName"></label>&nbsp;<label id="dataAll"></label></p>
-        <p style="font-size: large;margin: 15px auto 0px auto;color: white;">输入<label id="dataIn"></label></p>
-        <p style="margin-left: 15px;color: greenyellow;">正面：<label id="dataInPos"></label></p>
-        <p style="margin-left: 15px;color: wheat;">中性：<label id="dataInNeu"></label></p>
-        <p style="margin-left: 15px;color: #CC3333;">负面：<label id="dataInNeg"></label></p>
-        <p style="font-size: large;margin: 10px auto 0px auto;color: white;">输出<label id="dataOut"></label></p>
-        <p style="margin-left: 15px;color: greenyellow;">正面：<label id="dataOutPos"></label></p>
-        <p style="margin-left: 15px;color: wheat;">中性：<label id="dataOutNeu"></label></p>
-        <p style="margin-left: 15px;color: #CC3333;">负面：<label id="dataOutNeg"></label></p>
+        <div style="margin: 0;font-size: large;border-bottom: 2px solid #fff;text-align: center;padding: 5px;color: white;height: 30px;">
+            <p style="margin: 0;position: relative;top: 0px;height: 0;color: white;float: left;"><label id="countryName"></label></p>
+            <p style="position: relative;top: -18px;height: 0;float: right;color: white;">报道总量：<label id="dataAll"></label></p>
+        </div>
+        <div style="font-size: medium;margin: 5px auto 0px auto;color: white;">
+            <p>被报道（输入）总量:</p>
+            <p style="position: relative;top: -46px;float: right;"><label id="dataIn"></label></p>
+        </div>
+        <p style="margin:10px auto 10px 15px;color: greenyellow;">正面：<label id="dataInPos"></label></p>
+        <p style="margin:10px auto 10px 15px;color: wheat;">中性：<label id="dataInNeu"></label></p>
+        <p style="margin:10px auto 10px 15px;color: #CC3333;">负面：<label id="dataInNeg"></label></p>
+        <div style="font-size: medium;margin: 0px auto 0px auto;color: white;">
+            <p>报道国（输出）总量:</p>
+            <p style="position: relative;top: -46px;float: right;"><label id="dataOut"></label></p>
+        </div>
+        <p style="margin:10px auto 10px 15px;color: greenyellow;">正面：<label id="dataOutPos"></label></p>
+        <p style="margin:10px auto 10px 15px;color: wheat;">中性：<label id="dataOutNeu"></label></p>
+        <p style="margin:10px auto 10px 15px;color: #CC3333;">负面：<label id="dataOutNeg"></label></p>
     </div>
     <div id="dataRight">
         <!-- <input type="text" id="drsearch" style="width: 100px;"></input>
         <input type="button" id="btndrsearch" value="搜索"></input>
         <input type="button" id="btndrsearchAll" value="全部"></input> -->
-        <p class="drp">输入</p>
+        <p class="drp">被报道（输入）信息</p>
         <div id="drDiv1">
             <div id="drDiv1_1">
                 <!-- <p class="linePos">中国-俄罗斯   4</p>
@@ -361,7 +377,7 @@
             </div>
             <div id="drDiv1_2"></div>
         </div>
-        <p class="drp">输出</p>
+        <p class="drp">报道国（输出）信息</p>
         <div id="drDiv2">
             <div id="drDiv2_1">
                 <!-- <p class="linePos">中国-俄罗斯   4</p>
@@ -565,10 +581,12 @@
                 counName=document.getElementById("countries").value;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-
-            // var btndrsearch=document.getElementById("btndrsearch");
-            // btndrsearch.onclick=function(e){
-            // }
+            //介绍按钮 点击事件
+            var btnIntro=document.getElementById("btnIntro");
+            btnIntro.onclick=function(e){
+                window.location.href="introCoun.html";
+            }
+            // btnIntro
         }
     </script>
     <!--输入框-->
