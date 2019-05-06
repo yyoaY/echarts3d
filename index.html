@@ -390,14 +390,14 @@
     <script>
         var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
 
-        //判断奇偶 奇数-true;偶数-false 
+        //判断奇偶 奇数-true;偶数-false
         function isOdd(num){
             if(num%2==0)
                 return false;
             else
                 return true;
         }
-        
+
         window.onload = function() {
             //时间条
             var obj_lis = document.getElementById("line").getElementsByTagName("li");
@@ -416,7 +416,7 @@
                     window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
                 }
             }
-            
+
             //滚动
             var speed = 100;
             var drDiv1=document.getElementById("drDiv1");
@@ -475,7 +475,7 @@
                 if(isOdd(cg)&&isOdd(dg)&&isOdd(eg)&&(!isOdd(ag)))ag=1;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest2=document.getElementById("label2");
             btnTest2.onclick=function(e){
                 var btns = $("#importExportBtns .exports>div").not(".label");
@@ -496,7 +496,7 @@
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest3=document.getElementById("m1");
             btnTest3.onclick=function(e){
                 var btns = $("#importExportBtns .imports .mil");
@@ -509,7 +509,7 @@
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest4=document.getElementById("c1");
             btnTest4.onclick=function(e){
                 var btns = $("#importExportBtns .imports .civ");
@@ -522,7 +522,7 @@
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest5=document.getElementById("a1");
             btnTest5.onclick=function(e){
                 var btns = $("#importExportBtns .imports #a1");
@@ -535,7 +535,7 @@
                 if(!isOdd(cg)&&!isOdd(dg)&&!isOdd(eg)&&isOdd(ag))ag=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest6=document.getElementById("m2");
             btnTest6.onclick=function(e){
                 var btns = $("#importExportBtns .exports .mil");
@@ -548,7 +548,7 @@
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest7=document.getElementById("c2");
             btnTest7.onclick=function(e){
                 var btns = $("#importExportBtns .exports .civ");
@@ -561,7 +561,7 @@
                 if(!isOdd(gg)&&!isOdd(fg)&&!isOdd(hg)&&isOdd(bg))bg=2;
                 window.location.href="index.html"+"?"+"c="+counName+"&"+"y="+year+"&"+cg+"_"+dg+"_"+eg+"_"+ag+"_"+gg+"_"+fg+"_"+hg+"_"+bg;
             }
-            
+
             var btnTest8=document.getElementById("a2");
             btnTest8.onclick=function(e){
                 var btns = $("#importExportBtns .exports #a2");
@@ -1047,7 +1047,7 @@
                 var dat=[];
                 //var time=['20190408','20190409','20190410','20190411','20190412'];
                 var datain=data.timeBins[yearNum-20190408].data;//筛选时间
-                
+
                 //筛选方向和情感
                 if (isOdd(de_i)) {
                     //导入输入数据
@@ -1430,7 +1430,7 @@
                         i:dataInPos[i].i,
                         c:dataInPos[i].c,
                         v:dataInPos[i].v
-                    }); 
+                    });
                 }
                 for (var i = 0; i < dataInNeu.length; i++) {
                     DATAIN.push({
@@ -1438,7 +1438,7 @@
                         i:dataInNeu[i].i,
                         c:dataInNeu[i].c,
                         v:dataInNeu[i].v
-                    }); 
+                    });
                 }
                 for (var i = 0; i < dataInNeg.length; i++) {
                     DATAIN.push({
@@ -1446,7 +1446,7 @@
                         i:dataInNeg[i].i,
                         c:dataInNeg[i].c,
                         v:dataInNeg[i].v
-                    }); 
+                    });
                 }
                 // console.log(DATAIN);
                 for (var i = 0; i < dataOutPos.length; i++) {
@@ -1455,7 +1455,7 @@
                         i:dataOutPos[i].i,
                         c:dataOutPos[i].c,
                         v:dataOutPos[i].v
-                    }); 
+                    });
                 }
                 for (var i = 0; i < dataOutNeu.length; i++) {
                     DATAOUT.push({
@@ -1463,7 +1463,7 @@
                         i:dataOutNeu[i].i,
                         c:dataOutNeu[i].c,
                         v:dataOutNeu[i].v
-                    }); 
+                    });
                 }
                 for (var i = 0; i < dataOutNeg.length; i++) {
                     DATAOUT.push({
@@ -1471,7 +1471,7 @@
                         i:dataOutNeg[i].i,
                         c:dataOutNeg[i].c,
                         v:dataOutNeg[i].v
-                    }); 
+                    });
                 }
                 // console.log(DATAOUT);
                 // console.log(coundata);
