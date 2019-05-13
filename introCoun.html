@@ -101,13 +101,7 @@
 <body>
 <div class="counInto">
   <div class="counNav">
-    <p id="proName">国家间新闻报道</p>
-    <script type="text/javascript">
-      var proName=document.getElementById("proName");
-            proName.onclick=function(e){
-                window.location.href="index.html";
-            }
-    </script>
+    <p id="proName">国家间新闻流动</p>
     <div style="overflow: scroll;height: 590px;">
       <ul class="z">
           <li><a href="#sd">非洲</a></li>
@@ -123,14 +117,14 @@
           <li><a href="#nsd">南苏丹</a></li>
           <li><a href="#sse">塞舌尔</a></li>
           <li><a href="#jny">几内亚</a></li>
-          <li><a href="#jny">加纳</a></li>
+          <li><a href="#jn">加纳</a></li>
           <li><a href="#zby">赞比亚</a></li>
           <li><a href="#msbk">莫桑比克</a></li>
           <li><a href="#jp">加蓬</a></li>
           <li><a href="#nmby">纳米比亚</a></li>
           <li><a href="#mltny">毛里塔尼亚</a></li>
           <li><a href="#agl">安哥拉</a></li>
-          <li><a href="#jbl">吉布提</a></li>
+          <li><a href="#jbt">吉布提</a></li>
           <li><a href="#aseby">埃塞俄比亚</a></li>
           <li><a href="#kny">肯尼亚</a></li>
           <li><a href="#nrly">尼日利亚</a></li>
@@ -269,9 +263,30 @@
   </div>
   <div class="counDetil">
     <div class="counPart"><div class="country" id="sd">苏丹</div>
-    <div class="desc">苏丹，位于非洲东北部、红海沿岸、撒哈拉沙漠东端。国土面积1886068平方公里，为非洲面积第3大国，世界面积第15大国。阿拉伯语为官方语言。通用英语。居民大多信奉伊斯兰教，属逊尼派。<br>
-    苏丹是联合国公布的世界最不发达国家之一，经济结构单一，基础薄弱，工业落后，对自然环境及外援依赖性强。受益于石油大量出口及借助高油价的拉动，苏丹经济曾一度成为非洲经济发展最快的国家之一。<br>
-  农业是苏经济的主要支柱。农业人口占全国总人口的80%。农作物主要有高粱、谷子、玉米和小麦。经济作物在农业生产中占重要地位，占农产品出口额的66%，主要有棉花、花生、芝麻和阿拉伯胶，大多数供出口。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_sd" style="width: 400px;height:190px;"></div>
+        </div>
+        苏丹，位于非洲东北部、红海沿岸、撒哈拉沙漠东端。国土面积1886068平方公里，为非洲面积第3大国，世界面积第15大国。阿拉伯语为官方语言。通用英语。居民大多信奉伊斯兰教，属逊尼派。<br>
+        苏丹是联合国公布的世界最不发达国家之一，经济结构单一，基础薄弱，工业落后，对自然环境及外援依赖性强。受益于石油大量出口及借助高油价的拉动，苏丹经济曾一度成为非洲经济发展最快的国家之一。<br>
+        农业是苏经济的主要支柱。农业人口占全国总人口的80%。农作物主要有高粱、谷子、玉米和小麦。经济作物在农业生产中占重要地位，占农产品出口额的66%，主要有棉花、花生、芝麻和阿拉伯胶，大多数供出口。
+        <script type="text/javascript">
+            var chart_sd = echarts.init(document.getElementById('chart_sd'));
+            var option = {
+              title:{text:"苏丹人口组成",left: 150,top: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',right:2,data:['农业人口','非农业人口']},
+              series: [{
+                  name:'苏丹人口组成',type:'pie',radius : '60%',center: ['50%', '50%'],
+                  data:[
+                    {value:80, name:'农业人口'},
+                    {value:20, name:'非农业人口'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_sd.setOption(option);
+        </script>
+      </div>
+    </div>
     <div class="counPart">
       <div class="country" id="nf">南非</div>
       <div class="desc">
@@ -297,42 +312,301 @@
       </div>
     </div>
     <div class="counPart"><div class="country" id="snje">塞内加尔</div>
-    <div class="desc">塞内加尔共和国（The Republic of Senegal），简称塞内加尔，位于非洲西部凸出部位的最西端，首都达喀尔。北接毛里塔尼亚，东邻马里，南接几内亚和几内亚比绍，西临佛得角群岛。海岸线长约700公里。塞内加尔全国有20多个民族，主要是沃洛夫族（占全国人口的43%）、颇尔族（24%）和谢列尔族（15%）。<br>
-    塞内加尔系全球最不发达国家之一，70%的人口从事农业，具备一定的工业基础，第三产业发展较平衡。农业以种植花生、棉花、小米、高粱、玉米、木薯等为主。渔业、花生、磷酸盐出口以及旅游业是塞四大传统创汇产业。</div></div>
+      <div class="desc">塞内加尔共和国（The Republic of Senegal），简称塞内加尔，位于非洲西部凸出部位的最西端，首都达喀尔。北接毛里塔尼亚，东邻马里，南接几内亚和几内亚比绍，西临佛得角群岛。海岸线长约700公里。塞内加尔全国有20多个民族，主要是沃洛夫族（占全国人口的43%）、颇尔族（24%）和谢列尔族（15%）。<br>
+    塞内加尔系全球最不发达国家之一，70%的人口从事农业，具备一定的工业基础，第三产业发展较平衡。农业以种植花生、棉花、小米、高粱、玉米、木薯等为主。渔业、花生、磷酸盐出口以及旅游业是塞四大传统创汇产业。
+        <div class="chartDiv_bottom" style="height: 350px;">
+          <div id="chart_snje" style="width: 600px;height:400px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_snje = echarts.init(document.getElementById('chart_snje'));
+          var option = {
+              title:{text:"塞内加尔人口组成",left: 'center',top: 18,textStyle:{fontSize:18}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},legend: {orient: 'vertical',x: 'left',data:['沃洛夫族','颇尔族','谢列尔族','其他']},
+              series: [ {name:'人口组成',type:'pie',selectedMode: 'single',radius: [0, '30%'],label: {normal: {position: 'inner'}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:70, name:'农业人口'},
+                          {value:30, name:'非农业人口'}
+                        ]},
+                        {name:'人口组成',type:'pie',radius: ['40%', '55%'],label: {normal: {formatter: '  {b|{b}} {per|{d}%}  ',backgroundColor: '#eee',borderColor: '#aaa',borderWidth: 1,borderRadius: 4,rich: {a: {color: '#999',lineHeight: 22,align: 'center'},hr: {borderColor: '#aaa',width: '100%',borderWidth: 0.5,height: 0},b: {fontSize: 16,lineHeight: 33},per: {color: '#eee',backgroundColor: '#334455',padding: [2, 4],borderRadius: 2}}}},
+                      data:[
+                          {value:43, name:'沃洛夫族'},
+                          {value:24, name:'颇尔族'},
+                          {value:15, name:'谢列尔族'},
+                          {value:18, name:'其他'}
+                        ]}]};
+          chart_snje.setOption(option);
+        </script>
+      </div>
+    </div>
     <div class="counPart"><div class="country" id="slla">塞拉利昂</div>
-    <div class="desc">塞拉利昂共和国（The Republic of Sierra Leone），简称塞拉利昂。位于西非大西洋岸，北部及东部被几内亚包围、东南与利比里亚接壤，首都弗里敦。由于矿产丰富，塞拉利昂的经济主要依赖矿业，尤其钻矿业占了很大分量。其中最为世人所知的是从塞拉利昂开采的血钻石。<br>
-    全国有20多个民族。南部的曼迪族最大，北部和中部的泰姆奈族次之，两者各占全国人口的30%左右；林姆巴族占8.4%；由英、美移入的“自由”黑人后裔克里奥尔人占10%。官方语言为英语，民族语言主要有曼迪语、泰姆奈语、林姆巴语和克里奥尔语。60%的居民信奉伊斯兰教，30%的居民信奉基督教，10%信奉拜物教。</div></div>
+      <div class="desc">塞拉利昂共和国（The Republic of Sierra Leone），简称塞拉利昂。位于西非大西洋岸，北部及东部被几内亚包围、东南与利比里亚接壤，首都弗里敦。由于矿产丰富，塞拉利昂的经济主要依赖矿业，尤其钻矿业占了很大分量。其中最为世人所知的是从塞拉利昂开采的血钻石。<br>
+      全国有20多个民族。南部的曼迪族最大，北部和中部的泰姆奈族次之，两者各占全国人口的30%左右；林姆巴族占8.4%；由英、美移入的“自由”黑人后裔克里奥尔人占10%。官方语言为英语，民族语言主要有曼迪语、泰姆奈语、林姆巴语和克里奥尔语。60%的居民信奉伊斯兰教，30%的居民信奉基督教，10%信奉拜物教。
+        <div class="chartDiv_bottom">
+          <div id="chart_slla" style="width: 300px;height:200px;"></div>
+          <div id="chart_slla2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_slla = echarts.init(document.getElementById('chart_slla'));
+          var option = {
+              title:{text:"塞拉利昂人口组成",left: 110,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['曼迪族','泰姆奈族','林姆巴族','克里奥尔人','其他']},
+              series: [{name:'塞拉利昂 民族',type:'pie',center: ['60%', '50%'],radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:30, name:'曼迪族'},
+                          {value:30, name:'泰姆奈族'},
+                          {value:8.4, name:'林姆巴族'},
+                          {value:10, name:'克里奥尔人'},
+                          {value:21.6, name:'其他'}
+              ]}]};
+          chart_slla.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_slla2 = echarts.init(document.getElementById('chart_slla2'));
+          var option = {
+              title:{text:"塞拉利昂居民信仰状况",left: 210,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',left:60,data:['伊斯兰教','基督教','拜物教']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['60%', '50%'],
+                  data:[
+                    {value:60, name:'伊斯兰教'},
+                    {value:30, name:'基督教'},
+                    {value:10, name:'拜物教'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_slla2.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="ktdw">科特迪瓦</div>
-    <div class="desc">科特迪瓦总面积322463平方公里。位于非洲西部，西与利比里亚和几内亚交界，北同马里和布基纳法索为邻，东与加纳相连，南濒几内亚湾。全国有69个民族，分为4大族系：阿肯族系约占42%，曼迪族系约占27%，沃尔特族系约占16%，克鲁族系约占15%。<br>
-来自布基纳法索、加纳、几内亚、马里和利比里亚等国的外国侨民人口数目增长较快，约占人口总数的26%。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_ktdw" style="width: 400px;height:190px;"></div>
+        </div>科特迪瓦总面积322463平方公里。位于非洲西部，西与利比里亚和几内亚交界，北同马里和布基纳法索为邻，东与加纳相连，南濒几内亚湾。全国有69个民族，分为4大族系：阿肯族系约占42%，曼迪族系约占27%，沃尔特族系约占16%，克鲁族系约占15%。<br>
+        来自布基纳法索、加纳、几内亚、马里和利比里亚等国的外国侨民人口数目增长较快，约占人口总数的26%。
+        <script type="text/javascript">
+            var chart_ktdw = echarts.init(document.getElementById('chart_ktdw'));
+            var option = {
+                title:{text:"科特迪瓦人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['阿肯族系','曼迪族系','沃尔特族系','克鲁族系']},
+                series: [{name:'科特迪瓦人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:42, name:'阿肯族系'},
+                            {value:27, name:'曼迪族系'},
+                            {value:16, name:'沃尔特族系'},
+                            {value:15, name:'克鲁族系'}
+                        ]}]};
+            chart_ktdw.setOption(option);
+        </script>
+      </div>
+    </div>
     <div class="counPart"><div class="country" id="sml">索马里</div>
     <div class="desc">索马里位于非洲大陆最东部的索马里半岛，北临亚丁湾，东濒印度洋，西接肯尼亚和埃塞俄比亚，西北接吉布提。<br>
     截至2017年，索马里共有1430万。绝大多数是索马里族，又分萨马莱和萨布两大族系。其中萨马莱族系占全国人口的80%以上，分为达鲁德、哈维耶、伊萨克和迪尔四大部族。萨布族系分为迪吉尔和拉汉文两大部族。官方语言为索马里语和阿拉伯语，通用英语和意大利语。伊斯兰教为国教，穆斯林占总人口99%。</div></div>
     <div class="counPart"><div class="country" id="kml">喀麦隆</div>
     <div class="desc">喀麦隆，是位于非洲中西部的单一制共和国，西方与尼日利亚接壤，东北与东边分别和乍得与中非相靠，南方则与赤道几内亚、加蓬及刚果共和国毗邻。喀麦隆全国总人口2405万（2017年）。约有200多个民族，主要有富尔贝族、巴米累克族、赤道班图族（包括芳族和贝蒂族）、俾格米族、西北班图族（包括杜阿拉族）。</div></div>
     <div class="counPart"><div class="country" id="nsd">南苏丹</div>
-    <div class="desc">南苏丹位于非洲东北部。南苏丹系多部族国家，有尼罗特、尼罗哈姆、班图和努巴四大族群。主要有丁卡人、努维尔人、希鲁克人、巴里人等64个部族。南苏丹居民大多信奉原始部落宗教，另有约18%和17%的居民分别信奉伊斯兰教和基督教。</div></div>
+    <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_nsd" style="width: 400px;height:150px;"></div>
+        </div>
+        南苏丹位于非洲东北部。南苏丹系多部族国家，有尼罗特、尼罗哈姆、班图和努巴四大族群。主要有丁卡人、努维尔人、希鲁克人、巴里人等64个部族。南苏丹居民大多信奉原始部落宗教，另有约18%和17%的居民分别信奉伊斯兰教和基督教。
+        <script type="text/javascript">
+            var chart_nsd = echarts.init(document.getElementById('chart_nsd'));
+            var option = {
+              title:{text:"南苏丹居民信仰状况",left: 110,top:-3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',right:2,data:['伊斯兰教','基督教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['50%', '50%'],
+                  data:[
+                    {value:18, name:'伊斯兰教'},
+                    {value:17, name:'基督教'},
+                    {value:65, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_nsd.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="sse">塞舌尔</div>
-    <div class="desc">塞舌尔地处西印度洋，由115个大小岛屿组成。居民主要为班图人、克里奥尔人（欧洲人和非洲人混血）、印巴人后裔、华裔和英法后裔等。官方语言为克里奥尔语、英语、法语。居民90%信奉天主教，4%信奉伊斯兰教，其余信奉新教、印度教或其他宗教。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_sse" style="width: 400px;height:150px;"></div>
+        </div>
+        塞舌尔地处西印度洋，由115个大小岛屿组成。居民主要为班图人、克里奥尔人（欧洲人和非洲人混血）、印巴人后裔、华裔和英法后裔等。官方语言为克里奥尔语、英语、法语。居民90%信奉天主教，4%信奉伊斯兰教，其余信奉新教、印度教或其他宗教。
+        <script type="text/javascript">
+            var chart_sse = echarts.init(document.getElementById('chart_sse'));
+            var option = {
+              title:{text:"塞舌尔居民信仰状况",left: 110,top:-3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',right:2,data:['天主教','伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '60%',center: ['50%', '55%'],
+                  data:[
+                    {value:90, name:'天主教'},
+                    {value:4, name:'伊斯兰教'},
+                    {value:6, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_sse.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="jny">几内亚</div>
-    <div class="desc">几内亚共和国（英语：The Republic of Guinea；法语：La République de Guinée），简称几内亚，位于西非西岸，北邻几内亚比绍、塞内加尔和马里，东与科特迪瓦、南与塞拉利昂和利比里亚接壤，西濒大西洋。几内亚全国有20多个民族，其中富拉族（又称颇尔族）约占全国人口的40%以上，马林凯族约占30%以上，苏苏族约占20%。</div></div>
-    <div class="counPart"><div class="country" id="jny">加纳</div>
-    <div class="desc">加纳共和国（The Republic of Ghana），是非洲西部的一个国家，位于非洲西部、几内亚湾北岸，西邻科特迪瓦，北接布基纳法索，东毗多哥，南濒大西洋，海岸线长约562公里。在西非国家中加纳经济较为发达。以农业为主。黄金、可可和木材三大传统出口产品是加经济支柱。全国有4个主要民族：阿肯族（52.4%）、莫西—达戈姆巴族（15.8%）、埃维族（11.9%）和加—阿丹格贝族（7.8%）。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_jny" style="width: 400px;height:150px;"></div>
+        </div>
+        几内亚共和国（英语：The Republic of Guinea；法语：La République de Guinée），简称几内亚，位于西非西岸，北邻几内亚比绍、塞内加尔和马里，东与科特迪瓦、南与塞拉利昂和利比里亚接壤，西濒大西洋。几内亚全国有20多个民族，其中富拉族（又称颇尔族）约占全国人口的40%以上，马林凯族约占30%以上，苏苏族约占20%。
+        <script type="text/javascript">
+            var chart_jny = echarts.init(document.getElementById('chart_jny'));
+            var option = {
+                title:{text:"几内亚人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['富拉族','马林凯族','苏苏族','其他']},
+                series: [{name:'几内亚人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:40, name:'富拉族'},
+                            {value:30, name:'马林凯族'},
+                            {value:20, name:'苏苏族'},
+                            {value:10, name:'其他'}
+                        ]}]};
+            chart_jny.setOption(option);
+        </script></div></div>
+    <div class="counPart"><div class="country" id="jn">加纳</div>
+    <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_jn" style="width: 400px;height:150px;"></div>
+        </div>
+        加纳共和国（The Republic of Ghana），是非洲西部的一个国家，位于非洲西部、几内亚湾北岸，西邻科特迪瓦，北接布基纳法索，东毗多哥，南濒大西洋，海岸线长约562公里。在西非国家中加纳经济较为发达。以农业为主。黄金、可可和木材三大传统出口产品是加经济支柱。全国有4个主要民族：阿肯族（52.4%）、莫西—达戈姆巴族（15.8%）、埃维族（11.9%）和加—阿丹格贝族（7.8%）。
+        <script type="text/javascript">
+            var chart_jn = echarts.init(document.getElementById('chart_jn'));
+            var option = {
+                title:{text:"加纳人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['阿肯族','莫西—达戈姆巴族','埃维族','加—阿丹格贝族','其他']},
+                series: [{name:'加纳人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:52.4, name:'阿肯族'},
+                            {value:15.8, name:'莫西—达戈姆巴族'},
+                            {value:11.9, name:'埃维族'},
+                            {value:7.8, name:'加—阿丹格贝族'},
+                            {value:12.1, name:'其他'}
+                        ]}]};
+            chart_jn.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="zby">赞比亚</div>
     <div class="desc">赞比亚共和国（The Republic of Zambia）是非洲中南部的一个内陆国家，大部分属于高原地区。北靠刚果民主共和国，东北邻坦桑尼亚，东面和马拉维接壤，东南和莫桑比克相连，南接津巴布韦、博茨瓦纳和纳米比亚，西面与安哥拉相邻。赞比亚全国总人口1760万（2018年），大多属班图语系黑人。有73个民族，奔巴族为最大部族，约占全国人口的33.6%。其他较大民族还有娘家族、通加族。</div></div>
     <div class="counPart"><div class="country" id="msbk">莫桑比克</div>
     <div class="desc">莫桑比克（葡萄牙语：República de Moçambique，全称：莫桑比克共和国）是非洲南部国家，以葡萄牙语作为官方语言，1975年脱离葡萄牙殖民地而独立。作为与英国并无宪制关系的国家，在1995年以特殊例子加入英联邦。莫桑比克的前身，就是葡属东非洲，它是在1498年3月，被葡萄牙航海家达伽马所率领的船队发现，当时就有阿拉伯的贸易站在沿海一带设立。<br>
 莫桑比克政府通过加大基础设施投入，大力发展旅游业，改善投资环境，鼓励开发矿产、能源、农林渔业等资源，保持了经济平稳增长。2013年，莫桑比克国民生产总值约合146.7亿美元，增长率达7%。</div></div>
     <div class="counPart"><div class="country" id="jp">加蓬</div>
-    <div class="desc">加蓬位于非洲中部，跨越赤道，西濒大西洋，东、南与刚果（布）为邻，北与喀麦隆、赤道几内亚交界。加蓬有40多个民族，主要有芳族（占全国人口40%）、巴普努族（占22%）等。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_jp" style="width: 400px;height:150px;"></div>
+        </div>
+        加蓬位于非洲中部，跨越赤道，西濒大西洋，东、南与刚果（布）为邻，北与喀麦隆、赤道几内亚交界。加蓬有40多个民族，主要有芳族（占全国人口40%）、巴普努族（占22%）等。
+        <script type="text/javascript">
+            var chart_jp = echarts.init(document.getElementById('chart_jp'));
+            var option = {
+                title:{text:"加蓬人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['芳族','巴普努族','其他']},
+                series: [{name:'加蓬人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:40, name:'芳族'},
+                            {value:22, name:'巴普努族'},
+                            {value:38, name:'其他'}
+                        ]}]};
+            chart_jp.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="nmby">纳米比亚</div>
-    <div class="desc">纳米比亚地处非洲南部，北与安哥拉、赞比亚接壤，东、南邻博茨瓦纳和南非。2019年1月，纳米比亚全国总人口253万。88%为黑人，白人和有色人约占总人口的12%。奥万博族是最大的民族，占总人口的50%。其他主要民族有：卡万戈、达马拉、赫雷罗以及卡普里维、纳马、布须曼、雷霍伯特和茨瓦纳族。官方语言为英语，通用阿非利卡语、德语和广雅语、纳马语及赫雷罗语。90%的居民信仰基督教，其余信奉原始宗教。</div></div>
+      <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_nmby" style="width: 400px;height:150px;"></div>
+        </div>
+        纳米比亚地处非洲南部，北与安哥拉、赞比亚接壤，东、南邻博茨瓦纳和南非。2019年1月，纳米比亚全国总人口253万。88%为黑人，白人和有色人约占总人口的12%。奥万博族是最大的民族，占总人口的50%。其他主要民族有：卡万戈、达马拉、赫雷罗以及卡普里维、纳马、布须曼、雷霍伯特和茨瓦纳族。官方语言为英语，通用阿非利卡语、德语和广雅语、纳马语及赫雷罗语。90%的居民信仰基督教，其余信奉原始宗教。
+        <script type="text/javascript">
+            var chart_nmby = echarts.init(document.getElementById('chart_nmby'));
+            var option = {
+              title:{text:"纳米比亚居民信仰状况",left: 110,top:-3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',right:2,data:['基督教','原始宗教']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '60%',center: ['50%', '60%'],
+                  data:[
+                    {value:90, name:'基督教'},
+                    {value:10, name:'原始宗教'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+            chart_nmby.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="mltny">毛里塔尼亚</div>
-    <div class="desc">毛里塔尼亚位于非洲两北部，地处北纬15～27度之间，面积103.07万平方公里。毛塔西濒大西洋，北部与西撒哈拉和阿尔及利亚接壤，东南部与马里为邻，南与塞内加尔相望。海岸线全长 667公里，国土面积世界排名第28名。全境地势平坦。有2/3的地区是沙漠，大部分地区是海拔300米左右的低高原。东南边境和沿海地区为平原。<br>全国总体上分为摩尔族和黑非民族（非洲黑人）两大类。摩尔族中白摩尔人（阿拉伯－柏柏尔血统）占30%，具有阿拉伯文化语言传统的哈拉廷人（又称黑摩尔人）占40%，非洲黑人占30%。主要黑非民族是图库勒族、颇耳族、索宁克族、沃洛夫族和班巴拉族。阿拉伯语为官方语言，法语为通用语言。民族语言有哈桑语、布拉尔语、索宁克语和沃洛夫语。约96%的居民信奉伊斯兰教。</div></div>
+    <div class="desc">毛里塔尼亚位于非洲两北部，地处北纬15～27度之间，面积103.07万平方公里。毛塔西濒大西洋，北部与西撒哈拉和阿尔及利亚接壤，东南部与马里为邻，南与塞内加尔相望。海岸线全长 667公里，国土面积世界排名第28名。全境地势平坦。有2/3的地区是沙漠，大部分地区是海拔300米左右的低高原。东南边境和沿海地区为平原。<br>全国总体上分为摩尔族和黑非民族（非洲黑人）两大类。摩尔族中白摩尔人（阿拉伯－柏柏尔血统）占30%，具有阿拉伯文化语言传统的哈拉廷人（又称黑摩尔人）占40%，非洲黑人占30%。主要黑非民族是图库勒族、颇耳族、索宁克族、沃洛夫族和班巴拉族。阿拉伯语为官方语言，法语为通用语言。民族语言有哈桑语、布拉尔语、索宁克语和沃洛夫语。约96%的居民信奉伊斯兰教。
+        <div class="chartDiv_bottom">
+          <div id="chart_mltny" style="width: 300px;height:200px;"></div>
+          <div id="chart_mltny2" class="bottom_2" style="width: 500px;height:200px;"></div>
+        </div>
+        <script type="text/javascript">
+          var chart_mltny = echarts.init(document.getElementById('chart_mltny'));
+          var option = {
+              title:{text:"毛里塔尼亚人口组成",left: 'center',bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+              legend: {orient: 'vertical',x: 'left',data:['摩尔人','哈拉廷人','非洲黑人']},
+              series: [{name:'埃塞俄比亚 摩尔族人口组成',type:'pie',radius: ['50%', '70%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '15',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},
+                      data:[
+                          {value:30, name:'摩尔人'},
+                          {value:40, name:'哈拉廷人'},
+                          {value:30, name:'非洲黑人'}
+              ]}]};
+          chart_mltny.setOption(option);
+        </script>
+        <script type="text/javascript">
+          var chart_mltny2 = echarts.init(document.getElementById('chart_mltny2'));
+          var option = {
+              title:{text:"毛里塔尼亚居民信仰状况",left: 130,bottom: 1,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}:{d}%"},
+              legend: {orient: 'vertical',x: 'left',left:60,data:['伊斯兰教','其他']},
+              series: [{
+                  name:'居民宗教信仰',type:'pie',radius : '70%',center: ['60%', '50%'],
+                  data:[
+                    {value:96, name:'伊斯兰教'},
+                    {value:4, name:'其他'}
+                  ],
+                  itemStyle: {emphasis: {shadowBlur: 10,shadowOffsetX: 0,shadowColor: 'rgba(0, 0, 0, 0.5)'}}
+              }]};
+          chart_mltny2.setOption(option);
+        </script>
+      </div>
+    </div>
     <div class="counPart"><div class="country" id="agl">安哥拉</div>
-    <div class="desc">安哥拉位于非洲大陆西海岸，非洲西南部，南纬5～18度，东经11～24度，北面是刚果共和国，东与赞比亚接壤，南邻纳米比亚，东北部与刚果民主共和国毗连，西面濒临大西洋。截至2018年安哥拉人口共有2925万。主要有奥温本杜（约占总人口的37%）、姆本杜（25%）、巴刚果（13%）、隆达等民族。全国平均人口密度为16人/平方公里，首都罗安达人口密度最大，卡宾达人口密度最小。</div></div>
-    <div class="counPart"><div class="country" id="jbl">吉布提</div>
-    <div class="desc">吉布提共和国地处非洲东北部亚丁湾西岸，扼红海进入印度洋的要冲曼德海峡，东南同索马里接壤，北与厄立特里亚为邻，西部、西南及南部与埃塞俄比亚毗连吉布提共和国主要有伊萨族和阿法尔族。伊萨族占全国人口的50%，讲索马里语；阿法尔族约占40%，讲阿法尔语。另有少数阿拉伯人和欧洲人。</div></div>
+    <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_agl" style="width: 400px;height:150px;"></div>
+        </div>
+        安哥拉位于非洲大陆西海岸，非洲西南部，南纬5～18度，东经11～24度，北面是刚果共和国，东与赞比亚接壤，南邻纳米比亚，东北部与刚果民主共和国毗连，西面濒临大西洋。截至2018年安哥拉人口共有2925万。主要有奥温本杜（约占总人口的37%）、姆本杜（25%）、巴刚果（13%）、隆达等民族。全国平均人口密度为16人/平方公里，首都罗安达人口密度最大，卡宾达人口密度最小。
+        <script type="text/javascript">
+            var chart_agl = echarts.init(document.getElementById('chart_agl'));
+            var option = {
+                title:{text:"安哥拉人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['奥温本杜','姆本杜','巴刚果','其他']},
+                series: [{name:'安哥拉人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:37, name:'奥温本杜'},
+                            {value:25, name:'姆本杜'},
+                            {value:13, name:'巴刚果'},
+                            {value:25, name:'其他'}
+                        ]}]};
+            chart_agl.setOption(option);
+        </script></div></div>
+    <div class="counPart"><div class="country" id="jbt">吉布提</div>
+    <div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_jbt" style="width: 400px;height:150px;"></div>
+        </div>
+        吉布提共和国地处非洲东北部亚丁湾西岸，扼红海进入印度洋的要冲曼德海峡，东南同索马里接壤，北与厄立特里亚为邻，西部、西南及南部与埃塞俄比亚毗连吉布提共和国主要有伊萨族和阿法尔族。伊萨族占全国人口的50%，讲索马里语；阿法尔族约占40%，讲阿法尔语。另有少数阿拉伯人和欧洲人。
+        <script type="text/javascript">
+            var chart_jbt = echarts.init(document.getElementById('chart_jbt'));
+            var option = {
+                title:{text:"吉布提人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['伊萨族','阿法尔族','其他']},
+                series: [{name:'吉布提人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '40%'],
+                        data:[
+                            {value:50, name:'伊萨族'},
+                            {value:40, name:'阿法尔族'},
+                            {value:10, name:'其他'}
+                        ]}]};
+            chart_jbt.setOption(option);
+        </script></div></div>
     <div class="counPart">
       <div class="country" id="aseby">埃塞俄比亚</div>
       <div class="desc">埃塞俄比亚(首都：亚的斯亚贝巴)属非洲东北部内陆国，素有“非洲屋脊”之称。全国约有80多个民族，主要有奥罗莫族(40%)、阿姆哈拉族(30%)等。居民中45%信奉埃塞正教，40-45%信奉伊斯兰教，5%信奉新教，其余信奉原始宗教。阿姆哈拉语为联邦工作语言，通用英语，主要民族语言有奥罗莫语、提格雷语等。<br>埃塞俄比亚属世界最不发达国家之一。以农牧业为主，工业基础薄弱。出口商品主要有咖啡、油籽、恰特草、皮革和黄金，进口机械、汽车、石油产品、化肥、化学品等。
@@ -372,7 +646,27 @@
         </script>
       </div>
     </div>
-    <div class="counPart"><div class="country" id="kny">肯尼亚</div><div class="desc">肯尼亚共和国（The Republic of Kenya）位于非洲东部，赤道横贯中部，东非大裂谷纵贯南北。东邻索马里，南接坦桑尼亚，西连乌干达，北与埃塞俄比亚、南苏丹交界，东南濒临印度洋，海岸线长536公里。国土面积的18%为可耕地，其余主要适于畜牧业。全国共有42个民族，主要有基库尤族（17%）、卢希亚族（14%）、卡伦金族（13%）、卢奥族（10%）和康巴族（10%）等。此外，还有少数印巴人、阿拉伯人和欧洲人。</div></div>
+    <div class="counPart"><div class="country" id="kny">肯尼亚</div><div class="desc">
+        <div class="chartDiv_right">
+          <div id="chart_kny" style="width: 400px;height:150px;"></div>
+        </div>
+        肯尼亚共和国（The Republic of Kenya）位于非洲东部，赤道横贯中部，东非大裂谷纵贯南北。东邻索马里，南接坦桑尼亚，西连乌干达，北与埃塞俄比亚、南苏丹交界，东南濒临印度洋，海岸线长536公里。国土面积的18%为可耕地，其余主要适于畜牧业。全国共有42个民族，主要有基库尤族（17%）、卢希亚族（14%）、卡伦金族（13%）、卢奥族（10%）和康巴族（10%）等。此外，还有少数印巴人、阿拉伯人和欧洲人。
+        <script type="text/javascript">
+            var chart_kny = echarts.init(document.getElementById('chart_kny'));
+            var option = {
+                title:{text:"肯尼亚人口组成",left: 'center',top: -3,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['基库尤族','卢希亚族','卡伦金族','卢奥族','康巴族','其他']},
+                series: [{name:'肯尼亚人口组成',type:'pie',radius: ['40%', '65%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '50%'],
+                        data:[
+                            {value:17, name:'基库尤族'},
+                            {value:14, name:'卢希亚族'},
+                            {value:13, name:'卡伦金族'},
+                            {value:10, name:'卢奥族'},
+                            {value:10, name:'康巴族'},
+                            {value:36, name:'其他'}
+                        ]}]};
+            chart_kny.setOption(option);
+        </script></div></div>
     <div class="counPart"><div class="country" id="nrly">尼日利亚</div><div class="desc">尼日利亚联邦共和国，位于北纬06°27′，东经03°24′，处于西非东南部，非洲几内亚湾西岸的顶点，邻国包括西边的贝宁，北边的尼日尔，东北方隔乍得湖与乍得接壤一小段国界，东和东南与喀麦隆毗连，南濒大西洋几内亚湾。尼日利亚全国有250多个民族，其中最大的3个部族是北部的豪萨-富拉尼族（占全国人口的29%）、西南部的约鲁巴族（21%）和东部的伊博族（18%）。其他比较大的部族还有：卡努尼族、伊比比奥族、蒂夫族、伊贾族、埃多族、安南族、努佩族、乌罗博族、伊加拉族、伊多马族。此外，尼日利亚还有少数的英国人、印巴人和亚裔人。</div></div>
     <div class="counPart"><div class="country" id="zd">乍得</div><div class="desc">乍得共和国（英语：Republic of Chad），简称“乍得”，是非洲中部的一个内陆国家，北接利比亚，东邻苏丹，南与中非共和国接壤，西南与喀麦隆、尼日利亚为邻，西与尼日尔交界。首都及最大城市为恩贾梅纳。乍得全国共有民族256个。北部、中部和东部居民主要是阿拉伯血统的柏柏尔族、瓦达伊族、图布族、巴吉尔米族等，约占全国人口的45%；南部和西南部的居民主要为萨拉族、马萨族、科托科族、蒙当族等，约占全国人口的55%</div></div>
     <div class="counPart"><div class="country" id="ggb">刚果布</div><div class="desc">刚果共和国（英语：The Republic of Congo；法语：République du Congo），简称为刚果（布），位于非洲中西部，赤道横贯中部，东、南两面邻刚果（金）、安哥拉，北接中非、喀麦隆，西连加蓬，西南临大西洋。全国有56个民族，属班图语系。最大的民族是南方的刚果族，包括拉利族、巴刚果族、维利族，约占总人口的45%；北方的姆博希族占16%；中部太凯族占20%；北方原始森林里还生活着少数俾格米人。</div></div>
@@ -395,48 +689,9 @@
         <script type="text/javascript">
             var chart_mlg = echarts.init(document.getElementById('chart_mlg'));
             var option = {
-                title:{
-                  text:"摩洛哥人口组成",
-                  left: 'center',
-                  top: 0,
-                  textStyle:{
-                    fontSize:15
-                  }
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b}: {d}%"
-                },
-                legend: {
-                    orient:'vertical',
-                    right:2,
-                    data:['阿拉伯人','柏柏尔人']
-                },
-                series: [
-                    {
-                        name:'摩洛哥人口组成',
-                        type:'pie',
-                        radius: ['50%', '75%'],
-                        avoidLabelOverlap: false,
-                        label: {
-                            normal: {
-                                show: false,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                show: true,
-                                textStyle: {
-                                    fontSize: '12',
-                                    fontWeight: 'bold'
-                                }
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },
-                        center: ['50%', '55%'],
+                title:{text:"摩洛哥人口组成",left: 'center',top: 0,textStyle:{fontSize:15}},tooltip: {trigger: 'item',formatter: "{a} <br/>{b}: {d}%"},
+                legend: {orient:'vertical',right:2,data:['阿拉伯人','柏柏尔人']},
+                series: [{name:'摩洛哥人口组成',type:'pie',radius: ['50%', '75%'],avoidLabelOverlap: false,label: {normal: {show: false,position: 'center'},emphasis: {show: true,textStyle: {fontSize: '12',fontWeight: 'bold'}}},labelLine: {normal: {show: false}},center: ['50%', '55%'],
                         data:[
                             {value:80, name:'阿拉伯人'},
                             {value:20, name:'柏柏尔人'}
