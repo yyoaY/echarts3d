@@ -387,6 +387,7 @@
             <div id="drDiv2_2"></div>
         </div>
     </div>
+    <!-- 时间条、滚动、语调流向、查询、介绍 -->
     <script>
         var ag=1;var bg=1;var cg=1;var dg=1;var eg=1;var gg=1;var fg=1;var hg=1;
 
@@ -450,7 +451,7 @@
             drDiv2.onmouseover=function(){clearInterval(MyMar2)};
             drDiv2.onmouseout=function(){MyMar2=setInterval(Marquee2,speed); };
 
-            //情感&方向 （奇数-可见；偶数-不可见）
+            //语调流向 （奇数-可见；偶数-不可见）
             var btnTest1=document.getElementById("label1");
             btnTest1.onclick=function(e){
                 var btns = $("#importExportBtns .imports>div").not(".label");
@@ -582,10 +583,9 @@
             btnIntro.onclick=function(e){
                 window.location.href="introCoun.html";
             }
-            // btnIntro
         }
     </script>
-    <!--输入框-->
+    <!--输入框-模糊查询-->
     <script>
         var data = [
             "苏丹",
@@ -1002,16 +1002,7 @@
             '牙买加':[-76.820815,18.038157]
         };
 
-        //根据某行数据转换出飞线中的数据
-        var convertData = function(d) {
-            var res = [];
-            var fromCoord = geoCoordMap[d.e];
-            var toCoord = geoCoordMap[d.i];
-            if(fromCoord && toCoord) {
-                res.push([fromCoord, toCoord]);
-            }
-            return res;
-        }
+
 
         //函数功能为设置散点标签为pla，散点大小为size
         function setdserp(pla,size){
@@ -1443,9 +1434,6 @@
                         v:dataOutNeg[i].v
                     });
                 }
-                // console.log(DATAOUT);
-                // console.log(coundata);
-                // console.log(coundata[0]);
 
                 for (var k = 0; k < coundata.length; k++) {
                     //coundata[k]为各个国家的名称
@@ -1504,6 +1492,7 @@
             var Data=getData();
             setLblData();
 
+            //添加散点
             //给每个国家都添加固定尺寸的散点     //是否添加所有一带一路国家(所有国家的闪闪响应点都有)
             for(k in geoCoordMap){
                 pointsData.push({
@@ -1512,8 +1501,6 @@
                     SymbolSize:1
                 });
             }
-
-
             //添加散点数据，第一组为标注地名的散点       //(国家的普通响应点与名字标签)
             dser.push(
                 //被统计国家对应的散点
@@ -1539,6 +1526,16 @@
                 }
 
             );
+            //根据某行数据转换出飞线中的数据
+            var convertData = function(d) {
+                var res = [];
+                var fromCoord = geoCoordMap[d.e];//输出国经纬度
+                var toCoord = geoCoordMap[d.i];//输入国经纬度
+                if(fromCoord && toCoord) {
+                    res.push([fromCoord, toCoord]);
+                }
+                return res;
+            }
             //统计飞线数据
             for(var i=0;i<Data.length;i++)
             {
@@ -1559,6 +1556,7 @@
                         data: convertData(Data[i])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
                     });
             }
+
             myChart.setOption({
                 backgroundColor: 'rgba(3,28,72,0.3)',
                 title: {
@@ -1589,6 +1587,7 @@
                     }
                 },
                 //考虑到有些小国比较近，不适合直接显示名称标签
+                //加载散点数据dser
                 series:dser
             });
             //3D地球
@@ -1607,6 +1606,7 @@
                     }
                 },
                 roam: true,
+                //加载飞线数据
                 series:series
             };
             echarts.init(document.getElementById("container")).setOption(option, true);
