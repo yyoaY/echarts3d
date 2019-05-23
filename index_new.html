@@ -1153,9 +1153,10 @@
                         environment:'none',
                         shading: 'color',
                         viewControl: {
-                            distance:220,     //距离屏幕远近
-                            autoRotate: false    //控制转动
-                        }
+                            distance:250,     //距离屏幕远近
+                            autoRotate: false,   //控制转动
+                            targetCoord: geoCoordMap[counName]  //地球中心定位到主国家
+                        },
                     },
                     roam: true,
                     //刷新飞线数据
