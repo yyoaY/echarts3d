@@ -1166,14 +1166,8 @@
                     series:series
                 };
                 echarts.init(document.getElementById("container")).setOption(option, true);
-                myChart.on('click', function (params) {//点击事件
-                    console.log(params.componentType+"");
-                        // if (params.componentType === 'series') {
-                        //      var provinceName =params.name;
-                        //      $('#box').css('display','block');
-                        //      $("#box-title").html(provinceName);
-
-                        //     }
+                myChart.on('click', function (params) {//板块 点击事件
+                    renovateData(params.name,20190410,1,1,1,1,1,1,1,1,myChart);
                 });
             });
 
