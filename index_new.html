@@ -319,7 +319,7 @@
         <input type="button" value="介绍" id="btnIntro" class="searchBtn armsBtn pointer">
         <input type="button" value="查询" id="btnSearch" class="searchBtn armsBtn pointer">
         <input type="text" name="country" id="countries"
-               class="countryTextInput pointer noMapDrag ui-autocomplete-input" value="中国"
+               class="countryTextInput pointer noMapDrag ui-autocomplete-input" value=""
         >
         <ul id="data_list" class="list"></ul>
         <br class="clear">
@@ -395,6 +395,8 @@
         function renovateData(counName,time,cg,dg,eg,ag,gg,fg,hg,bg,myChart){    
 
             console.log("renovateData run");
+            //输入框值显示为主国家名称
+            document.getElementById("countries").value=counName+"";
 
             //数据变量
             var dser = [];  // 2D散点坐标系列
